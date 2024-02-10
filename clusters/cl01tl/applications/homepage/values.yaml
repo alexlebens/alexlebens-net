@@ -1,0 +1,451 @@
+homepage:
+  deployment:
+    replicas: 1
+    strategy: Recreate
+    image:
+      repository: ghcr.io/gethomepage/homepage
+      tag: v0.8.7
+      imagePullPolicy: IfNotPresent
+    envFrom:
+      - secretRef:
+          name: homepage-config-secret
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 50m
+      limits:
+        memory: 512Mi
+        cpu: 500m
+  service:
+    http:
+      port: 3000
+  ingressRoute:
+    host: homepage.alexlebens.net
+    authentik:
+      outpost: authentik-proxy-outpost
+      port: 9000
+  config:
+    widgets:
+      - logo:
+          icon: https://gitea.alexlebens.net/alexlebens/icons/raw/branch/main/alexlebensnet-icon_white.png
+      - kubernetes:
+          cluster:
+            show: true
+            cpu: true
+            memory: true
+            showLabel: true
+            label: "Cluster"
+          nodes:
+            show: false
+      - datetime:
+          text_size: xl
+          format:
+            dateStyle: long
+            timeStyle: short
+            hour12: false
+      - openmeteo:
+          label: Denver
+          latitude: 39.73
+          longitude: 104.99
+          units: metric
+          cache: 5
+    services:
+      - Media:
+          - Plex:
+              icon: plex.png
+              href: https://plex.alexlebens.net
+              description: Media server
+              siteMonitor: http://plex.plex:32400
+              statusStyle: dot
+          - Jellyfin:
+              icon: jellyfin.png
+              description: Media server
+              href: https://jellyfin.alexlebens.net/
+              siteMonitor: http://jellyfin.jellyfin:8096
+              statusStyle: dot
+          - TubeAchivist:
+              icon: tube-archivist.png
+              description: Youtube downloader
+              href: https://tubearchivist.alexlebens.net/login/
+              siteMonitor: http://tubearchivist.tubearchivist:8000
+              statusStyle: dot
+          - Navidrome:
+              icon: navidrome.png
+              description: Music
+              href: https://navidrome.alexlebens.net
+              siteMonitor: http://navidrome.navidrome:4533
+              statusStyle: dot
+          - Audiobookshelf:
+              icon: audiobookshelf.png
+              description: Audiobooks, Books, and Podcasts
+              href: https://audiobookshelf.alexlebens.net
+              siteMonitor: http://audiobookshelf.audiobookshelf:80
+              statusStyle: dot
+      - Applications:
+          - Home Assistant:
+              icon: home-assistant.png
+              description: Home automation
+              href: https://homeassistant.alexlebens.net
+              siteMonitor: http://home-assistant.home-assistant:8123
+              statusStyle: dot
+          - Vikunja:
+              icon: vikunja.png
+              description: Notes and tasks
+              href: https://vikunja.alexlebens.net
+              siteMonitor: http://vikunja-frontend.vikunja:80
+              statusStyle: dot
+          - Outline:
+              icon: outline.png
+              description: Wiki
+              href: https://outline.alexlebens.net
+              siteMonitor: http://outline.outline:3000
+              statusStyle: dot
+          - Rss:
+              icon: freshrss.svg
+              description: Rss reader
+              href: https://rss.alexlebens.net
+              siteMonitor: http://freshrss.freshrss:80
+              statusStyle: dot
+          - Mealie:
+              icon: mealie.svg
+              description: Recipe manager and meal planner
+              href: https://mealie.alexlebens.net
+              siteMonitor: http://mealie.mealie:3000
+              statusStyle: dot
+      - Code:
+          - Code Server:
+              icon: code-server.png
+              description: VS Code in a browser
+              href: https://codeserver.alexlebens.net
+              siteMonitor: http://code-server.code-server:8443
+              statusStyle: dot
+          - Gitea:
+              icon: gitea.png
+              description: Code repository
+              href: https://gitea.alexlebens.net
+              siteMonitor: http://gitea-http.gitea:3000
+              statusStyle: dot
+          - ArgoCD:
+              icon: argocd.png
+              description: GitOps
+              href: https://argocd.alexlebens.net
+              siteMonitor: http://argocd-server.argocd:80
+              statusStyle: dot
+              namespace: argocd
+      - Monitoring:
+          - Portainer:
+              icon: portainer.png
+              description: Service monitoring
+              href: https://portainer.alexlebens.net
+              siteMonitor: http://portainer.portainer:9000
+              statusStyle: dot
+          - Grafana:
+              icon: grafana.png
+              description: Dashboard
+              href: https://grafana.alexlebens.net
+              siteMonitor: https://grafana.alexlebens.net
+              statusStyle: dot
+          - Prometheus:
+              icon: prometheus.png
+              description: Metrics database
+              href: https://prometheus.alexlebens.net
+              siteMonitor: http://kube-prometheus-stack-prometheus.kube-prometheus-stack:9090
+              statusStyle: dot
+              widget:
+                type: prometheus
+                url: http://kube-prometheus-stack-prometheus.kube-prometheus-stack:9090
+          - Alertmanager:
+              icon: alertmanager.png
+              description: Alerting and notification
+              href: https://alertmanager.alexlebens.net
+              siteMonitor: http://kube-prometheus-stack-alertmanager.kube-prometheus-stack:9093
+              statusStyle: dot
+      - Services:
+          - Authentik:
+              icon: authentik.png
+              description: Identity management and provider
+              href: https://authentik.alexlebens.net
+              siteMonitor: http://authentik.authentik:80
+              statusStyle: dot
+          - Traefik - cl01tl:
+              icon: traefik.png
+              description: Reverse proxy
+              href: https://traefik-cl01tl.alexlebens.net/dashboard/#/
+              siteMonitor: https://traefik-cl01tl.alexlebens.net/dashboard/#/
+              statusStyle: dot
+              widget:
+                type: traefik
+                url: https://traefik-cl01tl.alexlebens.net
+          - Traefik - ps08rp:
+              icon: traefik.png
+              description: Reverse proxy
+              href: https://traefik-ps08rp.alexlebens.net/dashboard/#/
+              siteMonitor: https://traefik-ps08rp.alexlebens.net/dashboard/#/
+              statusStyle: dot
+          - Traefik - ps09rp:
+              icon: traefik.png
+              description: Reverse proxy
+              href: https://traefik-ps09rp.alexlebens.net/dashboard/#/
+              siteMonitor: https://traefik-ps09rp.alexlebens.net/dashboard/#/
+              statusStyle: dot
+          - Technitium - ps08rp:
+              icon: technitium.png
+              description: DNS
+              href: https://technitium-ps08rp.alexlebens.net
+              siteMonitor: https://technitium-ps08rp.alexlebens.net
+              statusStyle: dot
+          - Technitium - ps09rp:
+              icon: technitium.png
+              description: DNS
+              href: https://technitium-ps09rp.alexlebens.net
+              siteMonitor: https://technitium-ps09rp.alexlebens.net
+              statusStyle: dot
+      - Hardware:
+          - Unifi:
+              icon: unifi.png
+              description: Manager network hardware
+              href: https://unifi.alexlebens.net
+              siteMonitor: https://unifi.alexlebens.net
+              statusStyle: dot
+              widget:
+                type: unifi
+                url: https://unifi.alexlebens.net
+                username: aurailious
+                password: "F$M9Gk3TrG@ZfC8"
+          - Kubesail:
+              icon: kubernetes.png
+              description: Management for PiBox
+              href: https://kubesail.com/clusters
+              siteMonitor: https://kubesail.com/clusters
+              statusStyle: dot
+          - Synology:
+              icon: synology.png
+              description: Network Attached Storage
+              href: https://synology.alexlebens.net
+              siteMonitor: https://synology.alexlebens.net
+              statusStyle: dot
+              widget:
+                type: diskstation
+                url: https://synology.alexlebens.net
+                username: remote_stats
+                password: "Qxm2Ajj8"
+                volume: volume_2
+          - HD Homerun Flex:
+              icon: hdhomerun.png
+              description: TV Tuner
+              href: http://hdhr.alexlebens.net
+              siteMonitor: http://hdhr.alexlebens.net
+              statusStyle: dot
+          - Pi KVM:
+              icon: pikvm.png
+              description: IP KVM
+              href: https://pikvm.alexlebens.net
+              siteMonitor: https://pikvm.alexlebens.net
+              statusStyle: dot
+      - Storage:
+          - Ceph:
+              icon: ceph.png
+              description: Clustered storage
+              href: https://ceph.alexlebens.net
+              siteMonitor: http://rook-ceph-mgr-dashboard.rook-ceph:7000
+              statusStyle: dot
+          - qBittorrent:
+              icon: qbittorrent.png
+              description: P2P downloads
+              href: https://qbittorrent.alexlebens.net
+              siteMonitor: http://qbittorrent-webui.qbittorrent:8080
+              statusStyle: dot
+              widget:
+                type: qbittorrent
+                url: http://qbittorrent-webui.qbittorrent:8080
+          - Tdarr:
+              icon: tdarr.png
+              description: Media transcoding and health checks
+              href: https://tdarr.alexlebens.net
+              siteMonitor: http://tdarr-server-web.tdarr2:8265
+              statusStyle: dot
+              widget:
+                type: tdarr
+                url: http://tdarr-server-web.tdarr2:8265
+          - PGAdmin:
+              icon: pgadmin.png
+              description: Postgresql console
+              href: https://pgadmin.alexlebens.net
+              siteMonitor: http://pgadmin-pgadmin4.pgadmin:80
+              statusStyle: dot
+          - Vault:
+              icon: vault.png
+              description: Secret management
+              href: https://vault.alexlebens.net
+              siteMonitor: http://vault.vault:8200
+              statusStyle: dot
+      - Servarr - Sonarr:
+          - Sonarr:
+              icon: sonarr.png
+              description: TV Shows
+              href: https://sonarr.alexlebens.net
+              siteMonitor: http://sonarr4.sonarr4:8989
+              statusStyle: dot
+              widget:
+                type: sonarr
+                url: http://sonarr4.sonarr4:8989
+                key: "904aa51f053c49f4ad675672f338fe19"
+                fields: ["wanted", "queued", "series"]
+                enableQueue: true
+          - Sonarr 4K:
+              icon: sonarr.png
+              description: TV Shows 4K
+              href: https://sonarr4k.alexlebens.net
+              siteMonitor: http://sonarr4-4k.sonarr4-4k:8989
+              statusStyle: dot
+              widget:
+                type: sonarr
+                url: http://sonarr4-4k.sonarr4-4k:8989
+                key: "1681988f109146e8aeb2df9742e04097"
+                fields: ["wanted", "queued", "series"]
+                enableQueue: true
+      - Servarr - Radarr:
+          - Radarr:
+              icon: radarr.png
+              description: Movies
+              href: https://radarr.alexlebens.net
+              siteMonitor: http://radarr5.radarr5:7878
+              statusStyle: dot
+              widget:
+                type: radarr
+                url: http://radarr5.radarr5:7878
+                key: "cb0784cd37594f1c88129e42da9a4001"
+                fields: ["wanted", "queued", "movies"]
+                enableQueue: true
+          - Radarr 4K:
+              icon: radarr.png
+              description: Movies 4K
+              href: https://radarr4k.alexlebens.net
+              siteMonitor: http://radarr5-4k.radarr5-4k:7878
+              statusStyle: dot
+              widget:
+                type: radarr
+                url: http://radarr5-4k.radarr5-4k:7878
+                key: "893087f39bab4d85b6ad2089cd78b02a"
+                fields: ["wanted", "queued", "movies"]
+                enableQueue: true
+      - Servarr Other:
+          - Lidarr:
+              icon: lidarr.png
+              description: Music
+              href: https://lidarr.alexlebens.net
+              siteMonitor: http://lidarr2.lidarr2:8686
+              statusStyle: dot
+              widget:
+                type: lidarr
+                url: http://lidarr2.lidarr2:8686
+                key: '{{HOMEPAGE_VAR_LIDARR_KEY}}'
+                fields: ["wanted", "queued", "artists"]
+          - Prowlarr:
+              icon: prowlarr.png
+              description: Indexers
+              href: https://prowlarr.alexlebens.net
+              siteMonitor: http://prowlarr.prowlarr:9696
+              statusStyle: dot
+              widget:
+                type: prowlarr
+                url: http://prowlarr.prowlarr:9696
+                key: 5b322be4f06f402aa0cf152ef077b73a
+          - Overseerr:
+              icon: overseerr.png
+              description: Requests
+              href: https://overseerr.alexlebens.net
+              siteMonitor: http://overseerr.overseerr:5055
+              statusStyle: dot
+              widget:
+                type: overseerr
+                url: http://overseerr.overseerr:5055
+                key: MTcwNTI1OTQ0MjY3MmU2YWYzNmZiLWViYzgtNDcyZS1iYmE1LTI1ZWFkMDY3ZmEzNA==
+    bookmarks:
+      - External Services:
+          - Github:
+              - abbr: GH
+                href: https://github.com/AlexanderLebens/net-infra
+          - Renovate:
+              - abbr: RN
+                href: https://developer.mend.io/[platform]/AlexanderLebens/net-infra
+          - Cloudflare:
+              - abbr: CF
+                href: https://dash.cloudflare.com/b76e303258b84076ee01fd0f515c0768
+          - Digital Ocean:
+              - abbr: DO
+                href: https://cloud.digitalocean.com/
+          - Tailscale:
+              - abbr: TS
+                href: https://login.tailscale.com/admin/machines
+          - Pushover:
+              - abbr: PO
+                href: https://pushover.net
+          - Dashboard Icons:
+              - abbr: DI
+                href: https://github.com/walkxcode/dashboard-icons/tree/main/png
+      - Trackers:
+          - Torrentleech:
+              - abbr: TL
+                href: https://www.torrentleech.org
+          - Avistaz:
+              - abbr: AV
+                href: https://avistaz.to
+          - Cinemaz:
+              - abbr: CM
+                href: https://cinemaz.to
+          - Cathode Ray Tube:
+              - abbr: CRT
+                href: https://www.cathode-ray.tube
+          - Alpha Ratio:
+              - abbr: AL
+                href: https://alpharatio.cc/
+          - MV Group:
+              - abbr: MV
+                href: https://forums.mvgroup.org
+    settings:
+      favicon: https://gitea.alexlebens.net/alexlebens/icons/raw/branch/main/alexlebensnet-icon_white.png
+      headerStyle: clean
+      background:
+        image: https://w.wallhaven.cc/full/6d/wallhaven-6d7xyq.jpg
+        brightness: 50
+      cardBlur: md
+      theme: dark
+      disableCollapse: true
+      layout:
+        - Media:
+            tab: Apps
+            icon: mdi-multimedia
+        - Applications:
+            tab: Apps
+            icon: mdi-application
+        - Code:
+            tab: Tools
+            icon: mdi-code-braces-box
+        - Monitoring:
+            tab: Tools
+            icon: mdi-chart-timeline-variant
+        - Services:
+            tab: Services
+            icon: mdi-server-network-outline
+        - Hardware:
+            tab: Services
+            icon: mdi-server
+        - Storage:
+            tab: Services
+            icon: mdi-harddisk
+        - Servarr - Sonarr:
+            tab: Servarr
+            icon: mdi-television
+        - Servarr - Radarr:
+            tab: Servarr
+            icon: mdi-filmstrip
+        - Servarr Other:
+            tab: Servarr
+            icon: mdi-wrench
+        - External Services:
+            tab: Bookmarks
+            icon: mdi-cloud
+        - Trackers:
+            tab: Bookmarks
+            icon: mdi-radar

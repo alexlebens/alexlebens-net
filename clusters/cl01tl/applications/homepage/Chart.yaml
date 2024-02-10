@@ -1,0 +1,11 @@
+apiVersion: v2
+name: homepage
+version: 0.0.2
+sources:
+  - https://github.com/gethomepage/homepage
+  - https://github.com/alexlebens/helm-charts/charts/homepage
+dependencies:
+  - name: homepage
+    version: 0.0.2
+    repository: http://alexlebens.github.io/helm-charts
+appVersion: 0.8.7
