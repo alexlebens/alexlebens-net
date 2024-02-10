@@ -10,13 +10,5 @@
     "lockFileMaintenance": {
         "enabled": true,
         "automerge": true
-    },
-    "packageRules": [
-        {
-            "matchUpdateTypes": [
-                "patch"
-            ],
-            "automerge": true
-        }
-    ]
+    }
 }
