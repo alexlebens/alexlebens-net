@@ -1,0 +1,22 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:base",
+        "mergeConfidence:all-badges"
+    ],
+    "timezone": "US/Mountain",
+    "schedule": "before 8am every weekday",
+    "ignoreTests": true,
+    "lockFileMaintenance": {
+        "enabled": true,
+        "automerge": true
+    },
+    "packageRules": [
+        {
+            "matchUpdateTypes": [
+                "patch"
+            ],
+            "automerge": true
+        }
+    ]
+}
