@@ -131,6 +131,12 @@ homepage:
               href: https://grafana.alexlebens.net
               siteMonitor: https://grafana.alexlebens.net
               statusStyle: dot
+          - Hubble:
+              icon: cilium.png
+              description: Network monitoring for Cilium
+              href: https://hubble.alexlebens.net
+              siteMonitor: https://hubble-ui.kube-system:80
+              statusStyle: dot                      
           - Prometheus:
               icon: prometheus.png
               description: Metrics database
