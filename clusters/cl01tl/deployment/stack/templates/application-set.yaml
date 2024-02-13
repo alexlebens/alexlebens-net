@@ -1,0 +1,42 @@
+{{- range $index, $stack := .Values.applicationset }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: {{ $stack.name }}
+  namespace: {{ $.Release.Namespace }}
+spec:
+  generators:
+    - git:
+        repoURL: {{ $.Values.git.repo }}
+        revision: {{ $.Values.git.revision }}
+        directories:
+          - path: "{{ $.Values.git.path }}/{{ $stack.name }}/*"
+  template:
+    metadata:
+      name: '{{ `{{path.basename}}` }}'
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      destination:
+        name: in-cluster
+        namespace: '{{ default `{{path.basename}}` $stack.namespace }}'
+      project: default
+      revisionHistoryLimit: 3
+      source:
+        repoURL: {{ $.Values.git.repo }}
+        path: '{{ `{{path}}` }}'
+        targetRevision: {{ $.Values.git.revision }}
+      syncPolicy:
+        #automated:
+        #  prune: true
+        #  selfHeal: false
+        retry:
+          limit: 3
+          backoff:
+            duration: 1m
+            factor: 2
+            maxDuration: 16m
+        syncOptions:
+          {{- toYaml $stack.syncOptions | nindent 10 }}
+{{- end }}

@@ -1,29 +1,15 @@
 homepage:
   deployment:
     replicas: 1
-    strategy: Recreate
     image:
-      repository: ghcr.io/gethomepage/homepage
       tag: v0.8.7
-      imagePullPolicy: IfNotPresent
     envFrom:
       - secretRef:
           name: homepage-config-secret
-    resources:
-      requests:
-        memory: 256Mi
-        cpu: 50m
-      limits:
-        memory: 512Mi
-        cpu: 500m
-  service:
-    http:
-      port: 3000
   ingressRoute:
     host: homepage.alexlebens.net
     authentik:
       outpost: authentik-proxy-outpost
-      port: 9000
   config:
     widgets:
       - logo:
@@ -211,7 +197,7 @@ homepage:
                 type: unifi
                 url: https://unifi.alexlebens.net
                 username: aurailious
-                password: "F$M9Gk3TrG@ZfC8"
+                password: '{{HOMEPAGE_VAR_UNIFI_PASSWORD}}'
           - Kubesail:
               icon: kubernetes.png
               description: Management for PiBox
@@ -228,7 +214,7 @@ homepage:
                 type: diskstation
                 url: https://synology.alexlebens.net
                 username: remote_stats
-                password: "Qxm2Ajj8"
+                password: '{{HOMEPAGE_VAR_SYNOLOGY_PASSWORD}}'
                 volume: volume_2
           - HD Homerun Flex:
               icon: hdhomerun.png
@@ -289,7 +275,7 @@ homepage:
               widget:
                 type: sonarr
                 url: http://sonarr4.sonarr4:8989
-                key: "904aa51f053c49f4ad675672f338fe19"
+                key: '{{HOMEPAGE_VAR_SONARR_KEY}}'
                 fields: ["wanted", "queued", "series"]
                 enableQueue: true
           - Sonarr 4K:
@@ -301,7 +287,7 @@ homepage:
               widget:
                 type: sonarr
                 url: http://sonarr4-4k.sonarr4-4k:8989
-                key: "1681988f109146e8aeb2df9742e04097"
+                key: '{{HOMEPAGE_VAR_SONARR4K_KEY}}'
                 fields: ["wanted", "queued", "series"]
                 enableQueue: true
       - Servarr - Radarr:
@@ -314,7 +300,7 @@ homepage:
               widget:
                 type: radarr
                 url: http://radarr5.radarr5:7878
-                key: "cb0784cd37594f1c88129e42da9a4001"
+                key: '{{HOMEPAGE_VAR_RADARR_KEY}}'
                 fields: ["wanted", "queued", "movies"]
                 enableQueue: true
           - Radarr 4K:
@@ -326,7 +312,7 @@ homepage:
               widget:
                 type: radarr
                 url: http://radarr5-4k.radarr5-4k:7878
-                key: "893087f39bab4d85b6ad2089cd78b02a"
+                key: '{{HOMEPAGE_VAR_RADARR4K_KEY}}'
                 fields: ["wanted", "queued", "movies"]
                 enableQueue: true
       - Servarr Other:
@@ -350,7 +336,7 @@ homepage:
               widget:
                 type: prowlarr
                 url: http://prowlarr.prowlarr:9696
-                key: 5b322be4f06f402aa0cf152ef077b73a
+                key: '{{HOMEPAGE_VAR_PROWLARR_KEY}}'
           - Overseerr:
               icon: overseerr.png
               description: Requests
@@ -360,7 +346,7 @@ homepage:
               widget:
                 type: overseerr
                 url: http://overseerr.overseerr:5055
-                key: MTcwNTI1OTQ0MjY3MmU2YWYzNmZiLWViYzgtNDcyZS1iYmE1LTI1ZWFkMDY3ZmEzNA==
+                key: '{{HOMEPAGE_VAR_OVERSEERR_KEY}}'
     bookmarks:
       - External Services:
           - Github:
