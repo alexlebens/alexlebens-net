@@ -2,14 +2,22 @@
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
         "config:recommended",
-        "mergeConfidence:all-badges",
-        ":dependencyDashboard"
+        "mergeConfidence:all-badges"
     ],
     "timezone": "US/Mountain",
-    "schedule": "before 8am",
-    "ignoreTests": true,
+    "schedule": "on sunday",
     "lockFileMaintenance": {
         "enabled": true,
         "automerge": true
-    }
+    },
+    "packageRules": [
+        {
+            "matchUpdateTypes": [
+                "minor",
+                "patch"
+            ],
+            "matchCurrentVersion": "!/^0/",
+            "automerge": true
+        }
+    ]
 }
