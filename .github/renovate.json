@@ -25,7 +25,7 @@
             "automerge": false
         },
         {
-            "description": "Run quarterly for core services",
+            "description": "Run quarterly for services",
             "matchPackageNames": [
                 "argocd",
                 "stack"
@@ -33,7 +33,7 @@
             "schedule": ["every 3 months on the first day of the month"],
             "addLabels": [
                 "quarterly",
-                "core-service"
+                "service"
             ],
             "automerge": false,
             "minimumReleaseAge": "3 days"
