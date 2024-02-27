@@ -13,58 +13,121 @@
     "bumpVersion": "minor",
     "packageRules": [
         {
-            "description": "Disables the creation of branches/PRs for any minor/patch updates",
-            "matchPaths": [".github/renovate-update-notification/Dockerfile"],
-            "matchUpdateTypes": ["minor", "patch", "pin", "digest", "rollback"],
+            "description": "Disables for non major Renovate version",
+            "matchPaths": [
+                ".github/renovate-update-notification/Dockerfile"
+            ],
+            "matchUpdateTypes": [
+                "minor",
+                "patch",
+                "pin",
+                "digest",
+                "rollback"
+            ],
             "enabled": false
         },
         {
-            "description": "Create a PR whenever there is a new major Renovate version",
-            "matchPaths": [".github/renovate-update-notification/Dockerfile"],
-            "matchUpdateTypes": ["major"],
+            "description": "Generate for major Renovate version",
+            "matchPaths": [
+                ".github/renovate-update-notification/Dockerfile"
+            ],
+            "matchUpdateTypes": [
+                "major"
+            ],
+            "addLabels": [
+                "upgrade"
+            ],
             "automerge": false
         },
         {
-            "description": "Run quarterly for services",
+            "description": "Generate for services quarterly ",
             "matchPackageNames": [
-                "argocd",
                 "stack"
             ],
-            "schedule": ["every 3 months on the first day of the month"],
+            "schedule": [
+                "every 3 months on the first day of the month"
+            ],
             "addLabels": [
+                "upgrade",
                 "quarterly",
+                "service"
+            ],
+            "automerge": false,
+            "minimumReleaseAge": "7 days"
+        },
+        {
+            "description": "Generate for services weekly ",
+            "matchPackageNames": [
+                "argocd"
+            ],
+            "schedule": [
+                "after 10am on tuesday",
+                "before 5pm on tuesday"
+            ],
+            "addLabels": [
+                "upgrade",
+                "weekly",
                 "service"
             ],
             "automerge": false,
             "minimumReleaseAge": "3 days"
         },
         {
-            "description": "Auto merge patches for applications",
+            "description": "Automerge patches for applications",
             "matchPackageNames": [
                 "homepage"
             ],
-            "matchUpdateTypes": ["patch"],
+            "matchUpdateTypes": [
+                "patch"
+            ],
             "schedule": [
-                "after 10am on tuesday",
-                "before 5pm on tuesday"
+                "after 10am every weekday",
+                "before 5pm every weekday"
             ],
             "automergeType": "branch",
-            "automerge": true
+            "automerge": true,
+            "minimumReleaseAge": "3 days"
         },
         {
-            "description": "Generate for applications on Tuesdays",
+            "description": "Generate patches for applications on Tuesdays",
             "matchPackageNames": [
-                "homepage"
+                "audiobookshelf"
+            ],
+            "matchUpdateTypes": [
+                "patch"
             ],
             "schedule": [
                 "after 10am on tuesday",
                 "before 5pm on tuesday"
             ],
             "addLabels": [
+                "patch",
                 "weekly",
                 "application"
             ],
-            "automerge": false
+            "automerge": false,
+            "minimumReleaseAge": "3 days"
+        },
+        {
+            "description": "Generate minor/major for applications on Tuesdays",
+            "matchPackageNames": [
+                "homepage"
+            ],
+            "matchUpdateTypes": [
+                "minor",
+                "major"
+            ],
+            "schedule": [
+                "after 10am on tuesday",
+                "before 5pm on tuesday"
+            ],
+            "addLabels": [
+                "upgrade",
+                "weekly",
+                "application"
+            ],
+            "automerge": false,
+            "minimumReleaseAge": "3 days"
         }
     ]
 }
