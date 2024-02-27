@@ -30,7 +30,7 @@
                 "argocd",
                 "stack"
             ],
-            "schedule": ["every 3 months on the first monday of the month"],
+            "schedule": ["every 3 months on the first day of the month"],
             "addLabels": [
                 "quarterly",
                 "core-service"
