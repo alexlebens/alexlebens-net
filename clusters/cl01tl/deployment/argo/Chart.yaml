@@ -1,6 +1,7 @@
 apiVersion: v2
 name: argocd
-version: 0.0.1
+version: 0.0.2
+home: https://outline.alexlebens.net/doc/argo-cd-qLEdrgdwOD
 sources:
   - https://github.com/argoproj/argo-cd
 dependencies:
