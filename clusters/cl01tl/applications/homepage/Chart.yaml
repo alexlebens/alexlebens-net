@@ -1,6 +1,7 @@
 apiVersion: v2
 name: homepage
-version: 0.0.4
+version: 0.0.5
+home: https://outline.alexlebens.net/doc/homepage-yxjgZ3ttFV
 sources:
   - https://github.com/gethomepage/homepage
   - https://github.com/alexlebens/helm-charts/charts/homepage
@@ -8,4 +9,4 @@ dependencies:
   - name: homepage
     version: 0.0.5
     repository: http://alexlebens.github.io/helm-charts
-appVersion: 0.8.7
+appVersion: v0.8.8
