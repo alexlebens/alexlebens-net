@@ -10,6 +10,7 @@
         "after 10am every weekday",
         "before 5pm every weekday"
     ],
+    "labels": ["outside-rule"],
     "bumpVersion": "minor",
     "packageRules": [
         {
@@ -40,9 +41,18 @@
             "automerge": false
         },
         {
-            "description": "Generate for services quarterly ",
+            "description": "Generate for service images quarterly ",
             "matchPackageNames": [
-                "stack"
+            ],
+            "matchDatasources": [
+                "docker",
+                "gitea-releases",
+                "gitea-tags",
+                "github-releases",
+                "github-tags",
+                "gitlab-packages",
+                "gitlab-releases",
+                "gitlab-tags"
             ],
             "schedule": [
                 "every 3 months on the first day of the month"
@@ -50,15 +60,45 @@
             "addLabels": [
                 "upgrade",
                 "quarterly",
-                "service"
+                "service",
+                "image"
             ],
             "automerge": false,
             "minimumReleaseAge": "7 days"
         },
         {
-            "description": "Generate for services weekly ",
+            "description": "Generate for service charts quarterly ",
             "matchPackageNames": [
-                "argocd"
+                "argo-cd"
+            ],
+            "matchDatasources": [
+                "helm"
+            ],
+            "schedule": [
+                "every 3 months on the first day of the month"
+            ],
+            "addLabels": [
+                "upgrade",
+                "quarterly",
+                "service",
+                "chart"
+            ],
+            "automerge": false,
+            "minimumReleaseAge": "7 days"
+        },
+        {
+            "description": "Generate for service images weekly ",
+            "matchPackageNames": [
+            ],
+            "matchDatasources": [
+                "docker",
+                "gitea-releases",
+                "gitea-tags",
+                "github-releases",
+                "github-tags",
+                "gitlab-packages",
+                "gitlab-releases",
+                "gitlab-tags"
             ],
             "schedule": [
                 "after 10am on tuesday",
@@ -67,15 +107,45 @@
             "addLabels": [
                 "upgrade",
                 "weekly",
-                "service"
+                "service",
+                "image"
             ],
             "automerge": false,
             "minimumReleaseAge": "3 days"
         },
         {
-            "description": "Automerge patches for applications",
+            "description": "Generate for service charts weekly ",
             "matchPackageNames": [
-                "homepage"
+            ],
+            "matchDatasources": [
+                "helm"
+            ],
+            "schedule": [
+                "after 10am on tuesday",
+                "before 5pm on tuesday"
+            ],
+            "addLabels": [
+                "upgrade",
+                "weekly",
+                "service",
+                "chart"
+            ],
+            "automerge": false,
+            "minimumReleaseAge": "3 days"
+        },
+        {
+            "description": "Automerge patches for application images",
+            "matchPackageNames": [
+            ],
+            "matchDatasources": [
+                "docker",
+                "gitea-releases",
+                "gitea-tags",
+                "github-releases",
+                "github-tags",
+                "gitlab-packages",
+                "gitlab-releases",
+                "gitlab-tags"
             ],
             "matchUpdateTypes": [
                 "patch"
@@ -89,9 +159,37 @@
             "minimumReleaseAge": "3 days"
         },
         {
-            "description": "Generate patches for applications on Tuesdays",
+            "description": "Automerge patches for application charts that are selfhosted",
             "matchPackageNames": [
-                "audiobookshelf"
+                "homepage"
+            ],
+            "matchDatasources": [
+                "helm"
+            ],
+            "matchUpdateTypes": [
+                "patch"
+            ],
+            "schedule": [
+                "after 10am every weekday",
+                "before 5pm every weekday"
+            ],
+            "automergeType": "branch",
+            "automerge": true,
+            "minimumReleaseAge": "3 days"
+        },
+        {
+            "description": "Generate patches for application images on Tuesdays",
+            "matchPackageNames": [
+            ],
+            "matchDatasources": [
+                "docker",
+                "gitea-releases",
+                "gitea-tags",
+                "github-releases",
+                "github-tags",
+                "gitlab-packages",
+                "gitlab-releases",
+                "gitlab-tags"
             ],
             "matchUpdateTypes": [
                 "patch"
@@ -103,15 +201,49 @@
             "addLabels": [
                 "patch",
                 "weekly",
-                "application"
+                "application",
+                "image"
             ],
             "automerge": false,
             "minimumReleaseAge": "3 days"
         },
         {
-            "description": "Generate minor/major for applications on Tuesdays",
+            "description": "Generate patches for application charts on Tuesdays",
             "matchPackageNames": [
-                "homepage"
+            ],
+            "matchDatasources": [
+                "helm"
+            ],
+            "matchUpdateTypes": [
+                "patch"
+            ],
+            "schedule": [
+                "after 10am on tuesday",
+                "before 5pm on tuesday"
+            ],
+            "addLabels": [
+                "patch",
+                "weekly",
+                "application",
+                "chart"
+            ],
+            "automerge": false,
+            "minimumReleaseAge": "3 days"
+        },
+        {
+            "description": "Generate minor/major for application images on Tuesdays",
+            "matchPackageNames": [
+            
+            ],
+            "matchDatasources": [
+                "docker",
+                "gitea-releases",
+                "gitea-tags",
+                "github-releases",
+                "github-tags",
+                "gitlab-packages",
+                "gitlab-releases",
+                "gitlab-tags"
             ],
             "matchUpdateTypes": [
                 "minor",
@@ -124,7 +256,33 @@
             "addLabels": [
                 "upgrade",
                 "weekly",
-                "application"
+                "application",
+                "image"
+            ],
+            "automerge": false,
+            "minimumReleaseAge": "3 days"
+        },
+        {
+            "description": "Generate minor/major for application charts on Tuesdays",
+            "matchPackageNames": [
+                "homepage"            
+            ],
+            "matchDatasources": [
+                "helm"
+            ],
+            "matchUpdateTypes": [
+                "minor",
+                "major"
+            ],
+            "schedule": [
+                "after 10am on tuesday",
+                "before 5pm on tuesday"
+            ],
+            "addLabels": [
+                "upgrade",
+                "weekly",
+                "application",
+                "chart"
             ],
             "automerge": false,
             "minimumReleaseAge": "3 days"
