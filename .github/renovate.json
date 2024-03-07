@@ -42,7 +42,9 @@
         },
         {
             "description": "Generate for service images quarterly ",
-            "matchPackageNames": [],
+            "matchPackageNames": [
+                "hashicorp/vault"
+            ],
             "matchDatasources": [
                 "docker",
                 "gitea-releases",
@@ -69,7 +71,24 @@
         {
             "description": "Generate for service charts quarterly ",
             "matchPackageNames": [
-                "argo-cd"
+                "argo-cd",
+                "cilium",
+                "authentik",
+                "vault",
+                "cert-manager",
+                "intel-device-plugins-operator",
+                "intel-device-plugins-gpu",
+                "metallb",
+                "metrics-server",
+                "node-feature-discovery",
+                "traefik",
+                "cloudnative-pg",
+                "postgres-cluster",
+                "democratic-csi",
+                "nfs-subdir-external-provisioner",
+                "rook-ceph",
+                "rook-ceph-cluster",
+                "redis"
             ],
             "matchDatasources": [
                 "helm"
@@ -89,7 +108,9 @@
         },
         {
             "description": "Generate for service images weekly ",
-            "matchPackageNames": [],
+            "matchPackageNames": [
+                "portainer/portainer-ce"
+            ],
             "matchDatasources": [
                 "docker",
                 "gitea-releases",
@@ -116,7 +137,18 @@
         },
         {
             "description": "Generate for service charts weekly ",
-            "matchPackageNames": [],
+            "matchPackageNames": [
+                "external-secrets",
+                "gitea",
+                "grafana",
+                "kubernetes-cloudflare-ddns",
+                "pgadmin4",
+                "portainer",
+                "kube-prometheus-stack",
+                "loki",
+                "promtail",
+                "speedtest-exporter"
+            ],
             "matchDatasources": [
                 "helm"
             ],
@@ -136,7 +168,21 @@
         },
         {
             "description": "Automerge patches for application images",
-            "matchPackageNames": [],
+            "matchPackageNames": [
+                "ghcr.io/advplyr/audiobookshelf",
+                "ghcr.io/linuxserver/calibre-web",
+                "linuxserver/code-server",
+                "linuxserver/cops",
+                "ghcr.io/linuxserver/freshrss",
+                "rmcrackan/libation",
+                "deluan/navidrome",
+                "outlinewiki/outline",
+                "ghcr.io/sct/overseerr",
+                "ghcr.io/onedr0p/prowlarr",
+                "ghcr.io/haveagitgat/tdarr",
+                "ghcr.io/haveagitgat/tdarr_node",
+                "golift/unpackerr"
+            ],
             "matchDatasources": [
                 "docker",
                 "gitea-releases",
@@ -162,6 +208,8 @@
         {
             "description": "Automerge patches for application charts that are selfhosted",
             "matchPackageNames": [
+                "calibre-server",
+                "home-assistant",
                 "homepage"
             ],
             "matchDatasources": [
@@ -181,7 +229,23 @@
         },
         {
             "description": "Generate patches for application images on Tuesdays",
-            "matchPackageNames": [],
+            "matchPackageNames": [
+                "jellyfin/jellyfin",
+                "ghcr.io/onedr0p/plex",
+                "bbilly1/tubearchivist",
+                "bitnami/elasticsearch",
+                "redis/redis-stack-server",
+                "vikunja/frontend",
+                "vikunja/api",
+                "ghcr.io/onedr0p/exportarr",
+                "ghcr.io/onedr0p/lidarr",
+                "linuxserver/qbittorrent",
+                "ghcr.io/onedr0p/radarr",
+                "ghcr.io/onedr0p/readarr-develop",
+                "ghcr.io/onedr0p/sonarr",
+                "linuxserver/code-server",
+                "dpage/pgadmin4"
+            ],
             "matchDatasources": [
                 "docker",
                 "gitea-releases",
@@ -211,7 +275,28 @@
         },
         {
             "description": "Generate patches for application charts on Tuesdays",
-            "matchPackageNames": [],
+            "matchPackageNames": [
+                "audiobookshelf",
+                "calibre-web",
+                "code-server",
+                "cops",
+                "freshrss",
+                "jellyfin",
+                "libation",
+                "mealie",
+                "navidrome",
+                "plex",
+                "tubearchivist",
+                "vikunja",
+                "lidarr",
+                "overseerr",
+                "prowlarr",
+                "radarr",
+                "readarr",
+                "sonarr",
+                "tdarr-exporter ",
+                "unpackerr"
+            ],
             "matchDatasources": [
                 "helm"
             ],
@@ -234,7 +319,36 @@
         },
         {
             "description": "Generate minor/major for application images on Tuesdays",
-            "matchPackageNames": [],
+            "matchPackageNames": [
+                "ghcr.io/advplyr/audiobookshelf",
+                "ghcr.io/linuxserver/calibre-web",
+                "linuxserver/code-server",
+                "linuxserver/cops",
+                "ghcr.io/linuxserver/freshrss",
+                "rmcrackan/libation",
+                "deluan/navidrome",
+                "outlinewiki/outline",
+                "ghcr.io/sct/overseerr",
+                "ghcr.io/onedr0p/prowlarr",
+                "ghcr.io/haveagitgat/tdarr",
+                "ghcr.io/haveagitgat/tdarr_node",
+                "golift/unpackerr",
+                "jellyfin/jellyfin",
+                "ghcr.io/onedr0p/plex",
+                "bbilly1/tubearchivist",
+                "bitnami/elasticsearch",
+                "redis/redis-stack-server",
+                "vikunja/frontend",
+                "vikunja/api",
+                "ghcr.io/onedr0p/exportarr",
+                "ghcr.io/onedr0p/lidarr",
+                "linuxserver/qbittorrent",
+                "ghcr.io/onedr0p/radarr",
+                "ghcr.io/onedr0p/readarr-develop",
+                "ghcr.io/onedr0p/sonarr",
+                "linuxserver/code-server",
+                "dpage/pgadmin4"
+            ],
             "matchDatasources": [
                 "docker",
                 "gitea-releases",
@@ -266,7 +380,29 @@
         {
             "description": "Generate minor/major for application charts on Tuesdays",
             "matchPackageNames": [
-                "homepage"
+                "calibre-server",
+                "home-assistant",
+                "homepage",
+                "audiobookshelf",
+                "calibre-web",
+                "code-server",
+                "cops",
+                "freshrss",
+                "jellyfin",
+                "libation",
+                "mealie",
+                "navidrome",
+                "plex",
+                "tubearchivist",
+                "vikunja",
+                "lidarr",
+                "overseerr",
+                "prowlarr",
+                "radarr",
+                "readarr",
+                "sonarr",
+                "tdarr-exporter ",
+                "unpackerr"
             ],
             "matchDatasources": [
                 "helm"
