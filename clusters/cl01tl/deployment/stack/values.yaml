@@ -60,6 +60,27 @@ applicationSet:
         - ServerSideApply=false
         - PruneLast=true
 application:
+  stack:
+    namespace: argocd
+    source:
+      repo: git@github.com:alexlebens/alexlebens-net.git
+      revision: HEAD
+      path: clusters/cl01tl/deployment/stack
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: false
+      retry:
+        limit: 10
+        backoff:
+          duration: 1m
+          factor: 2
+          maxDuration: 16m
+      syncOptions:
+        - CreateNamespace=true
+        - ApplyOutOfSyncOnly=false
+        - ServerSideApply=true
+        - PruneLast=true
   cilium:
     namespace: kube-system
     source:
