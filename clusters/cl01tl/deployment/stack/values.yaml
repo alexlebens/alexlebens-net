@@ -24,7 +24,7 @@ applicationSet:
       syncOptions:
         - CreateNamespace=true
         - ApplyOutOfSyncOnly=true
-        - ServerSideApply=true
+        - ServerSideApply=false
         - PruneLast=true
   - name: platform
     syncPolicy:
@@ -46,7 +46,7 @@ applicationSet:
       syncOptions:
         - CreateNamespace=true
         - ApplyOutOfSyncOnly=true
-        - ServerSideApply=true
+        - ServerSideApply=false
         - PruneLast=true
   - name: storage
     syncPolicy:
