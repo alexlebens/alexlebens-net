@@ -82,4 +82,4 @@ application:
       - CreateNamespace=true
       - ApplyOutOfSyncOnly=false
       - ServerSideApply=true
-      - PruneLast=true  
+      - PruneLast=true
