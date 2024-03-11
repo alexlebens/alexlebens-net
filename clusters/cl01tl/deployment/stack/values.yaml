@@ -71,7 +71,7 @@ application:
         - ApplyOutOfSyncOnly=false
         - ServerSideApply=true
         - PruneLast=true
-  metrics-server:
+  metricsServer:
     namespace: kube-system
     source:
       repo: git@github.com:alexlebens/alexlebens-net.git
