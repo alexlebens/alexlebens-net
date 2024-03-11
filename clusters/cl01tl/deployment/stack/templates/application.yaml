@@ -29,12 +29,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: {{ .Values.application.metrics-server.source.repo }}
-    targetRevision: {{ .Values.application.metrics-server.source.revision }}
-    path: {{ .Values.application.metrics-server.source.path }}
+    repoURL: {{ .Values.application.metricsServer.source.repo }}
+    targetRevision: {{ .Values.application.metricsServer.source.revision }}
+    path: {{ .Values.application.metricsServer.source.path }}
   destination:
     name: in-cluster
-    namespace: {{ .Values.application.metrics-server.namespace }}
+    namespace: {{ .Values.application.metricsServer.namespace }}
   revisionHistoryLimit: 3
   syncPolicy:
-    {{- toYaml .Values.application.metrics-server.syncPolicy | nindent 4 }}
+    {{- toYaml .Values.application.metricsServer.syncPolicy | nindent 4 }}
