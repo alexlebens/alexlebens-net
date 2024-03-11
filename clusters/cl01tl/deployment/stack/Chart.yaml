@@ -3,4 +3,5 @@ name: stack
 version: 0.0.1
 sources:
   - https://github.com/argoproj/argo-cd
-appVersion: v2.10.0
+  - https://github.com/alexlebens/alexlebens-net.git  
+appVersion: 0.0.1

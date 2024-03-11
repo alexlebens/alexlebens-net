@@ -2,35 +2,50 @@ git:
   repo: git@github.com:alexlebens/alexlebens-net.git
   revision: HEAD
   path: clusters/cl01tl
-applicationset:
+applicationSet:
   - name: applications
-    syncOptions:
-      - CreateNamespace=true
-      - ApplyOutOfSyncOnly=true
-      - ServerSideApply=true
-      - PruneLast=true
+    syncPolicy:
+      automated:
+        enabled: false
+      syncOptions:
+        - CreateNamespace=true
+        - ApplyOutOfSyncOnly=true
+        - ServerSideApply=true
+        - PruneLast=true
   - name: deployment
-    namespace: argocd
-    syncOptions:
-      - CreateNamespace=true
-      - ApplyOutOfSyncOnly=true
-      - ServerSideApply=true
-      - PruneLast=true
+    namespace: argo
+    syncPolicy:
+      automated:
+        enabled: false   
+      syncOptions:
+        - CreateNamespace=true
+        - ApplyOutOfSyncOnly=true
+        - ServerSideApply=true
+        - PruneLast=true
   - name: platform
-    syncOptions:
-      - CreateNamespace=true
-      - ApplyOutOfSyncOnly=true
-      - ServerSideApply=true
-      - PruneLast=true
+    syncPolicy:
+      automated:
+        enabled: false  
+      syncOptions:
+        - CreateNamespace=true
+        - ApplyOutOfSyncOnly=true
+        - ServerSideApply=true
+        - PruneLast=true
   - name: services
-    syncOptions:
-      - CreateNamespace=true
-      - ApplyOutOfSyncOnly=true
-      - ServerSideApply=true
-      - PruneLast=true
+    syncPolicy:
+      automated:
+        enabled: false   
+      syncOptions:
+        - CreateNamespace=true
+        - ApplyOutOfSyncOnly=true
+        - ServerSideApply=true
+        - PruneLast=true
   - name: storage
-    syncOptions:
-      - CreateNamespace=true
-      - ApplyOutOfSyncOnly=true
-      - ServerSideApply=true
-      - PruneLast=true
+    syncPolicy:
+      automated:
+        enabled: false   
+      syncOptions:
+        - CreateNamespace=true
+        - ApplyOutOfSyncOnly=true
+        - ServerSideApply=true
+        - PruneLast=true
