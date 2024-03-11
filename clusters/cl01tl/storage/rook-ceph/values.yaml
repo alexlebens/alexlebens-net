@@ -1,0 +1,462 @@
+rook-ceph:
+  crds:
+    enabled: true
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+  csi:
+    enableRbdDriver: true
+    enableCephfsDriver: true
+    enableCSIHostNetwork: true
+    enableCephfsSnapshotter: true
+    enableNFSSnapshotter: true
+    enableRBDSnapshotter: true
+    enablePluginSelinuxHostMount: false
+    enableCSIEncryption: false
+    enableMetadata: true
+    provisionerReplicas: 3
+    clusterName:
+    logLevel: 0
+    csiRBDProvisionerResource: |
+      - name : csi-provisioner
+        resource:
+          requests:
+            memory: 128Mi
+            cpu: 100m
+          limits:
+            memory: 256Mi
+            cpu: 200m
+      - name : csi-resizer
+        resource:
+          requests:
+            memory: 128Mi
+            cpu: 100m
+          limits:
+            memory: 256Mi
+            cpu: 200m
+      - name : csi-attacher
+        resource:
+          requests:
+            memory: 128Mi
+            cpu: 100m
+          limits:
+            memory: 256Mi
+            cpu: 200m
+      - name : csi-snapshotter
+        resource:
+          requests:
+            memory: 128Mi
+            cpu: 100m
+          limits:
+            memory: 256Mi
+            cpu: 200m
+      - name : csi-rbdplugin
+        resource:
+          requests:
+            memory: 512Mi
+            cpu: 250m
+          limits:
+            memory: 1Gi
+            cpu: 500m
+      - name : csi-omap-generator
+        resource:
+          requests:
+            memory: 512Mi
+            cpu: 250m
+          limits:
+            memory: 1Gi
+            cpu: 500m
+      - name : liveness-prometheus
+        resource:
+          requests:
+            memory: 128Mi
+            cpu: 50m
+          limits:
+            memory: 256Mi
+            cpu: 100m
+    csiRBDPluginResource: |
+      - name : driver-registrar
+        resource:
+          requests:
+            memory: 128Mi
+            cpu: 50m
+          limits:
+            memory: 256Mi
+            cpu: 100m
+      - name : csi-rbdplugin
+        resource:
+          requests:
+            memory: 512Mi
+            cpu: 250m
+          limits:
+            memory: 1Gi
+            cpu: 500m
+      - name : liveness-prometheus
+        resource:
+          requests:
+            memory: 128Mi
+            cpu: 50m
+          limits:
+            memory: 256Mi
+            cpu: 100m
+    csiCephFSProvisionerResource: |
+      - name : csi-provisioner
+        resource:
+          requests:
+            memory: 128Mi
+            cpu: 100m
+          limits:
+            memory: 256Mi
+            cpu: 200m
+      - name : csi-resizer
+        resource:
+          requests:
+            memory: 128Mi
+            cpu: 100m
+          limits:
+            memory: 256Mi
+            cpu: 200m
+      - name : csi-attacher
+        resource:
+          requests:
+            memory: 128Mi
+            cpu: 100m
+          limits:
+            memory: 256Mi
+            cpu: 200m
+      - name : csi-snapshotter
+        resource:
+          requests:
+            memory: 128Mi
+            cpu: 100m
+          limits:
+            memory: 256Mi
+            cpu: 200m
+      - name : csi-cephfsplugin
+        resource:
+          requests:
+            memory: 512Mi
+            cpu: 250m
+          limits:
+            memory: 1Gi
+            cpu: 500m
+      - name : liveness-prometheus
+        resource:
+          requests:
+            memory: 128Mi
+            cpu: 50m
+          limits:
+            memory: 256Mi
+            cpu: 100m
+    csiCephFSPluginResource: |
+      - name : driver-registrar
+        resource:
+          requests:
+            memory: 128Mi
+            cpu: 50m
+          limits:
+            memory: 256Mi
+            cpu: 100m
+      - name : csi-cephfsplugin
+        resource:
+          requests:
+            memory: 512Mi
+            cpu: 250m
+          limits:
+            memory: 1Gi
+            cpu: 500m
+      - name : liveness-prometheus
+        resource:
+          requests:
+            memory: 128Mi
+            cpu: 50m
+          limits:
+            memory: 256Mi
+            cpu: 100m
+    csiNFSProvisionerResource: |
+      - name : csi-provisioner
+        resource:
+          requests:
+            memory: 128Mi
+            cpu: 100m
+          limits:
+            memory: 256Mi
+            cpu: 200m
+      - name : csi-nfsplugin
+        resource:
+          requests:
+            memory: 512Mi
+            cpu: 250m
+          limits:
+            memory: 1Gi
+            cpu: 500m
+      - name : csi-attacher
+        resource:
+          requests:
+            memory: 512Mi
+            cpu: 250m
+          limits:
+            memory: 1Gi
+            cpu: 500m
+    csiNFSPluginResource: |
+      - name : driver-registrar
+        resource:
+          requests:
+            memory: 128Mi
+            cpu: 50m
+          limits:
+            memory: 256Mi
+            cpu: 100m
+      - name : csi-nfsplugin
+        resource:
+          requests:
+            memory: 512Mi
+            cpu: 250m
+          limits:
+            memory: 1Gi
+            cpu: 500m
+    serviceMonitor:
+      enabled: true
+      interval: 5s
+    csiAddons:
+      enabled: false
+    nfs:
+      enabled: false
+    topology:
+      enabled: false
+    readAffinity:
+      enabled: true
+      crushLocationLabels:
+  enableDiscoveryDaemon: false
+  scaleDownOperator: false
+  monitoring:
+    enabled: true
+
+rook-ceph-cluster:
+  operatorNamespace: rook-ceph
+  toolbox:
+    enabled: true
+    containerSecurityContext:
+      runAsNonRoot: true
+      runAsUser: 2016
+      runAsGroup: 2016
+      capabilities:
+        drop: ["ALL"]
+    resources:
+      limits:
+        cpu: "500m"
+        memory: "1Gi"
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+  monitoring:
+    enabled: true
+    createPrometheusRules: true
+  pspEnable: false
+  cephClusterSpec:
+    # https://rook.io/docs/rook/v1.13/CRDs/Cluster/ceph-cluster-crd/
+    cephVersion:
+      # https://quay.io/repository/ceph/ceph?tab=tags
+      image: quay.io/ceph/ceph:v18.2.1-20231215
+      allowUnsupported: false
+    dataDirHostPath: /var/lib/rook
+    skipUpgradeChecks: false
+    continueUpgradeAfterChecksEvenIfNotHealthy: false
+    waitTimeoutForHealthyOSDInMinutes: 10
+    mon:
+      count: 3
+      allowMultiplePerNode: false
+    mgr:
+      count: 2
+      allowMultiplePerNode: false
+      modules:
+        - name: pg_autoscaler
+          enabled: true
+    dashboard:
+      enabled: true
+      ssl: false
+    network:
+      connections:
+        encryption:
+          enabled: true
+        compression:
+          enabled: true
+        requireMsgr2: true
+    crashCollector:
+      disable: false
+    logCollector:
+      enabled: true
+      periodicity: daily
+      maxLogSize: 500M
+    cleanupPolicy:
+      confirmation: ""
+    placement:
+      all:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/rook-osd-node
+                    operator: Exists
+      mon:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/control-plane
+                    operator: Exists
+        tolerations:
+          - key: node-role.kubernetes.io/control-plane
+            operator: Exists
+    resources:
+      mgr:
+        limits:
+          cpu: "1000m"
+          memory: "1Gi"
+        requests:
+          cpu: "500m"
+          memory: "1Gi"
+      mon:
+        limits:
+          cpu: "2000m"
+          memory: "2Gi"
+        requests:
+          cpu: "1000m"
+          memory: "2Gi"
+      osd:
+        limits:
+          cpu: "2000m"
+          memory: "4Gi"
+        requests:
+          cpu: "1000m"
+          memory: "4Gi"
+      prepareosd:
+        requests:
+          cpu: "500m"
+          memory: "50Mi"
+      mgr-sidecar:
+        limits:
+          cpu: "500m"
+          memory: "100Mi"
+        requests:
+          cpu: "100m"
+          memory: "40Mi"
+      crashcollector:
+        limits:
+          cpu: "500m"
+          memory: "60Mi"
+        requests:
+          cpu: "100m"
+          memory: "60Mi"
+      logcollector:
+        limits:
+          cpu: "500m"
+          memory: "1Gi"
+        requests:
+          cpu: "100m"
+          memory: "100Mi"
+      cleanup:
+        limits:
+          cpu: "500m"
+          memory: "1Gi"
+        requests:
+          cpu: "500m"
+          memory: "100Mi"
+      exporter:
+        limits:
+          cpu: "250m"
+          memory: "128Mi"
+        requests:
+          cpu: "50m"
+          memory: "50Mi"
+    removeOSDsIfOutAndSafeToRemove: false
+    storage:
+      useAllNodes: true
+      useAllDevices: true
+      deviceFilter: sda
+      config:
+        osdsPerDevice: "1"
+    disruptionManagement:
+      managePodBudgets: true
+      osdMaintenanceTimeout: 30
+      pgHealthCheckTimeout: 0
+    healthCheck:
+      daemonHealth:
+        mon:
+          disabled: true
+          interval: 45s
+        osd:
+          disabled: true
+          interval: 60s
+        status:
+          disabled: true
+          interval: 60s
+      livenessProbe:
+        mon:
+          disabled: true
+        mgr:
+          disabled: true
+        osd:
+          disabled: true
+  ingress:
+    dashboard:
+      ingressClassName: traefik
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+        cert-manager.io/cluster-issuer: letsencrypt-issuer
+      host:
+        name: ceph.alexlebens.net
+        path: /
+      tls:
+        - secretName: rook-secret-tls
+          hosts:
+            - ceph.alexlebens.net
+      rules:
+        - host: ceph.alexlebens.net
+          http:
+            paths:
+              - path: /
+                pathType: Prefix
+                backend:
+                  service:
+                    name: rook-ceph-mgr-dashboard
+                    port:
+                      name: http-dashboard
+  cephBlockPools:
+    - name: ceph-blockpool
+      spec:
+        failureDomain: host
+        replicated:
+          size: 3
+        enableRBDStats: false
+      storageClass:
+        enabled: true
+        name: ceph-block
+        isDefault: true
+        reclaimPolicy: Retain
+        allowVolumeExpansion: true
+        volumeBindingMode: "Immediate"
+        parameters:
+          imageFormat: "2"
+          imageFeatures: layering,exclusive-lock,object-map,fast-diff
+          csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
+          csi.storage.k8s.io/provisioner-secret-namespace: "{{ .Release.Namespace }}"
+          csi.storage.k8s.io/controller-expand-secret-name: rook-csi-rbd-provisioner
+          csi.storage.k8s.io/controller-expand-secret-namespace: "{{ .Release.Namespace }}"
+          csi.storage.k8s.io/node-stage-secret-name: rook-csi-rbd-node
+          csi.storage.k8s.io/node-stage-secret-namespace: "{{ .Release.Namespace }}"
+          csi.storage.k8s.io/fstype: ext4
+  cephBlockPoolsVolumeSnapshotClass:
+    enabled: true
+    name: ceph-blockpool-snapshot
+    isDefault: false
+    deletionPolicy: Retain
+  cephFileSystems:
+  cephFileSystemVolumeSnapshotClass:
+    enabled: false
+  cephObjectStores:
