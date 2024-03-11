@@ -65,7 +65,6 @@ argo-cd:
       serviceMonitor:
         enabled: true
 application:
-  enable: true
   source:
     repo: git@github.com:alexlebens/alexlebens-net.git
     revision: HEAD
