@@ -2,7 +2,7 @@ argo-cd:
   configs:
     cm:
       admin.enabled: true
-      url: https://argo.alexlebens.net
+      url: https://argocd.alexlebens.net
       statusbadge.enabled: "true"
       dex.config: |
         connectors:
@@ -27,14 +27,14 @@ argo-cd:
   server:
     replicas: 2
     ingress:
-      enabled: false
+      enabled: true
       controller: generic
       ingressClassName: traefik
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.tls: "true"
         cert-manager.io/cluster-issuer: letsencrypt-issuer
-      hostname: argo.alexlebens.net
+      hostname: argocd.alexlebens.net
       tls: true
     metrics:
       enabled: true
