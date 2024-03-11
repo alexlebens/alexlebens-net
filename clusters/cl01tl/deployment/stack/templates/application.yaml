@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: {{ .Values.application.stack.source.repo }}
     targetRevision: {{ .Values.application.stack.source.revision }}
-    path: {{ .Values.application.stack.source.path }}
+    path: "{{ .Values.git.path }}/{{ .Values.application.stack.source.path }}"
   destination:
     name: in-cluster
     namespace: {{ .Values.application.stack.namespace }}
@@ -31,7 +31,7 @@ spec:
   source:
     repoURL: {{ .Values.application.cilium.source.repo }}
     targetRevision: {{ .Values.application.cilium.source.revision }}
-    path: {{ .Values.application.cilium.source.path }}
+    path: "{{ .Values.git.path }}/{{ .Values.application.cilium.source.path }}"
   destination:
     name: in-cluster
     namespace: {{ .Values.application.cilium.namespace }}
@@ -52,7 +52,7 @@ spec:
   source:
     repoURL: {{ .Values.application.metricsServer.source.repo }}
     targetRevision: {{ .Values.application.metricsServer.source.revision }}
-    path: {{ .Values.application.metricsServer.source.path }}
+    path: "{{ .Values.git.path }}/{{ .Values.application.metricsServer.source.path }}"
   destination:
     name: in-cluster
     namespace: {{ .Values.application.metricsServer.namespace }}

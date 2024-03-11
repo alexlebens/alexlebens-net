@@ -65,7 +65,7 @@ application:
     source:
       repo: git@github.com:alexlebens/alexlebens-net.git
       revision: HEAD
-      path: clusters/cl01tl/deployment/stack
+      path: deployment/stack
     syncPolicy:
       automated:
         prune: true
@@ -86,7 +86,7 @@ application:
     source:
       repo: git@github.com:alexlebens/alexlebens-net.git
       revision: HEAD
-      path: clusters/cl01tl/standalone/cilium
+      path: standalone/cilium
     syncPolicy:
       automated:
         prune: true
@@ -107,7 +107,7 @@ application:
     source:
       repo: git@github.com:alexlebens/alexlebens-net.git
       revision: HEAD
-      path: clusters/cl01tl/standalone/metrics-server
+      path: standalone/metrics-server
     syncPolicy:
       automated:
         prune: true
@@ -122,4 +122,4 @@ application:
         - CreateNamespace=false
         - ApplyOutOfSyncOnly=false
         - ServerSideApply=true
-        - PruneLast=true  
+        - PruneLast=true
