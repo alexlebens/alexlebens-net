@@ -2,7 +2,7 @@ argo-cd:
   configs:
     cm:
       admin.enabled: true
-      url: https://argocd.alexlebens.net
+      url: https://argo.alexlebens.net
       statusbadge.enabled: "true"
       dex.config: |
         connectors:
@@ -27,14 +27,14 @@ argo-cd:
   server:
     replicas: 2
     ingress:
-      enabled: true
+      enabled: false
       controller: generic
       ingressClassName: traefik
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.tls: "true"
         cert-manager.io/cluster-issuer: letsencrypt-issuer
-      hostname: argocd.alexlebens.net
+      hostname: argo.alexlebens.net
       tls: true
     metrics:
       enabled: true
@@ -62,3 +62,24 @@ argo-cd:
       enabled: true
       serviceMonitor:
         enabled: true
+application:
+  enable: false
+  source:
+    repo: git@github.com:alexlebens/alexlebens-net.git
+    revision: HEAD
+    path: clusters/cl01tl/deployment/stack
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+    retry:
+      limit: 10
+      backoff:
+        duration: 1m
+        factor: 2
+        maxDuration: 16m
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=false
+      - ServerSideApply=true
+      - PruneLast=true  

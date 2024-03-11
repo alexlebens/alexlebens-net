@@ -1,37 +1,28 @@
+{{- if .Values.application.enabled }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: stack
   namespace: {{ .Release.Namespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io  
   labels:
-    app.kubernetes.io/name: "stack"
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/version: "0.0.0"
-    app.kubernetes.io/component: application
+    app.kubernetes.io/name: stack
+    app.kubernetes.io/instance: stack
+    app.kubernetes.io/version: "0.0.1"
+    app.kubernetes.io/component: stack
     app.kubernetes.io/part-of: {{ .Release.Name }}
     app.kubernetes.io/managed-by: helm  
 spec:
   project: default
   source:
-    path: clusters/cl01tl/deployment/stack
-    repoURL: git@github.com:alexlebens/alexlebns-net.git
-    targetRevision: HEAD
+    repoURL: {{ .Values.application.source.repo }}
+    targetRevision: {{ .Values.application.source.revision }}        
+    path: {{ .Values.application.source.path }}
   destination:
     name: in-cluster
     namespace: {{ .Release.Namespace }}
-  revisionHistoryLimit: 2
+  revisionHistoryLimit: 3
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: false
-    retry:
-      limit: 10
-      backoff:
-        duration: 1m
-        factor: 2
-        maxDuration: 16m
-    syncOptions:
-      - CreateNamespace=true
-      - ApplyOutOfSyncOnly=false
-      - ServerSideApply=true
-      - PruneLast=true
+    {{- toYaml .Values.application.syncPolicy | nindent 4 }}
+{{- end }}
