@@ -13,10 +13,10 @@ applicationSet:
         - ServerSideApply=true
         - PruneLast=true
   - name: deployment
-    namespace: argo
+    namespace: argocd
     syncPolicy:
       automated:
-        enabled: false   
+        enabled: false
       syncOptions:
         - CreateNamespace=true
         - ApplyOutOfSyncOnly=true
@@ -25,7 +25,7 @@ applicationSet:
   - name: platform
     syncPolicy:
       automated:
-        enabled: false  
+        enabled: false
       syncOptions:
         - CreateNamespace=true
         - ApplyOutOfSyncOnly=true
@@ -34,7 +34,7 @@ applicationSet:
   - name: services
     syncPolicy:
       automated:
-        enabled: false   
+        enabled: false
       syncOptions:
         - CreateNamespace=true
         - ApplyOutOfSyncOnly=true
@@ -43,7 +43,7 @@ applicationSet:
   - name: storage
     syncPolicy:
       automated:
-        enabled: false   
+        enabled: false
       syncOptions:
         - CreateNamespace=true
         - ApplyOutOfSyncOnly=true
