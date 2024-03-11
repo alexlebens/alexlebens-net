@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cilium
+  namespace: {{ .Release.Namespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: {{ .Values.application.cilium.source.repo }}
+    targetRevision: {{ .Values.application.cilium.source.revision }}
+    path: {{ .Values.application.cilium.source.path }}
+  destination:
+    name: in-cluster
+    namespace: {{ .Values.application.cilium.namespace }}
+  revisionHistoryLimit: 3
+  syncPolicy:
+    {{- toYaml .Values.application.cilium.syncPolicy | nindent 4 }}
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cilium
+  namespace: {{ .Release.Namespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: {{ .Values.application.metrics-server.source.repo }}
+    targetRevision: {{ .Values.application.metrics-server.source.revision }}
+    path: {{ .Values.application.metrics-server.source.path }}
+  destination:
+    name: in-cluster
+    namespace: {{ .Values.application.metrics-server.namespace }}
+  revisionHistoryLimit: 3
+  syncPolicy:
+    {{- toYaml .Values.application.metrics-server.syncPolicy | nindent 4 }}

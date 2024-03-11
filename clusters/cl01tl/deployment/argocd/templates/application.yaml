@@ -4,19 +4,12 @@ metadata:
   name: stack
   namespace: {{ .Release.Namespace }}
   finalizers:
-    - resources-finalizer.argocd.argoproj.io  
-  labels:
-    app.kubernetes.io/name: stack
-    app.kubernetes.io/instance: stack
-    app.kubernetes.io/version: "0.0.1"
-    app.kubernetes.io/component: stack
-    app.kubernetes.io/part-of: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: helm  
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: {{ .Values.application.source.repo }}
-    targetRevision: {{ .Values.application.source.revision }}        
+    targetRevision: {{ .Values.application.source.revision }}
     path: {{ .Values.application.source.path }}
   destination:
     name: in-cluster

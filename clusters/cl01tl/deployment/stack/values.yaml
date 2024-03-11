@@ -49,3 +49,46 @@ applicationSet:
         - ApplyOutOfSyncOnly=true
         - ServerSideApply=true
         - PruneLast=true
+application:
+  cilium:
+    namespace: kube-system
+    source:
+      repo: git@github.com:alexlebens/alexlebens-net.git
+      revision: HEAD
+      path: clusters/cl01tl/standalone/cilium
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+      retry:
+        limit: 10
+        backoff:
+          duration: 1m
+          factor: 2
+          maxDuration: 16m
+      syncOptions:
+        - CreateNamespace=false
+        - ApplyOutOfSyncOnly=false
+        - ServerSideApply=true
+        - PruneLast=true
+  metrics-server:
+    namespace: kube-system
+    source:
+      repo: git@github.com:alexlebens/alexlebens-net.git
+      revision: HEAD
+      path: clusters/cl01tl/standalone/metrics-server
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+      retry:
+        limit: 10
+        backoff:
+          duration: 1m
+          factor: 2
+          maxDuration: 16m
+      syncOptions:
+        - CreateNamespace=false
+        - ApplyOutOfSyncOnly=false
+        - ServerSideApply=true
+        - PruneLast=true  
