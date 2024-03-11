@@ -6,7 +6,9 @@ applicationSet:
   - name: applications
     syncPolicy:
       automated:
-        enabled: false
+        enabled: true
+        prune: true
+        selfheal: false
       syncOptions:
         - CreateNamespace=true
         - ApplyOutOfSyncOnly=true
@@ -16,7 +18,9 @@ applicationSet:
     namespace: argocd
     syncPolicy:
       automated:
-        enabled: false
+        enabled: true
+        prune: true
+        selfheal: false
       syncOptions:
         - CreateNamespace=true
         - ApplyOutOfSyncOnly=true
@@ -25,7 +29,9 @@ applicationSet:
   - name: platform
     syncPolicy:
       automated:
-        enabled: false
+        enabled: true
+        prune: true
+        selfheal: false
       syncOptions:
         - CreateNamespace=true
         - ApplyOutOfSyncOnly=true
@@ -34,7 +40,9 @@ applicationSet:
   - name: services
     syncPolicy:
       automated:
-        enabled: false
+        enabled: true
+        prune: true
+        selfheal: false
       syncOptions:
         - CreateNamespace=true
         - ApplyOutOfSyncOnly=true
@@ -43,7 +51,9 @@ applicationSet:
   - name: storage
     syncPolicy:
       automated:
-        enabled: false
+        enabled: true
+        prune: true
+        selfheal: false
       syncOptions:
         - CreateNamespace=true
         - ApplyOutOfSyncOnly=true
