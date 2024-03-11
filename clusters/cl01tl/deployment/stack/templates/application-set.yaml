@@ -13,6 +13,9 @@ metadata:
     app.kubernetes.io/part-of: {{ $.Release.Name }}
     app.kubernetes.io/managed-by: helm
 spec:
+  syncPolicy:
+    applicationsSync: create-only
+    preserveResourcesOnDeletion: true
   generators:
     - git:
         repoURL: {{ $.Values.git.repo }}
