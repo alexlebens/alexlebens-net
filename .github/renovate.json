@@ -10,8 +10,7 @@
         "after 10am every weekday",
         "before 5pm every weekday"
     ],
-    "labels": [
-    ],
+    "labels": [],
     "packageRules": [
         {
             "description": "Disables for non major Renovate version",
@@ -46,14 +45,7 @@
                 "hashicorp/vault"
             ],
             "matchDatasources": [
-                "docker",
-                "gitea-releases",
-                "gitea-tags",
-                "github-releases",
-                "github-tags",
-                "gitlab-packages",
-                "gitlab-releases",
-                "gitlab-tags"
+                "docker"
             ],
             "schedule": [
                 "every 3 months on the first day of the month"
@@ -112,14 +104,7 @@
                 "portainer/portainer-ce"
             ],
             "matchDatasources": [
-                "docker",
-                "gitea-releases",
-                "gitea-tags",
-                "github-releases",
-                "github-tags",
-                "gitlab-packages",
-                "gitlab-releases",
-                "gitlab-tags"
+                "docker"
             ],
             "schedule": [
                 "after 10am on tuesday",
@@ -167,6 +152,29 @@
             "minimumReleaseAge": "3 days"
         },
         {
+            "description": "Handle the plex image separately",
+            "matchPackageNames": [
+                "ghcr.io/onedr0p/plex"
+            ],
+            "matchDatasources": [
+                "docker"
+            ],
+            "schedule": [
+                "after 10am on tuesday",
+                "before 5pm on tuesday"
+            ],
+            "addLabels": [
+                "patch",
+                "weekly",
+                "application",
+                "image"
+            ],
+            "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)-(?<revision>.+)?$",
+            "automerge": true,
+            "automergeType": "branch",
+            "minimumReleaseAge": "3 days"
+        },
+        {
             "description": "Automerge patches for application images",
             "matchPackageNames": [
                 "ghcr.io/advplyr/audiobookshelf",
@@ -175,23 +183,10 @@
                 "linuxserver/cops",
                 "ghcr.io/linuxserver/freshrss",
                 "rmcrackan/libation",
-                "deluan/navidrome",
-                "outlinewiki/outline",
-                "ghcr.io/sct/overseerr",
-                "ghcr.io/onedr0p/prowlarr",
-                "ghcr.io/haveagitgat/tdarr",
-                "ghcr.io/haveagitgat/tdarr_node",
-                "golift/unpackerr"
+                "deluan/navidrome"
             ],
             "matchDatasources": [
-                "docker",
-                "gitea-releases",
-                "gitea-tags",
-                "github-releases",
-                "github-tags",
-                "gitlab-packages",
-                "gitlab-releases",
-                "gitlab-tags"
+                "docker"
             ],
             "matchUpdateTypes": [
                 "patch"
@@ -206,12 +201,8 @@
             "minimumReleaseAge": "3 days"
         },
         {
-            "description": "Automerge patches for application charts that are selfhosted",
-            "matchPackageNames": [
-                "calibre-server",
-                "home-assistant",
-                "homepage"
-            ],
+            "description": "Automerge patches for application charts",
+            "matchPackageNames": [],
             "matchDatasources": [
                 "helm"
             ],
@@ -231,30 +222,18 @@
             "description": "Generate patches for application images on Tuesdays",
             "matchPackageNames": [
                 "jellyfin/jellyfin",
-                "ghcr.io/onedr0p/plex",
                 "bbilly1/tubearchivist",
                 "bitnami/elasticsearch",
                 "redis/redis-stack-server",
                 "vikunja/frontend",
                 "vikunja/api",
-                "ghcr.io/onedr0p/exportarr",
-                "ghcr.io/onedr0p/lidarr",
-                "linuxserver/qbittorrent",
-                "ghcr.io/onedr0p/radarr",
-                "ghcr.io/onedr0p/readarr-develop",
-                "ghcr.io/onedr0p/sonarr",
                 "linuxserver/code-server",
-                "dpage/pgadmin4"
+                "dpage/pgadmin4",
+                "unpoller/unpoller",
+                "outlinewiki/outline"
             ],
             "matchDatasources": [
-                "docker",
-                "gitea-releases",
-                "gitea-tags",
-                "github-releases",
-                "github-tags",
-                "gitlab-packages",
-                "gitlab-releases",
-                "gitlab-tags"
+                "docker"
             ],
             "matchUpdateTypes": [
                 "patch"
@@ -277,25 +256,20 @@
             "description": "Generate patches for application charts on Tuesdays",
             "matchPackageNames": [
                 "audiobookshelf",
+                "calibre-server",
                 "calibre-web",
                 "code-server",
                 "cops",
                 "freshrss",
                 "jellyfin",
+                "home-assistant",
+                "homepage",
                 "libation",
                 "mealie",
                 "navidrome",
                 "plex",
                 "tubearchivist",
-                "vikunja",
-                "lidarr",
-                "overseerr",
-                "prowlarr",
-                "radarr",
-                "readarr",
-                "sonarr",
-                "tdarr-exporter ",
-                "unpackerr"
+                "vikunja"
             ],
             "matchDatasources": [
                 "helm"
@@ -328,11 +302,6 @@
                 "rmcrackan/libation",
                 "deluan/navidrome",
                 "outlinewiki/outline",
-                "ghcr.io/sct/overseerr",
-                "ghcr.io/onedr0p/prowlarr",
-                "ghcr.io/haveagitgat/tdarr",
-                "ghcr.io/haveagitgat/tdarr_node",
-                "golift/unpackerr",
                 "jellyfin/jellyfin",
                 "ghcr.io/onedr0p/plex",
                 "bbilly1/tubearchivist",
@@ -340,24 +309,12 @@
                 "redis/redis-stack-server",
                 "vikunja/frontend",
                 "vikunja/api",
-                "ghcr.io/onedr0p/exportarr",
-                "ghcr.io/onedr0p/lidarr",
-                "linuxserver/qbittorrent",
-                "ghcr.io/onedr0p/radarr",
-                "ghcr.io/onedr0p/readarr-develop",
-                "ghcr.io/onedr0p/sonarr",
                 "linuxserver/code-server",
-                "dpage/pgadmin4"
+                "dpage/pgadmin4",
+                "unpoller/unpoller"
             ],
             "matchDatasources": [
-                "docker",
-                "gitea-releases",
-                "gitea-tags",
-                "github-releases",
-                "github-tags",
-                "gitlab-packages",
-                "gitlab-releases",
-                "gitlab-tags"
+                "docker"
             ],
             "matchUpdateTypes": [
                 "minor",
@@ -394,15 +351,7 @@
                 "navidrome",
                 "plex",
                 "tubearchivist",
-                "vikunja",
-                "lidarr",
-                "overseerr",
-                "prowlarr",
-                "radarr",
-                "readarr",
-                "sonarr",
-                "tdarr-exporter ",
-                "unpackerr"
+                "vikunja"
             ],
             "matchDatasources": [
                 "helm"
