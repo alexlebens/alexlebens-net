@@ -47,7 +47,7 @@ applicationSet:
       syncOptions:
         - CreateNamespace=true
         - ApplyOutOfSyncOnly=true
-        - ServerSideApply=true
+        - ServerSideApply=false
         - PruneLast=true
 application:
   cilium:
