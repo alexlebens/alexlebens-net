@@ -8,15 +8,15 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: {{ .Values.application.source.repo }}
-    targetRevision: {{ .Values.application.source.revision }}
-    path: {{ .Values.application.source.path }}
+    repoURL: {{ .Values.application.stack.source.repo }}
+    targetRevision: {{ .Values.application.stack.source.revision }}
+    path: {{ .Values.application.stack.source.path }}
   destination:
     name: in-cluster
-    namespace: {{ .Release.Namespace }}
+    namespace: {{ .Values.application.stack.namespace }}
   revisionHistoryLimit: 3
   syncPolicy:
-    {{- toYaml .Values.application.syncPolicy | nindent 4 }}
+    {{- toYaml .Values.application.stack.syncPolicy | nindent 4 }}
 
 ---
 apiVersion: argoproj.io/v1alpha1
