@@ -64,23 +64,3 @@ argo-cd:
       enabled: true
       serviceMonitor:
         enabled: true
-application:
-  source:
-    repo: git@github.com:alexlebens/alexlebens-net.git
-    revision: HEAD
-    path: clusters/cl01tl/deployment/stack
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: false
-    retry:
-      limit: 10
-      backoff:
-        duration: 1m
-        factor: 2
-        maxDuration: 16m
-    syncOptions:
-      - CreateNamespace=true
-      - ApplyOutOfSyncOnly=false
-      - ServerSideApply=true
-      - PruneLast=true
