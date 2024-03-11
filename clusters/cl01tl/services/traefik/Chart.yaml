@@ -2,7 +2,7 @@ apiVersion: v2
 name: traefik
 version: 0.0.1
 sources:
-  - https://github.com/argoproj/argo-cd
+  - https://github.com/traefik/traefik
 dependencies:
   - name: traefik
     version: 26.0.0
