@@ -1,5 +1,5 @@
 apiVersion: v2
-name: homepage
+name: homepage-front
 version: 0.0.5
 home: https://outline.alexlebens.net/doc/homepage-yxjgZ3ttFV
 sources:
