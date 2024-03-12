@@ -123,3 +123,24 @@ application:
         - ApplyOutOfSyncOnly=false
         - ServerSideApply=true
         - PruneLast=true
+  kubeletServingCertApprover:
+    namespace: kubelet-serving-cert-approver
+    source:
+      repo: git@github.com:alexlebens/alexlebens-net.git
+      revision: HEAD
+      path: standalone/kubelet-serving-cert-approver
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+      retry:
+        limit: 10
+        backoff:
+          duration: 1m
+          factor: 2
+          maxDuration: 16m
+      syncOptions:
+        - CreateNamespace=true
+        - ApplyOutOfSyncOnly=false
+        - ServerSideApply=true
+        - PruneLast=true

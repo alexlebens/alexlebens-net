@@ -59,3 +59,24 @@ spec:
   revisionHistoryLimit: 3
   syncPolicy:
     {{- toYaml .Values.application.metricsServer.syncPolicy | nindent 4 }}
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubelet-serving-cert-approver
+  namespace: {{ .Release.Namespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: {{ .Values.application.kubeletServingCertApprover.source.repo }}
+    targetRevision: {{ .Values.application.kubeletServingCertApprover.source.revision }}
+    path: "{{ .Values.git.path }}/{{ .Values.application.kubeletServingCertApprover.source.path }}"
+  destination:
+    name: in-cluster
+    namespace: {{ .Values.application.kubeletServingCertApprover.namespace }}
+  revisionHistoryLimit: 3
+  syncPolicy:
+    {{- toYaml .Values.application.kubeletServingCertApprover.syncPolicy | nindent 4 }}
