@@ -89,9 +89,13 @@ rook-ceph-cluster:
               - matchExpressions:
                   - key: node-role.kubernetes.io/rook-control-node
                     operator: Exists
+                  - key: node-role.kubernetes.io/control-plane
+                    operator: Exists                    
         tolerations:
           - key: node-role.kubernetes.io/rook-control-node
             operator: Exists
+          - key: node-role.kubernetes.io/control-plane
+            operator: Exists      
     resources:
       mgr:
         limits:
