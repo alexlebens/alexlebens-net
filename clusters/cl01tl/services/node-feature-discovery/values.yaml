@@ -114,7 +114,7 @@ node-feature-discovery:
         cpu:
           cpuid:
             attributeWhitelist:
-              - "AVX512BW"            
+              - "AVX512BW"
               - "AVX512CD"
               - "AVX512DQ"
               - "AVX512F"
@@ -151,7 +151,7 @@ node-feature-discovery:
           - # Intel integrated GPU
             name: "intel-gpu"
             labels:
-              intel.feature.node.kubernetes.io/gpu: 'true'     
+              intel.feature.node.kubernetes.io/gpu: 'true'
             matchOn:
               - pciId:
                   class: ["0300"]
