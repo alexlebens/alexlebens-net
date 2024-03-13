@@ -1,8 +1,9 @@
 apiVersion: v2
 name: traefik
-version: 0.0.1
+version: 1.0.0
 sources:
   - https://github.com/traefik/traefik
+  - https://github.com/traefik/traefik-helm-chart
 dependencies:
   - name: traefik
     version: 26.0.0
