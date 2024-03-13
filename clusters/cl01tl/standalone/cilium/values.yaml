@@ -14,7 +14,7 @@ cilium:
         - DAC_OVERRIDE
         - FOWNER
         - SETGID
-        - SETUID      
+        - SETUID
       cleanCiliumState:
         - NET_ADMIN
         - SYS_ADMIN
@@ -30,7 +30,7 @@ cilium:
       enabled: true
       metrics:
         serviceMonitor:
-          enabled: true 
+          enabled: true
     ui:
       enabled: true
       ingress:
