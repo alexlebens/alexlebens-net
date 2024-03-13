@@ -67,9 +67,6 @@ application:
       revision: HEAD
       path: standalone/cilium
     syncPolicy:
-      automated:
-        prune: true
-        selfHeal: true
       retry:
         limit: 10
         backoff:
@@ -78,7 +75,7 @@ application:
           maxDuration: 16m
       syncOptions:
         - CreateNamespace=false
-        - ApplyOutOfSyncOnly=false
+        - ApplyOutOfSyncOnly=true
         - ServerSideApply=true
         - PruneLast=true
   metricsServer:
