@@ -1,8 +1,9 @@
 apiVersion: v2
 name: metallb
-version: 0.0.1
+version: 1.0.0
 sources:
   - https://github.com/metallb/metallb
+  - https://github.com/metallb/metallb/tree/main/charts/metallb
 dependencies:
   - name: metallb
     version: 0.14.3
