@@ -144,3 +144,24 @@ application:
         - ApplyOutOfSyncOnly=false
         - ServerSideApply=true
         - PruneLast=true
+  prometheusOperatorCrds:
+    namespace: kube-system
+    source:
+      repo: git@github.com:alexlebens/alexlebens-net.git
+      revision: HEAD
+      path: standalone/prometheus-operator-crds
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+      retry:
+        limit: 10
+        backoff:
+          duration: 1m
+          factor: 2
+          maxDuration: 16m
+      syncOptions:
+        - CreateNamespace=false
+        - ApplyOutOfSyncOnly=false
+        - ServerSideApply=true
+        - PruneLast=true
