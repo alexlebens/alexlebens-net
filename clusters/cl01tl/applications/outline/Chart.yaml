@@ -1,13 +1,13 @@
 apiVersion: v2
 name: outline
-version: 0.0.4
+version: 0.0.5
 sources:
   - https://github.com/outline/outline
   - https://github.com/alexlebens/helm-charts/charts/outline
   - https://github.com/alexlebens/helm-charts/charts/postgres-cluster
 dependencies:
   - name: outline
-    version: 0.0.4
+    version: 0.0.5
     repository: http://alexlebens.github.io/helm-charts
   - name: postgres-cluster
     version: 0.2.3
