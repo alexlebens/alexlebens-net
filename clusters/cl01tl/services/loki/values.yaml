@@ -15,7 +15,7 @@ loki:
       enabled: true
     selfMonitoring:
       grafanaAgent:
-        installOperator: true
+        installOperator: false
   ingress:
     enabled: false
   gateway:
