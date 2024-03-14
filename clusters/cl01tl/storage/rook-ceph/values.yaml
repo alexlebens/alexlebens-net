@@ -33,7 +33,7 @@ rook-ceph:
 rook-ceph-cluster:
   operatorNamespace: rook-ceph
   toolbox:
-    enabled: false
+    enabled: true
   monitoring:
     enabled: true
     createPrometheusRules: true
