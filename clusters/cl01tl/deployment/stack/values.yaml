@@ -12,7 +12,7 @@ applicationSet:
       syncOptions:
         - CreateNamespace=true
         - ApplyOutOfSyncOnly=true
-        - ServerSideApply=true
+        - ServerSideApply=false
         - PruneLast=true
   - name: deployment
     namespace: argocd
