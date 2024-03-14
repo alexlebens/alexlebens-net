@@ -1,6 +1,6 @@
 apiVersion: v2
 name: authentik
-version: 0.0.2
+version: 0.0.3
 sources:
   - https://github.com/goauthentik/authentik
   - https://github.com/goauthentik/helm

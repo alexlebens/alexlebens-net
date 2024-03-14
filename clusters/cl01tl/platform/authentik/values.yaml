@@ -49,7 +49,7 @@ authentik:
         cert-manager.io/cluster-issuer: letsencrypt-issuer      
       ingressClassName: traefik
       hosts:
-        - host: authentik.alexlebens.net
+        - authentik.alexlebens.net
       tls:
         - secretName: authentik-secret-tls
           hosts:
