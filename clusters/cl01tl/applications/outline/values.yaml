@@ -1,12 +1,4 @@
 outline:
-  deployment:
-    resources:
-      requests:
-        memory: 256Mi
-        cpu: 50m
-      limits:
-        memory: 1Gi
-        cpu: 500m
   ingress:
     enabled: true
     className: traefik
@@ -19,8 +11,9 @@ outline:
     type: s3
     s3:
       credentialsSecret: outline-bucket
-      bucketName: cl01tl-outline
-      endpoint: http://rook-ceph-rgw-ceph-object-store.rook-ceph.svc:80
+      endpointConfigMap:
+        enabled: true
+        name: outline-bucket
   outline:
     url: https://outline.alexlebens.net
     secretKey:
@@ -36,8 +29,12 @@ outline:
       usernameSecret:
         existingSecretName: postgresql-outline-cluster-app
         existingSecretKey: username
-      databaseName: app
-      databaseHost: postgresql-outline-cluster-rw
+      databaseName:
+        existingSecretName: postgresql-outline-cluster-app
+        existingSecretKey: dbname
+      databaseHost:
+        existingSecretName: postgresql-outline-cluster-app
+        existingSecretKey: host
     auth:
       oidc:
         enabled: true
