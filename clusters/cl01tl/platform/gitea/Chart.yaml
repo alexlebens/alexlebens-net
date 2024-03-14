@@ -1,0 +1,15 @@
+apiVersion: v2
+name: gitea
+version: 0.0.1
+sources:
+  - https://github.com/go-gitea/gitea
+  - https://gitea.com/gitea/helm-chart
+  - https://github.com/alexlebens/helm-charts/charts/postgres-cluster
+dependencies:
+  - name: gitea
+    version: 10.1.3
+    repository: https://dl.gitea.io/charts/
+  - name: postgres-cluster
+    version: 0.2.2
+    repository: http://alexlebens.github.io/helm-charts
+appVersion: "1.21.7"
