@@ -1,0 +1,147 @@
+kube-prometheus-stack:
+  crds:
+    enabled: false
+  alertmanager:
+    enabled: true
+    config:
+      route:
+        group_by: ["namespace","alertname"]
+        group_wait: 30s
+        group_interval: 5m
+        repeat_interval: 24h
+        receiver: discord
+        routes:
+          - receiver: "null"
+            matchers:
+              - alertname = "Watchdog"
+          - receiver: 'pushover'
+            group_wait: 10s
+            group_interval: 5m
+            repeat_interval: 24h
+            matchers:
+              - severity = "critical"
+      receivers:
+        - name: "null"
+        - name: discord
+          discord_configs:
+            - send_resolved: true
+              webhook_url_file: /etc/alertmanager/secrets/alertmanager-config-secret/discord_webhook
+        - name: pushover
+          pushover_configs:
+            - send_resolved: true
+              user_key_file: /etc/alertmanager/secrets/alertmanager-config-secret/user_key
+              token_file: /etc/alertmanager/secrets/alertmanager-config-secret/pushover_token
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+        cert-manager.io/cluster-issuer: letsencrypt-issuer
+      hosts:
+        - alertmanager.alexlebens.net
+      pathType: Prefix
+      tls:
+        - secretName: alertmanager-secret-tls
+          hosts:
+            - alertmanager.alexlebens.net
+    serviceMonitor:
+      selfMonitor: true
+    alertmanagerSpec:
+      secrets:
+        - alertmanager-config-secret
+      replicas: 1
+    externalUrl: "https://alertmanager.alexlebens.net"
+  grafana:
+    enabled: false
+  kubernetesServiceMonitors:
+    enabled: true
+  kubeApiServer:
+    tlsConfig:
+      serverName: kubernetes
+      insecureSkipVerify: true
+    enabled: true
+  kubelet:
+    enabled: true
+    namespace: kube-system
+  kubeControllerManager:
+    enabled: true
+  coreDns:
+    enabled: true
+  kubeDns:
+    enabled: false
+  kubeEtcd:
+    enabled: true
+  kubeScheduler:
+    enabled: true
+  kubeProxy:
+    enabled: true
+  kubeStateMetrics:
+    enabled: true
+  kube-state-metrics:
+    selfMonitor:
+      enabled: true
+  nodeExporter:
+    enabled: true
+    operatingSystems:
+      linux:
+        enabled: true
+      darwin:
+        enabled: false
+  prometheusOperator:
+    enabled: true
+    admissionWebhooks:
+      enabled: true
+    namespaces:
+      releaseNamespace: true
+      additional:
+        - kube-system
+        - argocd
+        - authentik
+        - cert-manager
+        - gitea
+        - grafana
+        - home-assistant
+        - lidarr2
+        - loki
+        - metrics-server
+        - radarr5-4k
+        - radarr5
+        - rook-ceph
+        - sonarr4-4k
+        - sonarr4
+        - speedtest-exporter
+        - tdarr2
+        - unpoller
+        - vault
+  prometheus:
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+        cert-manager.io/cluster-issuer: letsencrypt-issuer
+      hosts:
+        - prometheus.alexlebens.net
+      pathType: Prefix
+      tls:
+        - secretName: prometheus-secret-tls
+          hosts:
+            - prometheus.alexlebens.net
+    serviceMonitor:
+      selfMonitor: true
+    prometheusSpec:
+      scrapeInterval: 30s
+      externalUrl: "https://prometheus.alexlebens.net"
+      serviceMonitorSelectorNilUsesHelmValues: false
+      podMonitorSelectorNilUsesHelmValues: false
+      replicas: 1
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            storageClassName: nfs-client
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 1Gi
