@@ -36,5 +36,5 @@ spec:
   resources:
     requests:
       storage: {{ .Values.storage.config.storageSize }}
-  storageClassName: {{ .Values.persistence.config.storageClassName }}
-  volumeMode: {{ .Values.persistence.config.volumeMode }}
+  storageClassName: {{ .Values.storage.config.storageClassName }}
+  volumeMode: {{ .Values.storage.config.volumeMode }}
