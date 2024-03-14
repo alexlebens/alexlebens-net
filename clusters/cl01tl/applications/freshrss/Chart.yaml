@@ -1,0 +1,11 @@
+apiVersion: v2
+name: freshrss
+version: 0.0.1
+sources:
+  - https://github.com/FreshRSS/FreshRSS
+  - https://github.com/k8s-home-lab/helm-charts/tree/master/charts/stable/freshrss
+dependencies:
+  - name: freshrss
+    version: 7.0.1
+    repository: https://k8s-home-lab.github.io/helm-charts/
+appVersion: "1.21.0"
