@@ -2,7 +2,7 @@ apiVersion: objectbucket.io/v1alpha1
 kind: ObjectBucketClaim
 metadata:
   name: outline-bucket
-  namespace: {{ .Release.Namespace }}
+  namespace: rook-ceph
   labels:
     app.kubernetes.io/name: {{ .Release.Name }}
     app.kubernetes.io/instance: {{ .Release.Name }}
