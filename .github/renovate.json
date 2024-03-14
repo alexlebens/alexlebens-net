@@ -40,338 +40,137 @@
             "automerge": false
         },
         {
-            "description": "Generate for service images quarterly ",
+            "description": "Label service images",
             "matchPackageNames": [
-                "hashicorp/vault"
+                "dpage/pgadmin4",
+                "portainer/portainer-ce",
+                "redis/redis-stack-server"
             ],
             "matchDatasources": [
                 "docker"
             ],
-            "schedule": [
-                "every 3 months on the first day of the month"
-            ],
             "addLabels": [
-                "upgrade",
-                "quarterly",
                 "service",
                 "image"
             ],
-            "bumpVersion": "minor",
-            "automerge": false,
-            "minimumReleaseAge": "7 days"
-        },
-        {
-            "description": "Generate for service charts quarterly ",
-            "matchPackageNames": [
-                "argo-cd",
-                "cilium",
-                "authentik",
-                "vault",
-                "cert-manager",
-                "intel-device-plugins-operator",
-                "intel-device-plugins-gpu",
-                "metallb",
-                "metrics-server",
-                "node-feature-discovery",
-                "traefik",
-                "cloudnative-pg",
-                "postgres-cluster",
-                "democratic-csi",
-                "nfs-subdir-external-provisioner",
-                "rook-ceph",
-                "rook-ceph-cluster",
-                "redis"
-            ],
-            "matchDatasources": [
-                "helm"
-            ],
-            "schedule": [
-                "every 3 months on the first day of the month"
-            ],
-            "addLabels": [
-                "upgrade",
-                "quarterly",
-                "service",
-                "chart"
-            ],
-            "bumpVersion": "minor",
-            "automerge": false,
-            "minimumReleaseAge": "7 days"
-        },
-        {
-            "description": "Generate for service images weekly ",
-            "matchPackageNames": [
-                "portainer/portainer-ce"
-            ],
-            "matchDatasources": [
-                "docker"
-            ],
-            "schedule": [
-                "after 10am on tuesday",
-                "before 5pm on tuesday"
-            ],
-            "addLabels": [
-                "upgrade",
-                "weekly",
-                "service",
-                "image"
-            ],
-            "bumpVersion": "minor",
             "automerge": false,
             "minimumReleaseAge": "3 days"
         },
         {
-            "description": "Generate for service charts weekly ",
+            "description": "Label service charts",
             "matchPackageNames": [
+                "argo-cd",
+                "authentik",
+                "cert-manager",
+                "cilium",
+                "cloudnative-pg",
+                "democratic-csi",
                 "external-secrets",
                 "gitea",
                 "grafana",
+                "intel-device-plugins-gpu",
+                "intel-device-plugins-operator",
+                "kube-prometheus-stack",
+                "kubelet-serving-cert-approver",
                 "kubernetes-cloudflare-ddns",
+                "loki",
+                "metallb",
+                "metrics-server",
+                "nfs-subdir-external-provisioner",
+                "node-feature-discovery",
                 "pgadmin4",
                 "portainer",
-                "kube-prometheus-stack",
-                "loki",
+                "postgres-cluster",
+                "prometheus-operator-crds",
                 "promtail",
-                "speedtest-exporter"
+                "redis",
+                "rook-ceph-cluster",
+                "rook-ceph",
+                "speedtest-exporter",
+                "traefik",
+                "unpoller",
+                "vault"
             ],
             "matchDatasources": [
                 "helm"
             ],
-            "schedule": [
-                "after 10am on tuesday",
-                "before 5pm on tuesday"
-            ],
             "addLabels": [
-                "upgrade",
-                "weekly",
                 "service",
                 "chart"
             ],
-            "bumpVersion": "minor",
             "automerge": false,
             "minimumReleaseAge": "3 days"
         },
         {
-            "description": "Handle the plex image separately",
+            "description": "Label application images",
+            "matchPackageNames": [
+                "bbilly1/tubearchivist",
+                "bitnami/elasticsearch",
+                "deluan/navidrome",
+                "ghcr.io/advplyr/audiobookshelf",
+                "ghcr.io/linuxserver/calibre-web",
+                "ghcr.io/linuxserver/freshrss",
+                "jellyfin/jellyfin",
+                "linuxserver/code-server",
+                "unpoller/unpoller",
+                "vikunja/api",
+                "vikunja/frontend"
+            ],
+            "matchDatasources": [
+                "docker"
+            ],
+            "addLabels": [
+                "application",
+                "image"
+            ],
+            "automerge": false,
+            "minimumReleaseAge": "3 days"
+        },
+        {
+            "description": "Label application charts",
+            "matchPackageNames": [
+                "audiobookshelf",
+                "calibre-server",
+                "calibre-web",
+                "code-server",
+                "cops",
+                "freshrss",
+                "home-assistant",
+                "homepage",
+                "jellyfin",
+                "libation",
+                "mealie",
+                "navidrome",
+                "outline",
+                "plex",
+                "tubearchivist",
+                "vikunja"
+            ],
+            "matchDatasources": [
+                "helm"
+            ],
+            "addLabels": [
+                "application",
+                "chart"
+            ],
+            "automerge": false,
+            "minimumReleaseAge": "3 days"
+        },
+        {
+            "description": "Automerge the plex image",
             "matchPackageNames": [
                 "ghcr.io/onedr0p/plex"
             ],
             "matchDatasources": [
                 "docker"
             ],
-            "schedule": [
-                "after 10am on tuesday",
-                "before 5pm on tuesday"
-            ],
             "addLabels": [
-                "patch",
-                "weekly",
                 "application",
                 "image"
             ],
             "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)-(?<revision>.+)?$",
             "automerge": true,
             "automergeType": "branch",
-            "minimumReleaseAge": "3 days"
-        },
-        {
-            "description": "Automerge patches for application images",
-            "matchPackageNames": [
-                "ghcr.io/advplyr/audiobookshelf",
-                "ghcr.io/linuxserver/calibre-web",
-                "linuxserver/code-server",
-                "linuxserver/cops",
-                "ghcr.io/linuxserver/freshrss",
-                "rmcrackan/libation",
-                "deluan/navidrome"
-            ],
-            "matchDatasources": [
-                "docker"
-            ],
-            "matchUpdateTypes": [
-                "patch"
-            ],
-            "schedule": [
-                "after 10am every weekday",
-                "before 5pm every weekday"
-            ],
-            "bumpVersion": "minor",
-            "automergeType": "branch",
-            "automerge": true,
-            "minimumReleaseAge": "3 days"
-        },
-        {
-            "description": "Automerge patches for application charts",
-            "matchPackageNames": [],
-            "matchDatasources": [
-                "helm"
-            ],
-            "matchUpdateTypes": [
-                "patch"
-            ],
-            "schedule": [
-                "after 10am every weekday",
-                "before 5pm every weekday"
-            ],
-            "bumpVersion": "minor",
-            "automergeType": "branch",
-            "automerge": true,
-            "minimumReleaseAge": "3 days"
-        },
-        {
-            "description": "Generate patches for application images on Tuesdays",
-            "matchPackageNames": [
-                "jellyfin/jellyfin",
-                "bbilly1/tubearchivist",
-                "bitnami/elasticsearch",
-                "redis/redis-stack-server",
-                "vikunja/frontend",
-                "vikunja/api",
-                "linuxserver/code-server",
-                "dpage/pgadmin4",
-                "unpoller/unpoller",
-                "outlinewiki/outline"
-            ],
-            "matchDatasources": [
-                "docker"
-            ],
-            "matchUpdateTypes": [
-                "patch"
-            ],
-            "schedule": [
-                "after 10am on tuesday",
-                "before 5pm on tuesday"
-            ],
-            "addLabels": [
-                "patch",
-                "weekly",
-                "application",
-                "image"
-            ],
-            "bumpVersion": "minor",
-            "automerge": false,
-            "minimumReleaseAge": "3 days"
-        },
-        {
-            "description": "Generate patches for application charts on Tuesdays",
-            "matchPackageNames": [
-                "audiobookshelf",
-                "calibre-server",
-                "calibre-web",
-                "code-server",
-                "cops",
-                "freshrss",
-                "jellyfin",
-                "home-assistant",
-                "homepage",
-                "libation",
-                "mealie",
-                "navidrome",
-                "plex",
-                "tubearchivist",
-                "vikunja"
-            ],
-            "matchDatasources": [
-                "helm"
-            ],
-            "matchUpdateTypes": [
-                "patch"
-            ],
-            "schedule": [
-                "after 10am on tuesday",
-                "before 5pm on tuesday"
-            ],
-            "addLabels": [
-                "patch",
-                "weekly",
-                "application",
-                "chart"
-            ],
-            "bumpVersion": "minor",
-            "automerge": false,
-            "minimumReleaseAge": "3 days"
-        },
-        {
-            "description": "Generate minor/major for application images on Tuesdays",
-            "matchPackageNames": [
-                "ghcr.io/advplyr/audiobookshelf",
-                "ghcr.io/linuxserver/calibre-web",
-                "linuxserver/code-server",
-                "linuxserver/cops",
-                "ghcr.io/linuxserver/freshrss",
-                "rmcrackan/libation",
-                "deluan/navidrome",
-                "outlinewiki/outline",
-                "jellyfin/jellyfin",
-                "ghcr.io/onedr0p/plex",
-                "bbilly1/tubearchivist",
-                "bitnami/elasticsearch",
-                "redis/redis-stack-server",
-                "vikunja/frontend",
-                "vikunja/api",
-                "linuxserver/code-server",
-                "dpage/pgadmin4",
-                "unpoller/unpoller"
-            ],
-            "matchDatasources": [
-                "docker"
-            ],
-            "matchUpdateTypes": [
-                "minor",
-                "major"
-            ],
-            "schedule": [
-                "after 10am on tuesday",
-                "before 5pm on tuesday"
-            ],
-            "addLabels": [
-                "upgrade",
-                "weekly",
-                "application",
-                "image"
-            ],
-            "bumpVersion": "minor",
-            "automerge": false,
-            "minimumReleaseAge": "3 days"
-        },
-        {
-            "description": "Generate minor/major for application charts on Tuesdays",
-            "matchPackageNames": [
-                "calibre-server",
-                "home-assistant",
-                "homepage",
-                "audiobookshelf",
-                "calibre-web",
-                "code-server",
-                "cops",
-                "freshrss",
-                "jellyfin",
-                "libation",
-                "mealie",
-                "navidrome",
-                "plex",
-                "tubearchivist",
-                "vikunja"
-            ],
-            "matchDatasources": [
-                "helm"
-            ],
-            "matchUpdateTypes": [
-                "minor",
-                "major"
-            ],
-            "schedule": [
-                "after 10am on tuesday",
-                "before 5pm on tuesday"
-            ],
-            "addLabels": [
-                "upgrade",
-                "weekly",
-                "application",
-                "chart"
-            ],
-            "bumpVersion": "minor",
-            "automerge": false,
             "minimumReleaseAge": "3 days"
         }
     ]
