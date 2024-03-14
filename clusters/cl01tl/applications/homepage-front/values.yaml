@@ -7,7 +7,7 @@ homepage:
   ingressRoute:
     host: homepage.alexlebens.net
     authentik:
-      outpost: authentik-proxy-outpost
+      outpost: authentik-outpost-proxy
   config:
     widgets:
       - logo:
