@@ -6,6 +6,8 @@ calibre-server:
     enabled: true
     http:
       host: calibre-server.alexlebens.net
+    authentik:
+      outpost: authentik-proxy-outpost      
   persistence:
     config:
       storageClassName: ceph-block
