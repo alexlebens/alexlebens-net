@@ -10,17 +10,17 @@ authentik:
         valueFrom:
           secretKeyRef:
             name: postgresql-authentik-cluster-app
-            key: hostname
+            key: host
       - name: AUTHENTIK_POSTGRESQL__NAME
         valueFrom:
           secretKeyRef:
             name: postgresql-authentik-cluster-app
-            key: hostname
+            key: dbname
       - name: AUTHENTIK_POSTGRESQL__USER
         valueFrom:
           secretKeyRef:
             name: postgresql-authentik-cluster-app
-            key: username
+            key: user
       - name: AUTHENTIK_POSTGRESQL__PASSWORD
         valueFrom:
           secretKeyRef:
@@ -79,7 +79,7 @@ postgres-cluster:
         storageClass: ceph-block
         size: 2Gi
   bootstrap:
-    recoveryEnabled: true
+    recoveryEnabled: false
     recoveryIndex: 1
     endpointURL: https://nyc3.digitaloceanspaces.com
     bucket: net-infra
