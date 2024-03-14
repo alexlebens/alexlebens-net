@@ -13,7 +13,7 @@ rook-ceph:
     enableMetadata: true
     provisionerReplicas: 3
     clusterName:
-    logLevel: 5
+    logLevel: 0
     serviceMonitor:
       enabled: true
       interval: 5s
@@ -131,24 +131,6 @@ rook-ceph-cluster:
       deviceFilter: sda
       config:
         osdsPerDevice: "1"
-    healthCheck:
-      daemonHealth:
-        mon:
-          disabled: true
-          interval: 45s
-        osd:
-          disabled: true
-          interval: 60s
-        status:
-          disabled: true
-          interval: 60s
-      livenessProbe:
-        mon:
-          disabled: true
-        mgr:
-          disabled: true
-        osd:
-          disabled: true
   ingress:
     dashboard:
       ingressClassName: traefik
