@@ -13,5 +13,5 @@ spec:
   generateBucketName: outline-bucket
   storageClassName: ceph-bucket
   additionalConfig:
-    maxObjects: 2000
+    maxObjects: "2000"
     maxSize: 20G
