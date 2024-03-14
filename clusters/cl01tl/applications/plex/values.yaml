@@ -47,7 +47,7 @@ plex:
       enabled: true
       mountPath: /mnt/store
       type: pvc
-      existingClaim: nfs-plex-storage-claim
+      existingClaim: plex-nfs-storage
   podSecurityContext:
     runAsUser: 568
     runAsGroup: 568
