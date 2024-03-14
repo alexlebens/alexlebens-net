@@ -208,24 +208,32 @@ rook-ceph-cluster:
     - name: ceph-objectstore
       spec:
         metadataPool:
-          failureDomain: host
+          failureDomain: osd
           replicated:
             size: 3
         dataPool:
-          failureDomain: host
+          failureDomain: osd
           replicated:
             size: 3
         preservePoolsOnDelete: true
         gateway:
           port: 80
-          resources:
-            limits:
-              memory: "2Gi"
-            requests:
-              cpu: "1000m"
-              memory: "1Gi"
           instances: 1
           priorityClassName: system-cluster-critical
+          placement:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                  - matchExpressions:
+                      - key: node-role.kubernetes.io/rook-osd-node
+                        operator: Exists
+          resources:
+            limits:
+              cpu: 1000m            
+              memory: 2Gi
+            requests:
+              cpu: 100m
+              memory: 512Mi
       storageClass:
         enabled: true
         name: ceph-bucket
