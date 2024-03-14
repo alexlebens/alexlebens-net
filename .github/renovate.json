@@ -43,6 +43,7 @@
             "description": "Label service images",
             "matchPackageNames": [
                 "dpage/pgadmin4",
+                "hashicorp/vault",
                 "portainer/portainer-ce",
                 "redis/redis-stack-server"
             ],
