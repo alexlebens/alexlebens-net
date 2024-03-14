@@ -67,8 +67,6 @@ application:
       revision: HEAD
       path: standalone/cilium
     syncPolicy:
-      automated:
-        enabled: false
       retry:
         limit: 10
         backoff:
