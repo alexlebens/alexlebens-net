@@ -13,12 +13,11 @@ spec:
   metadataPool:
     failureDomain: host
     replicated:
-      size: 3
+      size: 1
   dataPool:
     failureDomain: host
-    erasureCoded:
-      dataChunks: 2
-      codingChunks: 1
+    replicated:
+      size: 1
   preservePoolsOnDelete: true
   gateway:
     port: 80
