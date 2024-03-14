@@ -25,7 +25,7 @@ rook-ceph:
       enabled: false
     readAffinity:
       enabled: true
-  enableDiscoveryDaemon: false
+  enableDiscoveryDaemon: true
   scaleDownOperator: false
   monitoring:
     enabled: true
@@ -55,6 +55,10 @@ rook-ceph-cluster:
       allowMultiplePerNode: false
       modules:
         - name: pg_autoscaler
+          enabled: true
+        - name: rook
+          enabled: true
+        - name: rgw
           enabled: true
     dashboard:
       enabled: true

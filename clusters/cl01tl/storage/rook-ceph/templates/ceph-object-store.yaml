@@ -13,11 +13,11 @@ spec:
   metadataPool:
     failureDomain: host
     replicated:
-      size: 1
+      size: 3
   dataPool:
     failureDomain: host
     replicated:
-      size: 1
+      size: 3
   preservePoolsOnDelete: true
   gateway:
     port: 80
@@ -36,5 +36,3 @@ spec:
       requests:
         cpu: 50m
         memory: 512Mi
-  zone:
-    name: zone-a
