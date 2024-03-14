@@ -1,12 +1,12 @@
 apiVersion: v2
 name: homepage-back
-version: 0.0.5
+version: 0.0.7
 home:
 sources:
   - https://github.com/gethomepage/homepage
   - https://github.com/alexlebens/helm-charts/tree/main/charts/homepage
 dependencies:
   - name: homepage
-    version: 0.0.5
+    version: 0.0.7
     repository: http://alexlebens.github.io/helm-charts
-appVersion: v0.8.8
+appVersion: v0.8.9
