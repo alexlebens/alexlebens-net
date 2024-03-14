@@ -3,9 +3,9 @@ homepage:
     replicas: 1
     envFrom:
       - secretRef:
-          name: homepage-front-config-secret
+          name: homepage-front-key-secret
   ingressRoute:
-    host: homepage-front.alexlebens.net
+    host: homepage.alexlebens.net
     authentik:
       outpost: authentik-proxy-outpost
   config:
