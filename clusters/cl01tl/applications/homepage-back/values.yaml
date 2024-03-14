@@ -119,7 +119,7 @@ homepage:
               icon: authentik.png
               description: Identity management and provider
               href: https://authentik.alexlebens.net
-              siteMonitor: http://authentik.authentik:80
+              siteMonitor: http://authentik-server.authentik:80
               statusStyle: dot
           - Traefik - cl01tl:
               icon: traefik.png
@@ -164,7 +164,7 @@ homepage:
               widget:
                 type: unifi
                 url: https://unifi.alexlebens.net
-                username: aurailious
+                username: '{{HOMEPAGE_VAR_UNIFI_USER}}'
                 password: '{{HOMEPAGE_VAR_UNIFI_PASSWORD}}'
           - Kubesail:
               icon: kubernetes.png
@@ -181,7 +181,7 @@ homepage:
               widget:
                 type: diskstation
                 url: https://synology.alexlebens.net
-                username: remote_stats
+                username: '{{HOMEPAGE_VAR_SYNOLOGY_USER}}'
                 password: '{{HOMEPAGE_VAR_SYNOLOGY_PASSWORD}}'
                 volume: volume_2
           - HD Homerun Flex:
