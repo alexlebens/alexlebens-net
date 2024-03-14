@@ -13,7 +13,7 @@ rook-ceph:
     enableMetadata: true
     provisionerReplicas: 3
     clusterName:
-    logLevel: 0
+    logLevel: 4
     serviceMonitor:
       enabled: true
       interval: 5s
