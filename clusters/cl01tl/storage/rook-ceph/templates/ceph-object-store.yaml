@@ -12,10 +12,10 @@ metadata:
 spec:
   metadataPool:
     replicated:
-      size: 1
+      size: 3
   dataPool:
     replicated:
-      size: 1
+      size: 3
   preservePoolsOnDelete: true
   gateway:
     port: 80
