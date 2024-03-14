@@ -58,8 +58,6 @@ rook-ceph-cluster:
           enabled: true
         - name: rook
           enabled: true
-        - name: rgw
-          enabled: true
     dashboard:
       enabled: true
       ssl: false

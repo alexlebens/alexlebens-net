@@ -11,28 +11,12 @@ metadata:
     app.kubernetes.io/part-of: {{ .Release.Name }}
 spec:
   metadataPool:
-    failureDomain: host
     replicated:
-      size: 3
+      size: 1
   dataPool:
-    failureDomain: host
     replicated:
-      size: 3
+      size: 1
   preservePoolsOnDelete: true
   gateway:
     port: 80
     instances: 1
-    placement:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: node-role.kubernetes.io/rook-osd-node
-                  operator: Exists
-    resources:
-      limits:
-        cpu: 500m
-        memory: 1Gi
-      requests:
-        cpu: 50m
-        memory: 512Mi
