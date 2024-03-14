@@ -4,6 +4,7 @@ version: 0.1.0
 home: https://outline.alexlebens.net/doc/argo-cd-qLEdrgdwOD
 sources:
   - https://github.com/argoproj/argo-cd
+  - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
 dependencies:
   - name: argo-cd
     version: 6.4.1
