@@ -79,7 +79,7 @@ postgres-cluster:
     name: cl01tl
     image:
       repository: ghcr.io/cloudnative-pg/postgresql
-      tag: 15.5
+      tag: 15.6
     instances: 2
     storage:
       data:
