@@ -39,5 +39,5 @@ navidrome:
 storage:
   storage:
     nfs:
-      path: /volume2/Storage/Calibre
+      path: /volume2/Storage
       server: synologybond.alexlebens.net
