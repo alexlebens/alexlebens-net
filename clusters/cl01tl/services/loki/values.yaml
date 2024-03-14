@@ -1,0 +1,37 @@
+loki:
+  loki:
+    auth_enabled: true
+    commonConfig:
+      replication_factor: 1
+    storage:
+      type: "filesystem"
+  singleBinary:
+    replicas: 1
+  monitoring:
+    dashboards:
+      enabled: true
+      namespace: grafana
+    serviceMonitor:
+      enabled: true
+    selfMonitoring:
+      grafanaAgent:
+        installOperator: false
+  ingress:
+    enabled: false
+  gateway:
+    enabled: true
+    basicAuth:
+      enabled: false
+  enterprise:
+    enabled: false
+promtail:
+  daemonset:
+    enabled: true
+  serviceMonitor:
+    enabled: true
+    prometheusRule:
+      enabled: false
+  config:
+    clients:
+      - url: http://loki-gateway/loki/api/v1/push
+        tenant_id: 1
