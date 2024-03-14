@@ -1,0 +1,79 @@
+outline:
+  deployment:
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 50m
+      limits:
+        memory: 1Gi
+        cpu: 500m
+  ingress:
+    enabled: true
+    className: traefik
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+      cert-manager.io/cluster-issuer: letsencrypt-issuer
+    host: outline.alexlebens.net
+  persistence:
+    type: s3
+    s3:
+      credentialsSecret: outline-bucket
+      bucketName: cl01tl-outline
+      endpoint: http://rook-ceph-rgw-ceph-object-store.rook-ceph.svc:80
+  outline:
+    url: https://outline.alexlebens.net
+    secretKey:
+      existingSecretName: outline-key-secret
+      existingSecretKey: secret-key
+    utilsSecret:
+      existingSecretName: outline-key-secret
+      existingSecretKey: utils-key
+    database:
+      passwordSecret:
+        existingSecretName: postgresql-outline-cluster-app
+        existingSecretKey: password
+      usernameSecret:
+        existingSecretName: postgresql-outline-cluster-app
+        existingSecretKey: username
+      databaseName: app
+      databaseHost: postgresql-outline-cluster-rw
+    auth:
+      oidc:
+        enabled: true
+        clientId:
+          existingSecretName: outline-oidc-secret
+          existingSecretKey: client
+        clientSecret:
+          existingSecretName: outline-oidc-secret
+          existingSecretKey: secret
+        authUri: https://authentik.alexlebens.net/application/o/authorize/
+        tokenUri: https://authentik.alexlebens.net/application/o/token/
+        userinfoUri: https://authentik.alexlebens.net/application/o/userinfo/
+        usernameClaim: email
+        displayName: Authentik
+        scopes: openid profile email
+postgres-cluster:
+  cluster:
+    name: cl01tl
+    image:
+      repository: ghcr.io/cloudnative-pg/postgresql
+      tag: 16.2
+    instances: 2
+    storage:
+      data:
+        storageClass: ceph-block
+        size: 10Gi
+      wal:
+        storageClass: ceph-block
+        size: 2Gi
+  bootstrap:
+    recoveryEnabled: true
+    recoveryIndex: 1
+    endpointURL: https://nyc3.digitaloceanspaces.com
+    bucket: net-infra
+  backup:
+    backupEnabled: true
+    backupIndex: 1
+    endpointURL: https://nyc3.digitaloceanspaces.com
+    bucket: alexlebens-net
