@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: authentik-custom-css
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Release.Name }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
+    app.kubernetes.io/component: web
+    app.kubernetes.io/part-of: {{ .Release.Name }}
+data:
+  custom.css: |
+    /* Logo size */
+    .pf-c-brand img {
+      height: 160px;
+    }
+    /* Logo size user interface */
+    .pf-c-brand {
+      height: 80px !important;
+    }
+    /* Logo size on admin page */
+    .pf-c-page__header-brand-link pf-c-brand .pf-c-brand img {
+      height: 80px !important;
+    }
+    /* Increase indent on logo */
+    .pf-c-login__header .pf-c-brand {
+      padding-left: 35px !important;
+    }
+    /* Change sign button color */
+    .pf-c-button.pf-m-primary {
+      color: black;
+      background-color: white;
+    }
+    /* Hide authentik branding */
+    .pf-c-login__footer ul.pf-c-list.pf-m-inline {
+      display: none !important;
+    }

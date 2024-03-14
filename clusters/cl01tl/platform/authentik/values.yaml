@@ -1,0 +1,84 @@
+authentik:
+  replicas: 1
+  worker:
+    replicas: 1
+  ingress:
+    enabled: true
+    className: traefik
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+      cert-manager.io/cluster-issuer: letsencrypt-issuer
+    hosts:
+      - host: authentik.alexlebens.net
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - secretName: authentik-secret-tls
+        hosts:
+          - authentik.alexlebens.net
+  authentik:
+    log_level: info
+    error_reporting:
+      enabled: false
+  volumes:
+    - name: custom-css
+      configMap:
+        name: authentik-custom-css
+  volumeMounts:
+    - name: custom-css
+      mountPath: /web/dist/custom.css
+      subPath: custom.css
+  postgresql:
+    enabled: false
+  redis:
+    enabled: true
+  prometheus:
+    serviceMonitor:
+      create: true
+  envValueFrom:
+    AUTHENTIK_SECRET_KEY:
+      secretKeyRef:
+        name: authentik-key-secret
+        key: key
+    AUTHENTIK_POSTGRESQL__HOST:
+      secretKeyRef:
+        name: postgresql-authentik-cluster-app
+        key: hostname
+    AUTHENTIK_POSTGRESQL__NAME:
+      secretKeyRef:
+        name: postgresql-authentik-cluster-app
+        key: database
+    AUTHENTIK_POSTGRESQL__USER:
+      secretKeyRef:
+        name: postgresql-authentik-cluster-app
+        key: username
+    AUTHENTIK_POSTGRESQL__PASSWORD:
+      secretKeyRef:
+        name: postgresql-authentik-cluster-app
+        key: password
+postgres-cluster:
+  cluster:
+    name: cl01tl
+    image:
+      repository: ghcr.io/cloudnative-pg/postgresql
+      tag: 16.2
+    instances: 2
+    storage:
+      data:
+        storageClass: ceph-block
+        size: 10Gi
+      wal:
+        storageClass: ceph-block
+        size: 2Gi
+  bootstrap:
+    recoveryEnabled: true
+    recoveryIndex: 1
+    endpointURL: https://nyc3.digitaloceanspaces.com
+    bucket: net-infra
+  backup:
+    backupEnabled: true
+    backupIndex: 1
+    endpointURL: https://nyc3.digitaloceanspaces.com
+    bucket: alexlebens-net
