@@ -4,11 +4,7 @@ democratic-csi:
     config:
       driver: synology-iscsi
   csiDriver:
-    name: "org.democratic-csi.synology-iscsi"
-    version: 1.5.0
-    enabled: true
-    attachRequired: true
-    podInfoOnMount: true
+    name: "org.democratic-csi.iscsi-synology"
   controller:
     enabled: true
     rbac:
