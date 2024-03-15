@@ -77,7 +77,7 @@ homepage:
           - COPS:
               icon: calibre-web.png
               description: Calibre OPDS (and HTML) PHP Server
-              href: https://cops.alexlebens.net
+              href: https://calibre-content.alexlebens.net
               siteMonitor: http://cops.cops:80
               statusStyle: dot
       - Monitoring:
