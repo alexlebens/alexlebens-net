@@ -7,8 +7,7 @@
     ],
     "timezone": "US/Mountain",
     "schedule": [
-        "after 10am every weekday",
-        "before 5pm every weekday"
+        "every weekday"
     ],
     "labels": [],
     "packageRules": [
