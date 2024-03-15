@@ -1,0 +1,15 @@
+apiVersion: v2
+name: vikunja
+version: 0.0.1
+sources:
+  - https://kolaente.dev/vikunja/vikunja
+  - https://kolaente.dev/vikunja/helm-chart
+  - https://github.com/alexlebens/helm-charts/charts/postgres-cluster
+dependencies:
+  - name: vikunja
+    version: 0.4.3
+    repository: https://kolaente.dev/api/packages/vikunja/helm
+  - name: postgres-cluster
+    version: 0.2.3
+    repository: http://alexlebens.github.io/helm-charts
+appVersion: v0.21.1
