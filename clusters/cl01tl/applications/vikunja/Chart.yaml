@@ -6,7 +6,7 @@ sources:
   - https://kolaente.dev/vikunja/helm-chart
   - https://github.com/alexlebens/helm-charts/charts/postgres-cluster
 dependencies:
-  - name: vikunja
+  - name: my-vikunja
     version: 0.4.3
     repository: oci://kolaente.dev/vikunja/vikunja
   - name: postgres-cluster
