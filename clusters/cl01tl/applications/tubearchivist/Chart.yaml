@@ -1,11 +1,11 @@
 apiVersion: v2
 name: tubearchivist
-version: 0.0.3
+version: 0.0.4
 sources:
   - https://github.com/tubearchivist/tubearchivist
   - https://github.com/alexlebens/helm-charts/charts/tubearchivist
 dependencies:
   - name: tubearchivist
-    version: 0.0.3
+    version: 0.0.4
     repository: http://alexlebens.github.io/helm-charts
 appVersion: v0.4.6
