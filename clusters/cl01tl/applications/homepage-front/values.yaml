@@ -97,12 +97,6 @@ homepage:
               href: https://rss.alexlebens.net
               siteMonitor: http://freshrss.freshrss:80
               statusStyle: dot
-          - Mealie:
-              icon: mealie.svg
-              description: Recipe manager and meal planner
-              href: https://mealie.alexlebens.net
-              siteMonitor: http://mealie.mealie:3000
-              statusStyle: dot
     settings:
       favicon: https://gitea.alexlebens.net/alexlebens/icons/raw/branch/main/alexlebensnet-icon_white.png
       headerStyle: clean
