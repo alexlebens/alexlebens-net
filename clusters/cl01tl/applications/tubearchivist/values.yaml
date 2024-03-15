@@ -5,6 +5,10 @@ tubearchivist:
     envFrom:
       - secretRef:
           name: tubearchivist-config-secret
+    resources:
+      limits:
+        memory: 2Gi
+        cpu: 1000m
   ingress:
     enabled: true
     className: traefik
