@@ -6,6 +6,7 @@ freshrss:
       OIDC_PROVIDER_METADATA_URL: https://authentik.alexlebens.net/application/o/freshrss/.well-known/openid-configuration
       OIDC_X_FORWARDED_HEADERS: X-Forwarded-Port X-Forwarded-Proto X-Forwarded-Host
       OIDC_SCOPES: openid email profile
+      OIDC_REMOTE_USER_CLAIM: username
     envFrom:
       - secretRef:
           name: freshrss-oidc-secret 
