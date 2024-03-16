@@ -1,6 +1,9 @@
 homepage:
   deployment:
-    replicas: 1
+    resources:
+      limits:
+        memory: 1Gi
+        cpu: 500m
     envFrom:
       - secretRef:
           name: homepage-front-key-secret
