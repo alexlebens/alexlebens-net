@@ -8,7 +8,7 @@ freshrss:
       OIDC_SCOPES: openid email profile
     envFrom:
       - secretRef:
-          name: freshrss-oidc-secret
+          name: freshrss-oidc-secret 
       - secretRef:
           name: freshrss-config-secret
       - secretRef:
