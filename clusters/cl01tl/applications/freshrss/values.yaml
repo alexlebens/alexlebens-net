@@ -10,9 +10,7 @@ freshrss:
       - secretRef:
           name: freshrss-oidc-secret 
       - secretRef:
-          name: freshrss-config-secret
-      - secretRef:
-          name: postgresql-freshrss-cluster-app       
+          name: freshrss-config-secret  
   ingress:
     enabled: true
     className: traefik
