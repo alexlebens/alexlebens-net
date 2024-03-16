@@ -40,6 +40,15 @@ tubearchivist:
       - name: snapshot
         mountPath: /usr/share/elasticsearch/data/snapshot
     snapshotRepoPath: /usr/share/elasticsearch/data/snapshot
+tubearchivist-to-jellyfin:
+  job:
+    schedule: "0 */6 * * *"
+  envFrom: 
+    - secretRef:
+        name: tubearchivist-jellyfin-secret
+  persistence:
+    youtube:
+      claimName: tubearchivist-nfs-storage
 storage:
   youtube:
     nfsPath: /volume2/Storage/YouTube
