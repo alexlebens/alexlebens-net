@@ -45,7 +45,8 @@
                 "ghcr.io/cloudnative-pg/postgresql",
                 "hashicorp/vault",
                 "portainer/portainer-ce",
-                "redis/redis-stack-server"
+                "redis/redis-stack-server",
+                "unpoller/unpoller"
             ],
             "matchDatasources": [
                 "docker"
@@ -105,15 +106,11 @@
         {
             "description": "Label application images",
             "matchPackageNames": [
-                "bbilly1/tubearchivist",
-                "bitnami/elasticsearch",
                 "deluan/navidrome",
                 "ghcr.io/advplyr/audiobookshelf",
                 "ghcr.io/linuxserver/calibre-web",
-                "ghcr.io/linuxserver/freshrss",
                 "jellyfin/jellyfin",
                 "linuxserver/code-server",
-                "unpoller/unpoller",
                 "vikunja/api",
                 "vikunja/frontend"
             ],
@@ -140,11 +137,11 @@
                 "homepage",
                 "jellyfin",
                 "libation",
-                "mealie",
                 "navidrome",
                 "outline",
                 "plex",
                 "tubearchivist",
+                "tubearchivist-to-jellyfin",
                 "vikunja"
             ],
             "matchDatasources": [
