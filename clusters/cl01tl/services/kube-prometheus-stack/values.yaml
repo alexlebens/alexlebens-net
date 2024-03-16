@@ -1,6 +1,12 @@
 kube-prometheus-stack:
   crds:
     enabled: false
+  defaultRules:
+    create: true
+  global:
+    rbac:
+      create: true
+      createAggregateClusterRoles: true
   alertmanager:
     enabled: true
     config:
@@ -40,56 +46,38 @@ kube-prometheus-stack:
         cert-manager.io/cluster-issuer: letsencrypt-issuer
       hosts:
         - alertmanager.alexlebens.net
-      pathType: Prefix
       tls:
         - secretName: alertmanager-secret-tls
           hosts:
             - alertmanager.alexlebens.net
-    serviceMonitor:
-      selfMonitor: true
     alertmanagerSpec:
       secrets:
         - alertmanager-config-secret
       replicas: 1
-    externalUrl: "https://alertmanager.alexlebens.net"
+    externalUrl: https://alertmanager.alexlebens.net
   grafana:
     enabled: false
-  kubernetesServiceMonitors:
-    enabled: true
   kubeApiServer:
     tlsConfig:
-      serverName: kubernetes
       insecureSkipVerify: true
-    enabled: true
-  kubelet:
-    enabled: true
-    namespace: kube-system
   kubeControllerManager:
-    enabled: true
-  coreDns:
-    enabled: true
-  kubeDns:
-    enabled: false
-  kubeEtcd:
-    enabled: true
+    serviceMonitor:
+      https: false
+      insecureSkipVerify: true
   kubeScheduler:
-    enabled: true
+    serviceMonitor:
+      https: false
+      insecureSkipVerify: true
   kubeProxy:
-    enabled: true
-  kubeStateMetrics:
-    enabled: true
+    enabled: false
   kube-state-metrics:
     selfMonitor:
       enabled: true
   nodeExporter:
-    enabled: true
     operatingSystems:
-      linux:
-        enabled: true
       darwin:
         enabled: false
   prometheusOperator:
-    enabled: true
     admissionWebhooks:
       enabled: true
     namespaces:
@@ -102,18 +90,18 @@ kube-prometheus-stack:
         - gitea
         - grafana
         - home-assistant
-        - lidarr2
         - loki
-        - metrics-server
-        - radarr5-4k
-        - radarr5
-        - rook-ceph
-        - sonarr4-4k
-        - sonarr4
+        - rook-ceph        
         - speedtest-exporter
-        - tdarr2
         - unpoller
         - vault
+        - lidarr2
+        - qbittorrent
+        - radarr5-4k
+        - radarr5
+        - sonarr4-4k
+        - sonarr4
+        - tdarr2
   prometheus:
     ingress:
       enabled: true
@@ -124,19 +112,16 @@ kube-prometheus-stack:
         cert-manager.io/cluster-issuer: letsencrypt-issuer
       hosts:
         - prometheus.alexlebens.net
-      pathType: Prefix
       tls:
         - secretName: prometheus-secret-tls
           hosts:
             - prometheus.alexlebens.net
-    serviceMonitor:
-      selfMonitor: true
     prometheusSpec:
       scrapeInterval: 30s
-      externalUrl: "https://prometheus.alexlebens.net"
+      retention: 30d
+      externalUrl: https://prometheus.alexlebens.net
       serviceMonitorSelectorNilUsesHelmValues: false
       podMonitorSelectorNilUsesHelmValues: false
-      replicas: 1
       storageSpec:
         volumeClaimTemplate:
           spec:
