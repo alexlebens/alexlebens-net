@@ -3,9 +3,12 @@ name: freshrss
 version: 0.0.1
 sources:
   - https://github.com/FreshRSS/FreshRSS
-  - https://github.com/k8s-home-lab/helm-charts/tree/master/charts/stable/freshrss
+  - https://github.com/alexlebens/helm-charts/tree/main/charts/hfreshrss
 dependencies:
   - name: freshrss
-    version: 7.0.1
-    repository: https://k8s-home-lab.github.io/helm-charts/
-appVersion: "1.21.0"
+    version: 0.0.1
+    repository: http://alexlebens.github.io/helm-charts
+  - name: postgres-cluster
+    version: 0.2.3
+    repository: http://alexlebens.github.io/helm-charts    
+appVersion: "1.23.1"

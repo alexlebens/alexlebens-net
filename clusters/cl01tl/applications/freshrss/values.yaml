@@ -1,26 +1,51 @@
 freshrss:
-  image:
-    repository: ghcr.io/linuxserver/freshrss
-    tag: 1.23.1
-  env:
-    TZ: US/Mountain
+  deployment:
+    env:
+      TZ: US/Mountain
+      OIDC_ENABLED: 1
+      OIDC_PROVIDER_METADATA_URL: https://authentik.alexlebens.net/application/o/freshrss/.well-known/openid-configuration
+      OIDC_X_FORWARDED_HEADERS: X-Forwarded-Port X-Forwarded-Proto X-Forwarded-Host
+      OIDC_SCOPES: openid email profile
+    envFrom:
+      - secretRef:
+          name: freshrss-oidc-secret
+      - secretRef:
+          name: freshrss-config-secret
+      - secretRef:
+          name: postgresql-freshrss-cluster-app       
   ingress:
-    main:
-      enabled: true
-      ingressClassName: traefik
-      annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.tls: "true"
-        cert-manager.io/cluster-issuer: letsencrypt-issuer
-      hosts:
-        - host: rss.alexlebens.net
-          paths:
-            - path: /
-              pathType: Prefix
-      tls:
-        - secretName: freshrss-secret-tls
-          hosts:
-            - rss.alexlebens.net
+    enabled: true
+    className: traefik
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+      cert-manager.io/cluster-issuer: letsencrypt-issuer
+    host: rss.alexlebens.net
   persistence:
     config:
-      enabled: true
+      storageClassName: ceph-block
+      storageSize: 5Gi
+postgres-cluster:
+  cluster:
+    name: cl01tl
+    image:
+      repository: ghcr.io/cloudnative-pg/postgresql
+      tag: 16.2
+    instances: 2
+    storage:
+      data:
+        storageClass: ceph-block
+        size: 10Gi
+      wal:
+        storageClass: ceph-block
+        size: 2Gi
+  bootstrap:
+    recoveryEnabled: false
+    recoveryIndex: 1
+    endpointURL: https://nyc3.digitaloceanspaces.com
+    bucket: alexlebens-net
+  backup:
+    backupEnabled: true
+    backupIndex: 1
+    endpointURL: https://nyc3.digitaloceanspaces.com
+    bucket: alexlebens-net
