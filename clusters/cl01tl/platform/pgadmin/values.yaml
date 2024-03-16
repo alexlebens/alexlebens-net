@@ -6,8 +6,7 @@ pgadmin4:
     create: true
     automountServiceAccountToken: true
   serverDefinitions:
-    enabled: true
-    resourceType: Secret
+    enabled: false
   ingress:
     enabled: true
     ingressClassName: traefik
