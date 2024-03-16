@@ -9,9 +9,7 @@ freshrss:
       OIDC_REMOTE_USER_CLAIM: preferred_username
     envFrom:
       - secretRef:
-          name: freshrss-oidc-secret 
-      - secretRef:
-          name: freshrss-config-secret  
+          name: freshrss-oidc-secret
   ingress:
     enabled: true
     className: traefik
