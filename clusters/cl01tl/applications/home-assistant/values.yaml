@@ -6,7 +6,7 @@ home-assistant:
     enabled: true
     host: homeassistant.alexlebens.net
     authentik:
-      outpost: authentik-proxy-outpost
+      outpost: authentik-outpost-proxy
   metrics:
     enabled: true
     serviceMonitor:
