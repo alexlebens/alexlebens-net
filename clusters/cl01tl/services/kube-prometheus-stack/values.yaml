@@ -3,6 +3,10 @@ kube-prometheus-stack:
     enabled: false
   defaultRules:
     create: true
+    rules:
+      kubeControllerManager: false
+      kubeSchedulerAlerting: false
+      kubeSchedulerRecording: false
   global:
     rbac:
       create: true
@@ -61,27 +65,9 @@ kube-prometheus-stack:
     tlsConfig:
       insecureSkipVerify: true
   kubeControllerManager:
-    endpoints:
-      - 192.168.1.35
-      - 192.168.1.36
-      - 192.168.1.37   
-    service:
-      port: 6443
-      targetPort: 6443           
-    serviceMonitor:
-      https: false
-      insecureSkipVerify: true
+    enabled: false
   kubeScheduler:
-    endpoints:
-      - 192.168.1.35
-      - 192.168.1.36
-      - 192.168.1.37   
-    service:
-      port: 6443
-      targetPort: 6443      
-    serviceMonitor:
-      https: false
-      insecureSkipVerify: true
+    enabled: false
   kubeProxy:
     enabled: false
   kube-state-metrics:
