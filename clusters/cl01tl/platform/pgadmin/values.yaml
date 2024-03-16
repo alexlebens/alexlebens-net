@@ -5,6 +5,8 @@ pgadmin4:
   serviceAccount:
     create: true
     automountServiceAccountToken: true
+  strategy:
+    type: Recreate    
   serverDefinitions:
     enabled: false
   ingress:
