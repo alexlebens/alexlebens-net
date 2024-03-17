@@ -16,3 +16,25 @@ data:
       color: black;
       background-color: white;
     }
+
+    /* Remove background */
+    .pf-c-login__main {
+      background-color: transparent;
+    }
+
+    /* Remove specific height */
+    .pf-c-brand {
+      height: auto;
+    }
+
+    /* Center text */
+    .pf-c-title {
+      text-align: center;
+    }
+
+    /* Match text field to login button */
+    .pf-c-form-control {
+      border-radius: 3px;
+      background-color: white;
+      color: black;
+    }
