@@ -1,7 +1,7 @@
 apiVersion: v2
 name: homepage-front
 version: 0.0.7
-home:
+home: https://outline.alexlebens.net/doc/homepage-s2clWoI5EC
 sources:
   - https://github.com/gethomepage/homepage
   - https://github.com/alexlebens/helm-charts/tree/main/charts/homepage
