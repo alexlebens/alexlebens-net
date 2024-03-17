@@ -36,7 +36,7 @@ authentik:
     volumeMounts:
       - name: custom-css
         mountPath: /web/dist/custom.css
-        subPath: custom.css    
+        subPath: custom.css
     metrics:
       enabled: true
       serviceMonitor:
@@ -46,7 +46,7 @@ authentik:
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.tls: "true"
-        cert-manager.io/cluster-issuer: letsencrypt-issuer      
+        cert-manager.io/cluster-issuer: letsencrypt-issuer
       ingressClassName: traefik
       hosts:
         - authentik.alexlebens.net
