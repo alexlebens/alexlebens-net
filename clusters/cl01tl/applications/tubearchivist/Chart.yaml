@@ -6,7 +6,7 @@ sources:
   - https://github.com/alexlebens/helm-charts/charts/tubearchivist
 dependencies:
   - name: tubearchivist
-    version: 0.0.4
+    version: 0.0.6
     repository: http://alexlebens.github.io/helm-charts
   - name: tubearchivist-to-jellyfin
     version: 0.0.3
