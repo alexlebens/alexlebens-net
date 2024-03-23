@@ -41,10 +41,6 @@ homepage:
               href: https://overseerr.alexlebens.net
               siteMonitor: http://overseerr.overseerr:5055
               statusStyle: dot
-              widget:
-                type: overseerr
-                url: http://overseerr.overseerr:5055
-                key: '{{HOMEPAGE_VAR_OVERSEERR_KEY}}'
           - Jellyfin:
               icon: jellyfin.png
               description: Media server
