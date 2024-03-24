@@ -4,9 +4,6 @@ homepage:
       limits:
         memory: 1Gi
         cpu: 500m
-    envFrom:
-      - secretRef:
-          name: homepage-front-key-secret
   ingressRoute:
     host: homepage.alexlebens.net
     authentik:
