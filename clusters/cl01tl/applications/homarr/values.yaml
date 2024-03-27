@@ -53,8 +53,8 @@ homarr:
       size: 100Mi
       mountPath: "/app/database"
     - name: homarr-icons
-      enabled: false
+      enabled: true
       storageClassName: ceph-block
       accessMode: ReadWriteOnce
-      size: 100Mi
+      size: 500Mi
       mountPath: "/app/public/icons"
