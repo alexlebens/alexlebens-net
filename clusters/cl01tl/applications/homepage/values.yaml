@@ -309,7 +309,7 @@ homepage:
       color: slate
       background:
         image: https://w.wallhaven.cc/full/6d/wallhaven-6d7xyq.jpg
-        brightness: 40
+        brightness: 70
       cardBlur: md
       theme: dark
       disableCollapse: true
