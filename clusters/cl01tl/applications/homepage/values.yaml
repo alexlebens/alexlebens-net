@@ -2,13 +2,13 @@ homepage:
   deployment:
     resources:
       limits:
-        memory: 1Gi
-        cpu: 500m
+        memory: 2Gi
+        cpu: 1000m
     envFrom:
       - secretRef:
           name: homepage-back-key-secret
   ingressRoute:
-    host: homepage-back.alexlebens.net
+    host: homepage.alexlebens.net
     authentik:
       outpost: authentik-outpost-proxy
   config:
@@ -17,13 +17,13 @@ homepage:
           icon: https://gitea.alexlebens.net/alexlebens/icons/raw/branch/main/alexlebensnet-icon_white.png
       - kubernetes:
           cluster:
-            show: false
+            show: true
             cpu: true
             memory: true
             showLabel: true
             label: "Cluster"
           nodes:
-            show: true
+            show: false
       - datetime:
           text_size: xl
           format:
@@ -37,6 +37,74 @@ homepage:
           units: metric
           cache: 5
     services:
+      - Media:
+          - Plex:
+              icon: plex.png
+              href: https://plex.alexlebens.net
+              description: Media server
+              siteMonitor: http://plex.plex:32400
+              statusStyle: dot
+          - Overseerr:
+              icon: overseerr.png
+              description: Requests
+              href: https://overseerr.alexlebens.net
+              siteMonitor: http://overseerr.overseerr:5055
+              statusStyle: dot
+          - Jellyfin:
+              icon: jellyfin.png
+              description: Media server
+              href: https://jellyfin.alexlebens.net/
+              siteMonitor: http://jellyfin.jellyfin:8096
+              statusStyle: dot
+          - TubeAchivist:
+              icon: tube-archivist.png
+              description: Youtube downloader
+              href: https://tubearchivist.alexlebens.net/login/
+              siteMonitor: http://tubearchivist.tubearchivist:8000
+              statusStyle: dot
+          - Navidrome:
+              icon: navidrome.png
+              description: Music
+              href: https://navidrome.alexlebens.net
+              siteMonitor: http://navidrome.navidrome:4533
+              statusStyle: dot
+          - Audiobookshelf:
+              icon: audiobookshelf.png
+              description: Audiobooks, Books, and Podcasts
+              href: https://audiobookshelf.alexlebens.net
+              siteMonitor: http://audiobookshelf.audiobookshelf:80
+              statusStyle: dot
+          - Calibre:
+              icon: calibre-web.png
+              description: Books
+              href: https://calibre.alexlebens.net
+              siteMonitor: http://calibre-web.calibre-web:8083
+              statusStyle: dot
+      - Applications:
+          - Home Assistant:
+              icon: home-assistant.png
+              description: Home automation
+              href: https://homeassistant.alexlebens.net
+              siteMonitor: http://home-assistant.home-assistant:8123
+              statusStyle: dot
+          - Vikunja:
+              icon: vikunja.png
+              description: Notes and tasks
+              href: https://vikunja.alexlebens.net
+              siteMonitor: http://vikunja-frontend.vikunja:80
+              statusStyle: dot
+          - Outline:
+              icon: outline.png
+              description: Wiki
+              href: https://outline.alexlebens.net
+              siteMonitor: http://outline.outline:3000
+              statusStyle: dot
+          - Rss:
+              icon: freshrss.svg
+              description: Rss reader
+              href: https://rss.alexlebens.net
+              siteMonitor: http://freshrss.freshrss:80
+              statusStyle: dot
       - Code:
           - Code Server:
               icon: code-server.png
@@ -63,7 +131,7 @@ homepage:
               siteMonitor: http://argocd-server.argocd:80
               statusStyle: dot
               namespace: argocd
-      - Media:
+      - Management:
           - Calibre Server:
               icon: calibre.png
               description: Calibre content server
@@ -237,28 +305,36 @@ homepage:
     settings:
       favicon: https://gitea.alexlebens.net/alexlebens/icons/raw/branch/main/alexlebensnet-icon_white.png
       headerStyle: clean
+      hideVersion: true
+      color: slate
       background:
         image: https://w.wallhaven.cc/full/6d/wallhaven-6d7xyq.jpg
-        brightness: 50
+        brightness: 40
       cardBlur: md
       theme: dark
       disableCollapse: true
       layout:
+        - Media:
+            tab: Apps
+            icon: mdi-multimedia
+        - Applications:
+            tab: Apps
+            icon: mdi-application
         - Code:
             tab: Tools
             icon: mdi-code-braces-box
         - Monitoring:
             tab: Tools
-            icon: mdi-chart-timeline-variant
-        - Media:
+            icon: mdi-chart-bar
+        - Management:
             tab: Tools
-            icon: mdi-multimedia
+            icon: mdi-content-save-cog
         - Services:
             tab: Services
-            icon: mdi-server-network-outline
+            icon: mdi-server-network
         - Hardware:
             tab: Services
-            icon: mdi-server
+            icon: mdi-lan-connect
         - Storage:
             tab: Services
             icon: mdi-harddisk
