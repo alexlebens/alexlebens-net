@@ -2,8 +2,9 @@ homarr:
   env:
     TZ: US/Mountain
     DEFAULT_COLOR_SCHEME: "dark"
+    BASE_URL: homarr.alexlebens.net
     AUTH_PROVIDER: "oidc"
-    AUTH_OIDC_URI: https://authentik.alexlebens.net/application/o/homarr/
+    AUTH_OIDC_URI: https://authentik.alexlebens.net/application/o/homarr
     AUTH_OIDC_CLIENT_NAME: "Authentik"
     AUTH_OIDC_ADMIN_GROUP: "Homarr Admin"
     AUTH_OIDC_OWNER_GROUP: "Homarr Owner"
