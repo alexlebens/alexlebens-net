@@ -33,11 +33,11 @@ homarr:
           - homarr.alexlebens.net
   resources:
     limits:
-      cpu: 100m
-      memory: 128Mi
-    requests:
       cpu: 500m
       memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
   persistence:
     - name: homarr-config
       enabled: true
