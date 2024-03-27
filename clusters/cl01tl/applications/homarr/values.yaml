@@ -54,7 +54,7 @@ homarr:
       mountPath: "/app/database"
     - name: homarr-icons
       enabled: true
-      storageClassName: ceph-block
+      storageClassName: nfs-client
       accessMode: ReadWriteOnce
-      size: 500Mi
+      size: 1Gi
       mountPath: "/app/public/icons"
