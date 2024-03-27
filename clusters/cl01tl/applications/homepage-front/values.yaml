@@ -96,6 +96,8 @@ homepage:
     settings:
       favicon: https://gitea.alexlebens.net/alexlebens/icons/raw/branch/main/alexlebensnet-icon_white.png
       headerStyle: clean
+      hideVersion: true
+      color: slate
       background:
         image: https://w.wallhaven.cc/full/6d/wallhaven-6d7xyq.jpg
         brightness: 50
