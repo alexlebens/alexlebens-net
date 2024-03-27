@@ -1,0 +1,59 @@
+homarr:
+  env:
+    TZ: US/Mountain
+    DEFAULT_COLOR_SCHEME: "dark"
+    AUTH_PROVIDER: "oidc"
+    AUTH_OIDC_URI: https://authentik.alexlebens.net
+    AUTH_OIDC_CLIENT_NAME: "Authentik"
+    AUTH_OIDC_ADMIN_GROUP: "Homarr Admin"
+    AUTH_OIDC_OWNER_GROUP: "Homarr Owner"
+    AUTH_OIDC_SCOPE_OVERWRITE: "openid email profile groups"
+  envSecrets:
+    AUTH_OIDC_CLIENT_ID:
+      key: client
+      name: homarr-oidc-secret
+    AUTH_OIDC_CLIENT_SECRET:
+      key: secret
+      name: homarr-oidc-secret
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+      cert-manager.io/cluster-issuer: letsencrypt-issuer
+    hosts:
+      - host: homarr.alexlebens.net
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    tls:
+      - secretName: homarr-secret-tls
+        hosts:
+          - homarr.alexlebens.net
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 500m
+      memory: 512Mi
+  persistence:
+    - name: homarr-config
+      enabled: true
+      storageClassName: ceph-block
+      accessMode: ReadWriteOnce
+      size: 100Mi
+      mountPath: /app/data/configs
+    - name: homarr-database
+      enabled: true
+      storageClassName: ceph-block
+      accessMode: ReadWriteOnce
+      size: 100Mi
+      mountPath: "/app/database"
+    - name: homarr-icons
+      enabled: false
+      storageClassName: ceph-block
+      accessMode: ReadWriteOnce
+      size: 100Mi
+      mountPath: "/app/public/icons"
