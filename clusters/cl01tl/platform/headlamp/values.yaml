@@ -31,7 +31,7 @@ headlamp:
     hosts:
       - host: headlamp.alexlebens.net
     tls:
-     - secretName: headlamp-secret-tls
+      - secretName: headlamp-secret-tls
         hosts:
           - headlamp.alexlebens.net
   resources:
