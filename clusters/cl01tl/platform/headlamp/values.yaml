@@ -30,6 +30,9 @@ headlamp:
       cert-manager.io/cluster-issuer: letsencrypt-issuer
     hosts:
       - host: headlamp.alexlebens.net
+        paths:
+          - path: /
+            pathType: Prefix
     tls:
       - secretName: headlamp-secret-tls
         hosts:
