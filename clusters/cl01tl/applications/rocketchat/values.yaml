@@ -25,6 +25,8 @@ rocketchat:
         secretName: rocketchat-secret-tls
     federation:
       serveWellKnown: false
+  service:
+    port: 3000
   prometheusScraping:
     enabled: true
   serviceMonitor:
