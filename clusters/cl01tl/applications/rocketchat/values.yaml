@@ -44,7 +44,6 @@ mongodb:
     databases:
       - rocketchat
     existingSecret: rocketchat-mongodb-auth-secret
-  initdbScriptsConfigMap: rocketchat-mongodb-fix-clustermonitor-role-configmap
   replicaCount: 3
   service:
     portName: mongodb
