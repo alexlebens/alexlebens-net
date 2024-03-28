@@ -151,6 +151,12 @@ homepage:
               href: https://portainer.alexlebens.net
               siteMonitor: http://portainer.portainer:9000
               statusStyle: dot
+          - Headlamp:
+              icon: headlamp.png
+              description: Kubernetes dashboard
+              href: https://headlamp.alexlebens.net
+              siteMonitor: http://headlamp.headlamp:80
+              statusStyle: dot
           - Hubble:
               icon: cilium.png
               description: Network monitoring for Cilium
