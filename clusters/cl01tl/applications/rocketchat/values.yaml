@@ -4,7 +4,7 @@ rocketchat:
     - name: PORT
       value: "3000"
     - name: HTTP_FORWARDED_COUNT
-      value: 1
+      value: "1"
   extraSecret: rocketchat-config-secret
   existingMongodbSecret: rocketchat-mongodb-uri-secret
   mongodb:
