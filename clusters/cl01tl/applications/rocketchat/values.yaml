@@ -1,5 +1,8 @@
 rocketchat:
   replicaCount: 1
+  extraEnv:
+    - name: PORT
+      value: "3000"
   extraSecret: rocketchat-config-secret
   existingMongodbSecret: rocketchat-mongodb-uri-secret
   mongodb:
