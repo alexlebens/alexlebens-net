@@ -30,6 +30,10 @@ rocketchat:
   serviceMonitor:
     enabled: true
     interval: 30s
+  livenessProbe:
+    enabled: false
+  readinessProbe:
+    enabled: false
 mongodb:
   architecture: replicaset
   auth:
