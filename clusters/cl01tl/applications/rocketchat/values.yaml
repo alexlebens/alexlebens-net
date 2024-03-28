@@ -1,10 +1,5 @@
 rocketchat:
   replicaCount: 1
-  extraEnv:
-    - name: ROOT_URL
-      value: https://chat.alexlebens.net
-    - name: PORT
-      value: "80"
   extraSecret: rocketchat-config-secret
   existingMongodbSecret: rocketchat-mongodb-uri-secret
   mongodb:
