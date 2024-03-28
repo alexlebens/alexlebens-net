@@ -1,0 +1,45 @@
+rocketchat:
+  replicaCount: 1
+  extraEnv:
+    - name: ROOT_URL
+      value: http://chat.alexlebens.net
+    - name: PORT
+      value: 80
+  extraSecret: rocketchat-config-secret
+  existingMongodbSecret:
+  mongodb:
+    enabled: true
+    initdbScriptsConfigMap: rocketchat-mongodb-fix-clustermonitor-role-configmap
+    architecture: replicaset
+    replicaCount: 3
+    persistence:
+      enabled: true
+      storageClass: ceph-block
+      accessMode: ReadWriteOnce
+      size: 8Gi
+    volumePermissions: { enabled: true }
+  persistence:
+    enabled: true
+    storageClass: ceph-block
+    accessMode: ReadWriteOnce
+    size: 8Gi
+  ingress:
+    enabled: true
+    pathType: Prefix
+    ingressClassName: traefik
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-issuer
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+    path: /
+    tls:
+      - hosts:
+          - chat.alexlebens.net
+        secretName: rocketchat-secret-tls
+    federation:
+      serveWellKnown: true
+  prometheusScraping:
+    enabled: true
+  serviceMonitor:
+    enabled: true
+    interval: 30s
