@@ -20,8 +20,11 @@ headlamp:
       value: https://authentik.alexlebens.net/application/o/headlamp/
   persistentVolumeClaim:
     enabled: true
+    accessModes:
+      - ReadWriteOnce
     size: 10Gi
     storageClassName: ceph-block
+    volumeMode: Filesystem
   ingress:
     enabled: true
     annotations:
