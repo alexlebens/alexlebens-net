@@ -4,7 +4,7 @@ rocketchat:
     - name: ROOT_URL
       value: http://chat.alexlebens.net
     - name: PORT
-      value: 80
+      value: "80"
   extraSecret: rocketchat-config-secret
   existingMongodbSecret: rocketchat-mongodb-uri-secret
   mongodb:
