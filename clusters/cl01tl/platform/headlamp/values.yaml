@@ -1,10 +1,8 @@
 headlamp:
   config:
-    baseURL: headlamp.alexlebens.net
     oidc:
       secret:
         create: false
-    pluginsDir: /headlamp/plugins
   env:
     - name: HEADLAMP_CONFIG_OIDC_CLIENT_ID
       valueFrom:
@@ -35,7 +33,7 @@ headlamp:
       - host: headlamp.alexlebens.net
         paths:
           - path: /
-            pathType: Prefix
+            type: ImplementationSpecific
     tls:
       - secretName: headlamp-secret-tls
         hosts:
