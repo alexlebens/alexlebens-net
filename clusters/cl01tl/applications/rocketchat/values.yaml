@@ -6,12 +6,20 @@ rocketchat:
     - name: PORT
       value: 80
   extraSecret: rocketchat-config-secret
-  existingMongodbSecret:
+  existingMongodbSecret: rocketchat-mongodb-uri-secret
   mongodb:
     enabled: true
     initdbScriptsConfigMap: rocketchat-mongodb-fix-clustermonitor-role-configmap
     architecture: replicaset
     replicaCount: 3
+    auth:
+      enabled: true
+      rootUser: admin
+      usernames:
+        - rocketchat
+      databases:
+        - rocketchat
+      existingSecret: rocketchat-mongodb-auth-secret
     persistence:
       enabled: true
       storageClass: ceph-block
