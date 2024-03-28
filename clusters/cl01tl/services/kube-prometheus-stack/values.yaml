@@ -90,6 +90,7 @@ kube-prometheus-stack:
         - gitea
         - grafana
         - home-assistant
+        - rocketchat
         - loki
         - rook-ceph        
         - speedtest-exporter
@@ -99,9 +100,11 @@ kube-prometheus-stack:
         - qbittorrent
         - radarr5-4k
         - radarr5
+        - readarr-audiobooks
+        - readarr-books
         - sonarr4-4k
         - sonarr4
-        - tdarr2
+        - tdarr
   prometheus:
     ingress:
       enabled: true
