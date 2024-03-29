@@ -9,4 +9,7 @@ dependencies:
   - name: rocketchat
     version: 6.8.3
     repository: https://rocketchat.github.io/helm-charts
+  - name: mongodb
+    version: 15.1.0
+    repository: https://charts.bitnami.com/bitnami
 appVersion: 6.6.6
