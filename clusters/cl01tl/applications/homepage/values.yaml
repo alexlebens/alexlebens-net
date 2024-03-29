@@ -152,7 +152,7 @@ homepage:
               siteMonitor: http://portainer.portainer:9000
               statusStyle: dot
           - Headlamp:
-              icon: headlamp.png
+              icon: kubernetes.png
               description: Kubernetes dashboard
               href: https://headlamp.alexlebens.net
               siteMonitor: http://headlamp.headlamp:80
