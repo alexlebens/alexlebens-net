@@ -46,6 +46,6 @@ rocketchat:
     enabled: true
     interval: 30s
   livenessProbe:
-    enabled: true
+    enabled: false
   readinessProbe:
-    enabled: true
+    enabled: false
