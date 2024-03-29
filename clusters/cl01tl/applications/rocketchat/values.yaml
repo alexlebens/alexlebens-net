@@ -1,4 +1,5 @@
 rocketchat:
+  host: chat.alexlebens.net
   replicaCount: 1
   extraEnv:
     - name: PORT
@@ -6,15 +7,28 @@ rocketchat:
     - name: HTTP_FORWARDED_COUNT
       value: "1"
   extraSecret: rocketchat-config-secret
-  existingMongodbSecret: rocketchat-mongodb-uri-secret
   mongodb:
-    enabled: false
+    enabled: true
+    auth:
+      rootPassword: test
+      usernames:
+        - rocketchat
+      passwords:
+        - test
+      databases:
+        - rocketchat
+    architecture: replicaset
+    replicaCount: 1
+    persistence:
+      enabled: true
+      storageClass: ceph-block
+      accessMode: ReadWriteOnce
+      size: 8Gi
   persistence:
     enabled: true
     storageClass: ceph-block
     accessMode: ReadWriteOnce
     size: 8Gi
-  host: chat.alexlebens.net
   ingress:
     enabled: true
     pathType: Prefix
@@ -41,47 +55,3 @@ rocketchat:
     enabled: false
   readinessProbe:
     enabled: false
-mongodb:
-  architecture: replicaset
-  auth:
-    enabled: true
-    rootUser: admin
-    usernames:
-      - rocketchat
-    databases:
-      - rocketchat
-    existingSecret: rocketchat-mongodb-auth-secret
-  replicaCount: 3
-  service:
-    portName: mongodb
-    ports:
-      mongodb: 27017
-  persistence:
-    enabled: true
-    name: rocketchat-mongodb-data
-    storageClass: ceph-block
-    accessModes:
-      - ReadWriteOnce
-    size: 8Gi
-  backup:
-    enabled: true
-    cronjob:
-      schedule: "@daily"
-      storage:
-        storageClass: nfs-client
-        accessModes:
-          - ReadWriteOnce
-        size: 1Gi
-        mountPath: /backup/mongodb
-  volumePermissions:
-    enabled: true
-  arbiter:
-    enabled: true
-  metrics:
-    enabled: true
-    compatibleMode: false
-    serviceMonitor:
-      enabled: true
-      interval: 30s
-    prometheusRule:
-      enabled: true
