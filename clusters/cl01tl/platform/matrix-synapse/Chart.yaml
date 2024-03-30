@@ -10,7 +10,7 @@ dependencies:
     version: 3.8.4
     repository: https://ananace.gitlab.io/charts
   - name: matrix-hookshot
-    version: 0.0.8
+    version: 0.0.9
     repository: http://alexlebens.github.io/helm-charts    
   - name: postgres-cluster
     version: 0.2.3
