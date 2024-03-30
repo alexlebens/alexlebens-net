@@ -144,11 +144,7 @@ matrix-synapse:
       paths:
         - "/_matrix/media/.*"
     user_dir:
-      enabled: true
-      name: userdir
-      listeners: [client]
-      csPaths:
-        - "/_matrix/client/(api/v1|r0|v3|unstable)/user_directory/search$"
+      enabled: false
   wellknown:
     enabled: false
   postgresql:
