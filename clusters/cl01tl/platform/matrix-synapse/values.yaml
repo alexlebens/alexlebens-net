@@ -130,11 +130,9 @@ matrix-synapse:
         - ^/_synapse/client/oidc/callback$
 
     pusher:
-      enabled: true
+      enabled: false
     appservice:
-      enabled: true
-      generic: true
-      name: appservices
+      enabled: false
     federation_sender:
       enabled: false
     media_repository:
