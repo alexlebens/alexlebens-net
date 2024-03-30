@@ -10,6 +10,9 @@ matrix-synapse:
     reportStats: false
     enableRegistration: true
     trustedKeyServers: []
+  extraConfig:
+    app_service_config_files:
+      - hookshot-registration.yml
   synapse:
     strategy:
       type: Recreate
@@ -17,6 +20,9 @@ matrix-synapse:
       - name: matrix-synapse-config-secret
         secret:
           secretName: matrix-synapse-config-secret
+      - name: matrix-hookshot-config-secret
+        secret:
+          secretName: matrix-hookshot-config-secret
     extraVolumeMounts:
       - name: matrix-synapse-config-secret
         mountPath: /synapse/config/conf.d/oidc.yaml
@@ -25,6 +31,10 @@ matrix-synapse:
       - name: matrix-synapse-config-secret
         mountPath: /synapse/config/conf.d/config.yaml
         subPath: config.yaml
+        readOnly: true
+      - name: matrix-hookshot-config-secret
+        mountPath: /synapse/config/conf.d/hookshot-registration.yml
+        subPath: hookshot-registration.yml
         readOnly: true
     resources:
       limits:
@@ -190,6 +200,22 @@ matrix-synapse:
       - secretName: matrix-synapse-secret-tls
         hosts:
           - matrix.alexlebens.net
+matrix-hookshot:
+  ingress:
+    webhook:
+      enabled: true
+      className: traefik
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+        cert-manager.io/cluster-issuer: letsencrypt-issuer
+      host: matrix.alexlebens.net
+    appservice:
+      enabled: false
+  hookshot:
+    existingSecret: matrix-hookshot-config-secret
+    existingRegistrationSecret: matrix-hookshot-config-secret
+    existingPasskeySecret: matrix-hookshot-config-secret
 postgres-cluster:
   cluster:
     name: cl01tl
