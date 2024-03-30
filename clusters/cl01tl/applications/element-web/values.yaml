@@ -2,6 +2,7 @@ element-web:
   replicaCount: 1
   defaultServer:
     url: https://matrix.alexlebens.net
+    name: matrix-alexlebens-net
     identity_url: https://matrix.org
   config:
     disable_3pid_login: false
