@@ -1,11 +1,13 @@
 matrix-synapse:
   serverName: matrix.alexlebens.net
   publicServerName: matrix.alexlebens.net
+  argoCD: true
   signingkey:
     job:
-      enabled: false
-    existingSecret: matrix-synapse-key-secret
-    existingSecretKey: signing_key
+      enabled: true
+      annotations:
+        argocd.argoproj.io/hook: PostSync
+        argocd.argoproj.io/hook-delete-policy: HookSucceeded
   config:
     publicBaseurl: https://matrix.alexlebens.net
     reportStats: false
