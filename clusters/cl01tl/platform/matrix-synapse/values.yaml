@@ -154,7 +154,7 @@ matrix-synapse:
   postgresql:
     enabled: false
   externalPostgresql:
-    host: postgres
+    host: postgresql-matrix-synapse-cluster-rw
     port: 5432
     username: app
     database: app
