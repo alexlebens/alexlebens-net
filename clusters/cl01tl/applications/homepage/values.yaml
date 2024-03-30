@@ -99,12 +99,18 @@ homepage:
               href: https://outline.alexlebens.net
               siteMonitor: http://outline.outline:3000
               statusStyle: dot
-          - Rss:
+          - FreshRss:
               icon: freshrss.svg
               description: Rss reader
               href: https://rss.alexlebens.net
               siteMonitor: http://freshrss.freshrss:80
               statusStyle: dot
+          - Element:
+              icon: element.svg
+              description: Web client for Matrix chat
+              href: https://chat.alexlebens.net
+              siteMonitor: http://element-web.element-web:80
+              statusStyle: dot              
       - Code:
           - Code Server:
               icon: code-server.png
