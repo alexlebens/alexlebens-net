@@ -90,7 +90,7 @@ kube-prometheus-stack:
         - gitea
         - grafana
         - home-assistant
-        - rocketchat
+        - matrix-synapse
         - loki
         - rook-ceph        
         - speedtest-exporter
