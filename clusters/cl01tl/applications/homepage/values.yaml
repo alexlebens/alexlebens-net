@@ -305,6 +305,9 @@ homepage:
           - Pushover:
               - abbr: PO
                 href: https://pushover.net
+          - ReCaptcha:
+              - abbr: RC
+                href: https://www.google.com/recaptcha/admin/site/698983587
           - Dashboard Icons:
               - abbr: DI
                 href: https://github.com/walkxcode/dashboard-icons/tree/main/png
