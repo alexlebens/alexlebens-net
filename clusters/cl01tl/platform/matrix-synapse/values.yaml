@@ -212,6 +212,10 @@ matrix-hookshot:
       host: matrix.alexlebens.net
     appservice:
       enabled: false
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
   hookshot:
     existingSecret: matrix-hookshot-config-secret
     existingRegistrationSecret: matrix-hookshot-config-secret
