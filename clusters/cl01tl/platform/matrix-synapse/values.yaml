@@ -5,9 +5,6 @@ matrix-synapse:
   signingkey:
     job:
       enabled: true
-      annotations:
-        argocd.argoproj.io/hook: PostSync
-        argocd.argoproj.io/hook-delete-policy: HookSucceeded
   config:
     publicBaseurl: https://matrix.alexlebens.net
     reportStats: false
