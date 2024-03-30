@@ -12,7 +12,7 @@ matrix-synapse:
     trustedKeyServers: []
   extraConfig:
     app_service_config_files:
-      - hookshot-registration.yaml
+      - /synapse/config/conf.d/hookshot-registration.yaml
   synapse:
     strategy:
       type: Recreate
