@@ -4,7 +4,7 @@ matrix-synapse:
   argoCD: true
   signingkey:
     job:
-      enabled: true
+      enabled: false
   config:
     publicBaseurl: https://matrix.alexlebens.net
     reportStats: false
