@@ -7,6 +7,6 @@ sources:
   - https://oben01.github.io/charts/charts/homarr/
 dependencies:
   - name: homarr
-    version: 1.2.2
+    version: 1.2.4
     repository: https://oben01.github.io/charts/
 appVersion: v0.15.2
