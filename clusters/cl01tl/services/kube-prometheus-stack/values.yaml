@@ -87,23 +87,24 @@ kube-prometheus-stack:
         - argocd
         - authentik
         - cert-manager
+        - cloudnative-pg
         - gitea
         - grafana
         - home-assistant
-        - matrix-synapse
         - loki
-        - rook-ceph        
+        - matrix-synapse
+        - rook-ceph
         - speedtest-exporter
         - unpoller
         - vault
         - lidarr2
         - qbittorrent
-        - radarr5-4k
         - radarr5
+        - radarr5-4k
         - readarr-audiobooks
         - readarr-books
-        - sonarr4-4k
         - sonarr4
+        - sonarr4-4k
         - tdarr
   prometheus:
     ingress:
