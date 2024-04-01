@@ -17,7 +17,7 @@ unpoller:
       interval: 30s
       scrapeTimeout: 10s
     prometheusRule:
-      enabled: false
+      enabled: true
   existingSecret: unpoller-unifi-secret
   settings:
     unifi:
