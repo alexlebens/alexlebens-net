@@ -110,7 +110,7 @@ homepage:
               description: Web client for Matrix chat
               href: https://chat.alexlebens.net
               siteMonitor: http://element-web.element-web:80
-              statusStyle: dot              
+              statusStyle: dot
       - Code:
           - Code Server:
               icon: code-server.png
@@ -327,33 +327,34 @@ homepage:
       color: slate
       background:
         image: https://alexlebens-dev.nyc3.digitaloceanspaces.com/cl02do/assets/background.png
+        brightness: 80
       theme: dark
       disableCollapse: true
       layout:
         - Media:
             tab: Apps
-            icon: mdi-multimedia
+            icon: mdi-multimedia-#ffffff
         - Applications:
             tab: Apps
-            icon: mdi-application
+            icon: mdi-application-#ffffff
         - Code:
             tab: Tools
-            icon: mdi-code-braces-box
+            icon: mdi-code-braces-box-#ffffff
         - Monitoring:
             tab: Tools
-            icon: mdi-chart-bar
+            icon: mdi-chart-bar-#ffffff
         - Management:
             tab: Tools
-            icon: mdi-content-save-cog
+            icon: mdi-content-save-cog-#ffffff
         - Services:
             tab: Services
-            icon: mdi-server-network
+            icon: mdi-server-network-#ffffff
         - Hardware:
             tab: Services
-            icon: mdi-lan-connect
+            icon: mdi-lan-connect-#ffffff
         - Storage:
             tab: Services
-            icon: mdi-harddisk
+            icon: mdi-harddisk-#ffffff
         - External Services:
             tab: Bookmarks
-            icon: mdi-cloud
+            icon: mdi-cloud-#ffffff
