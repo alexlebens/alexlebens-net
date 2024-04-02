@@ -14,7 +14,7 @@ homepage:
   config:
     widgets:
       - logo:
-          icon: https://gitea.alexlebens.net/alexlebens/icons/raw/branch/main/alexlebensnet-icon_white.png
+          icon: https://alexlebens-dev.nyc3.digitaloceanspaces.com/cl02do/assets/icon_white.png
       - kubernetes:
           cluster:
             show: true
@@ -318,12 +318,12 @@ homepage:
               - abbr: DI
                 href: https://github.com/walkxcode/dashboard-icons/tree/main/png
     settings:
-      favicon: https://gitea.alexlebens.net/alexlebens/icons/raw/branch/main/alexlebensnet-icon_white.png
+      favicon: https://alexlebens-dev.nyc3.digitaloceanspaces.com/cl02do/assets/icon_white.png
       headerStyle: clean
       hideVersion: true
       color: slate
       background:
-        image: https://w.wallhaven.cc/full/6d/wallhaven-6d7xyq.jpg
+        image: https://alexlebens-dev.nyc3.digitaloceanspaces.com/cl02do/assets/background.jpg
         brightness: 50
       cardBlur: md
       theme: dark
