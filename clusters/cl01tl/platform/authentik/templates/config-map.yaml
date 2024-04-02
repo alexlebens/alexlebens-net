@@ -39,7 +39,22 @@ data:
       color: black;
     }
 
-    /* Center text */
-    ak-loading-overlay {
+    /* Remove loading overlay */
+    .pf-c-login__main.ak-loading-overlay {
       display: none;
+    }
+
+    /* Force border color */
+    .pf-c-form-control {
+      border-color: white;
+    }
+
+    /* Use default cursor on this div */
+    .pf-c-form__label {
+      cursor: default;
+    }
+
+    /* Hide required asterik */
+    .pf-c-form__label-required {
+      display: none
     }
