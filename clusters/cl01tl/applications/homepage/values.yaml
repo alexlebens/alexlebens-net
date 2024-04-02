@@ -324,7 +324,6 @@ homepage:
       color: slate
       background:
         image: https://alexlebens-dev.nyc3.digitaloceanspaces.com/cl02do/assets/background.jpg
-        brightness: 50
       cardBlur: md
       theme: dark
       disableCollapse: true
