@@ -308,6 +308,9 @@ homepage:
           - Tailscale:
               - abbr: TS
                 href: https://login.tailscale.com/admin/machines
+          - ProtonVPN:
+              - abbr: PV
+                href: https://account.protonvpn.com/
           - Pushover:
               - abbr: PO
                 href: https://pushover.net
