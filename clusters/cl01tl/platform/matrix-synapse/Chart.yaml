@@ -7,7 +7,7 @@ sources:
   - https://github.com/alexlebens/helm-charts/charts/postgres-cluster
 dependencies:
   - name: matrix-synapse
-    version: 3.8.4
+    version: 3.9.0
     repository: https://ananace.gitlab.io/charts
   - name: matrix-hookshot
     version: 0.1.0
