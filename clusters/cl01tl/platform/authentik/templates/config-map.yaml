@@ -19,7 +19,7 @@ data:
 
     /* Remove background */
     .pf-c-login__main {
-      background-color: transparent;
+      background-color: rgba(3, 3, 3, 0.16);
     }
 
     /* Remove specific height */
@@ -39,11 +39,6 @@ data:
       color: black;
     }
 
-    /* Remove loading overlay */
-    .pf-c-login__main.ak-loading-overlay {
-      display: none;
-    }
-
     /* Force border color */
     .pf-c-form-control {
       border-color: white;
@@ -56,5 +51,10 @@ data:
 
     /* Hide required asterik */
     .pf-c-form__label-required {
-      display: none
+      display: none;
+    }
+
+    /* Change link color to white */
+    .a {
+      color: white;
     }
