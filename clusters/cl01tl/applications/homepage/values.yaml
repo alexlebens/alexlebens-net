@@ -327,8 +327,7 @@ homepage:
       color: slate
       background:
         image: https://alexlebens-dev.nyc3.digitaloceanspaces.com/cl02do/assets/background.jpg
-        blur: sm
-        brightness: 40
+        brightness: 50
       theme: dark
       disableCollapse: true
       layout:
