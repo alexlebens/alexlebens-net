@@ -38,3 +38,8 @@ data:
       background-color: white;
       color: black;
     }
+
+    /* Center text */
+    ak-loading-overlay {
+      display: none;
+    }
