@@ -326,8 +326,7 @@ homepage:
       hideVersion: true
       color: slate
       background:
-        image: https://alexlebens-dev.nyc3.digitaloceanspaces.com/cl02do/assets/background.jpg
-        brightness: 50
+        image: https://alexlebens-dev.nyc3.digitaloceanspaces.com/cl02do/assets/background.png
       theme: dark
       disableCollapse: true
       layout:
