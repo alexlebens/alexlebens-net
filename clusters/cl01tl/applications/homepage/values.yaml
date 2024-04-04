@@ -93,11 +93,11 @@ homepage:
               href: https://vikunja.alexlebens.net
               siteMonitor: http://vikunja-frontend.vikunja:80
               statusStyle: dot
-          - Outline:
+          - Outline (.dev):
               icon: outline.png
               description: Wiki
-              href: https://outline.alexlebens.net
-              siteMonitor: http://outline.outline:3000
+              href: https://wiki.alexlebens.dev
+              siteMonitor: https://wiki.alexlebens.dev
               statusStyle: dot
           - FreshRss:
               icon: freshrss.svg
@@ -105,11 +105,11 @@ homepage:
               href: https://rss.alexlebens.net
               siteMonitor: http://freshrss.freshrss:80
               statusStyle: dot
-          - Element:
+          - Chat (.dev):
               icon: element.svg
               description: Web client for Matrix chat
-              href: https://chat.alexlebens.net
-              siteMonitor: http://element-web.element-web:80
+              href: https://chat.alexlebens.dev
+              siteMonitor: https://chat.alexlebens.dev
               statusStyle: dot
       - Code:
           - Code Server:
@@ -197,6 +197,12 @@ homepage:
               href: https://authentik.alexlebens.net
               siteMonitor: http://authentik-server.authentik:80
               statusStyle: dot
+          - Authentik (.dev):
+              icon: authentik.png
+              description: Identity management and provider
+              href: https://auth.alexlebens.dev
+              siteMonitor: https://auth.alexlebens.dev
+              statusStyle: dot              
           - Traefik - cl01tl:
               icon: traefik.png
               description: Reverse proxy
