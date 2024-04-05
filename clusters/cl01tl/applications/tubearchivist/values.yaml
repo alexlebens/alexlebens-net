@@ -44,7 +44,7 @@ tubearchivist-to-jellyfin:
   job:
     schedule: "0 */6 * * *"
   config:
-    tubearchivistUrl: http://tubearchivist.tubearchivist:8000
+    tubearchivistUrl: http://tubearchivist:8000
     jellyfinUrl: http://jellyfin.jellyfin:8096
   secrets:
     tubearchivistToken:
