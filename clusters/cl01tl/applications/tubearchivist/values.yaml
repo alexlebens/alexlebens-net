@@ -43,12 +43,19 @@ tubearchivist:
 tubearchivist-to-jellyfin:
   job:
     schedule: "0 */6 * * *"
-  envFrom: 
-    - secretRef:
-        name: tubearchivist-jellyfin-secret
+  config:
+    tubearchivistUrl: http://tubearchivist.tubearchivist:8000
+    jellyfinUrl: http://jellyfin.jellyfin:8096
+  secrets:
+    tubearchivistToken:
+      existingSecretName: tubearchivist-jellyfin-secret
+      existingSecretKey: TA_TOKEN
+    jellyfinToken:
+      existingSecretName: tubearchivist-jellyfin-secret
+      existingSecretKey: JF_TOKEN
   persistence:
     youtube:
-      claimName: tubearchivist-nfs-storage
+      claimName: tubearchivist-to-jellyfin-nfs-storage
 storage:
   youtube:
     nfsPath: /volume2/Storage/YouTube
