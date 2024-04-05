@@ -37,6 +37,11 @@ jellyfin:
       mountPath: /mnt/store
       type: pvc
       existingClaim: jellyfin-nfs-storage
+    youtube:
+      enabled: true
+      mountPath: /youtube
+      type: pvc
+      existingClaim: jellyfin-youtube-nfs-storage
   resources:
     requests:
       gpu.intel.com/i915: 1
@@ -46,4 +51,8 @@ storage:
   storage:
     nfs:
       path: /volume2/Storage
+      server: synologybond.alexlebens.net
+  youtube:
+    nfs:
+      path: /volume2/Storage/YouTube
       server: synologybond.alexlebens.net
