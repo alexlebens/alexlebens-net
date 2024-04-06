@@ -21,7 +21,7 @@ tubearchivist:
     cache:
       enabled: true
       storageClassName: ceph-block
-      storageSize: 40Gi
+      storageSize: 80Gi
     youtube:
       claimName: tubearchivist-nfs-storage
   elasticsearch:
