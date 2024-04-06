@@ -40,22 +40,6 @@ tubearchivist:
       - name: snapshot
         mountPath: /usr/share/elasticsearch/data/snapshot
     snapshotRepoPath: /usr/share/elasticsearch/data/snapshot
-tubearchivist-to-jellyfin:
-  job:
-    schedule: "0 */6 * * *"
-  config:
-    tubearchivistUrl: http://tubearchivist:8000
-    jellyfinUrl: http://jellyfin.jellyfin:8096
-  secrets:
-    tubearchivistToken:
-      existingSecretName: tubearchivist-jellyfin-secret
-      existingSecretKey: TA_TOKEN
-    jellyfinToken:
-      existingSecretName: tubearchivist-jellyfin-secret
-      existingSecretKey: JF_TOKEN
-  persistence:
-    youtube:
-      claimName: tubearchivist-to-jellyfin-nfs-storage
 storage:
   youtube:
     nfsPath: /volume2/Storage/YouTube
