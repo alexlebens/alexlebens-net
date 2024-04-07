@@ -4,7 +4,7 @@ portainer:
     enabled: false
   image:
     repository: portainer/portainer-ce
-    tag: 2.20.0
+    tag: 2.20.1
   serviceAccount:
     name: portainer-sa-clusteradmin
   service:
