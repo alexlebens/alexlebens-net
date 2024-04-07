@@ -14,7 +14,7 @@ vault:
       secretName: ""
     image:
       repository: "hashicorp/vault"
-      tag: "1.16.0"
+      tag: "1.16.1"
     updateStrategyType: "OnDelete"
     logLevel: info
     logFormat: standard
