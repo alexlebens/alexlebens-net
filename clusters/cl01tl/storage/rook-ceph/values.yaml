@@ -23,8 +23,6 @@ rook-ceph:
       enabled: false
     topology:
       enabled: false
-    readAffinity:
-      enabled: true
   enableDiscoveryDaemon: true
   scaleDownOperator: false
   monitoring:
@@ -130,7 +128,10 @@ rook-ceph-cluster:
       useAllDevices: true
       deviceFilter: sda
       config:
-        osdsPerDevice: "1"
+          osdsPerDevice: "1"
+    csi:
+      readAffinity:
+        enabled: true
   ingress:
     dashboard:
       ingressClassName: traefik
