@@ -12,8 +12,10 @@ outline:
     s3:
       credentialsSecret: outline-bucket
       endpointConfigMap:
-        enabled: true
-        name: outline-bucket
+        enabled: false
+      bucketName: outline-bucket-39adcd4c-68da-429e-96b8-4e60e65c725b
+      host: s3.alexlebens.net
+      urlProtocol: https
   outline:
     url: https://outline.alexlebens.net
     secretKey:
@@ -25,7 +27,7 @@ outline:
     database:
       usernameSecret:
         existingSecretName: postgresql-outline-cluster-app
-        existingSecretKey: username    
+        existingSecretKey: username
       passwordSecret:
         existingSecretName: postgresql-outline-cluster-app
         existingSecretKey: password
@@ -37,7 +39,7 @@ outline:
         existingSecretKey: host
       databasePort:
         existingSecretName: postgresql-outline-cluster-app
-        existingSecretKey: port        
+        existingSecretKey: port
     auth:
       oidc:
         enabled: true
