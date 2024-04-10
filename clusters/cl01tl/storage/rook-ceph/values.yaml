@@ -190,25 +190,3 @@ rook-ceph-cluster:
   cephFileSystemVolumeSnapshotClass:
     enabled: false
   cephObjectStores:
-    - name: ceph-object-store
-      spec:
-        metadataPool:
-          replicated:
-            size: 3
-        dataPool:
-          replicated:
-            size: 3
-        preservePoolsOnDelete: true
-        gateway:
-          port: 80
-          instances: 1
-        hosting:
-          dnsName:
-            - "s3.alexlebens.net"
-      storageClass:
-        enabled: true
-        name: ceph-bucket
-        reclaimPolicy: Delete
-        volumeBindingMode: "Immediate"
-        parameters:
-          region: us-east-1
