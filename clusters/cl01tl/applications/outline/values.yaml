@@ -15,7 +15,7 @@ outline:
         enabled: false
       region: nyc3
       bucketName: alexlebens-net-outline
-      host: alexlebens-net.nyc3.digitaloceanspaces.com
+      host: nyc3.digitaloceanspaces.com
       urlProtocol: https
   outline:
     url: https://outline.alexlebens.net
