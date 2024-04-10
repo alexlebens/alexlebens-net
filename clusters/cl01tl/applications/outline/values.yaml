@@ -14,7 +14,7 @@ outline:
       endpointConfigMap:
         enabled: false
       region: nyc3
-      bucketName: alexlebens-net/cl01tl/outline
+      bucketName: alexlebens-net-outline
       host: alexlebens-net.nyc3.digitaloceanspaces.com
       urlProtocol: https
   outline:
