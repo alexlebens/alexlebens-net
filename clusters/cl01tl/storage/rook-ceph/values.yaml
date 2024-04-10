@@ -202,6 +202,9 @@ rook-ceph-cluster:
         gateway:
           port: 80
           instances: 1
+        hosting:
+          dnsName:
+            - "s3.alexlebens.net"
       storageClass:
         enabled: true
         name: ceph-bucket
