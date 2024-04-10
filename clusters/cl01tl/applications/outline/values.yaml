@@ -23,18 +23,21 @@ outline:
       existingSecretName: outline-key-secret
       existingSecretKey: utils-key
     database:
+      usernameSecret:
+        existingSecretName: postgresql-outline-cluster-app
+        existingSecretKey: username    
       passwordSecret:
         existingSecretName: postgresql-outline-cluster-app
         existingSecretKey: password
-      usernameSecret:
-        existingSecretName: postgresql-outline-cluster-app
-        existingSecretKey: username
       databaseName:
         existingSecretName: postgresql-outline-cluster-app
         existingSecretKey: dbname
       databaseHost:
         existingSecretName: postgresql-outline-cluster-app
         existingSecretKey: host
+      databasePort:
+        existingSecretName: postgresql-outline-cluster-app
+        existingSecretKey: port        
     auth:
       oidc:
         enabled: true

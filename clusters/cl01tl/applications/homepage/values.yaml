@@ -99,11 +99,11 @@ homepage:
               href: https://vikunja.alexlebens.net
               siteMonitor: http://vikunja-frontend.vikunja:80
               statusStyle: dot
-          - Outline (.dev):
+          - Outline:
               icon: outline.png
               description: Wiki
-              href: https://wiki.alexlebens.dev
-              siteMonitor: https://wiki.alexlebens.dev
+              href: https://outline.alexlebens.net
+              siteMonitor: http://outline.outline:3000
               statusStyle: dot
           - FreshRss:
               icon: freshrss.svg
