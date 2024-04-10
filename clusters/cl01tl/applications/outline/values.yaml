@@ -10,11 +10,11 @@ outline:
   persistence:
     type: s3
     s3:
-      credentialsSecret: outline-bucket
+      credentialsSecret: outline-bucket-auth-secret
       endpointConfigMap:
         enabled: false
-      bucketName: outline-bucket-39adcd4c-68da-429e-96b8-4e60e65c725b
-      host: s3.alexlebens.net
+      bucketName: alexlebens-net/cl01tl/outline
+      host: nyc3.digitaloceanspaces.com
       urlProtocol: https
   outline:
     url: https://outline.alexlebens.net
