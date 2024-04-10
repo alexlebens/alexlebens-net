@@ -13,8 +13,9 @@ outline:
       credentialsSecret: outline-bucket-auth-secret
       endpointConfigMap:
         enabled: false
+      region: nyc3
       bucketName: alexlebens-net/cl01tl/outline
-      host: nyc3.digitaloceanspaces.com
+      host: alexlebens-net.nyc3.digitaloceanspaces.com
       urlProtocol: https
   outline:
     url: https://outline.alexlebens.net
