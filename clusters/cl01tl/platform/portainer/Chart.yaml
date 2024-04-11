@@ -6,6 +6,6 @@ sources:
   - https://github.com/portainer/k8s
 dependencies:
   - name: portainer
-    version: "1.0.49"
+    version: "1.0.50"
     repository: https://portainer.github.io/k8s/
 appVersion: "2.19.3"
