@@ -79,8 +79,8 @@ postgres-cluster:
     name: cl01tl
     image:
       repository: ghcr.io/cloudnative-pg/postgresql
-      tag: 15.6
-    instances: 2
+      tag: 16.2
+    instances: 3
     storage:
       data:
         storageClass: ceph-block
@@ -89,50 +89,12 @@ postgres-cluster:
         storageClass: ceph-block
         size: 2Gi
   bootstrap:
-    recoveryEnabled: false
+    recoveryEnabled: true
     recoveryIndex: 3
     endpointURL: https://nyc3.digitaloceanspaces.com
     bucket: alexlebens-net
   backup:
-    backupEnabled: false
-    backupIndex: 4
-    endpointURL: https://nyc3.digitaloceanspaces.com
-    bucket: alexlebens-net
-postgres-cluster-upgrade:
-  cluster:
-    name: cl01tl
-    image:
-      repository: ghcr.io/cloudnative-pg/postgresql
-      tag: 16.2
-    instances: 1
-    parameters:
-      shared_buffers: 128MB
-      max_slot_wal_keep_size: 2000MB
-      hot_standby_feedback: "on"
-    compression: snappy
-    resources:
-      requests:
-        memory: 512Mi
-        cpu: 100m
-      limits:
-        memory: 2Gi
-        cpu: 1500m
-        hugepages-2Mi: 512Mi
-    storage:
-      data:
-        storageClass: ceph-block
-        size: 10Gi
-      wal:
-        storageClass: ceph-block
-        size: 2Gi
-  upgrade:
-    importType: microservice
-    importDatabases:
-      - app
-  backup:
     backupEnabled: true
-    inititeBackup: true
-    retentionPolicy: 3d
-    backupIndex: 3
+    backupIndex: 4
     endpointURL: https://nyc3.digitaloceanspaces.com
     bucket: alexlebens-net
