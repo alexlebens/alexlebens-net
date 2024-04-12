@@ -95,6 +95,6 @@ postgres-cluster:
     bucket: alexlebens-net
   backup:
     backupEnabled: true
-    backupIndex: 1
+    backupIndex: 2
     endpointURL: https://nyc3.digitaloceanspaces.com
     bucket: alexlebens-net
