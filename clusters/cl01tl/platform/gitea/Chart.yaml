@@ -11,8 +11,5 @@ dependencies:
     repository: https://dl.gitea.io/charts/
   - name: postgres-cluster
     version: 0.2.3
-    repository: http://alexlebens.github.io/helm-charts
-  - name: postgres-cluster-upgrade
-    version: 0.1.0
-    repository: http://alexlebens.github.io/helm-charts    
+    repository: http://alexlebens.github.io/helm-charts 
 appVersion: "1.21.7"
