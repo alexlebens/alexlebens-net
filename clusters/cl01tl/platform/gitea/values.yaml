@@ -89,8 +89,8 @@ postgres-cluster:
         storageClass: ceph-block
         size: 2Gi
   bootstrap:
-    recoveryEnabled: true
-    recoveryIndex: 3
+    recoveryEnabled: false
+    recoveryIndex: 4
     endpointURL: https://nyc3.digitaloceanspaces.com
     bucket: alexlebens-net
   backup:
