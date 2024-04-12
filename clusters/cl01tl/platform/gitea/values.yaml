@@ -131,7 +131,7 @@ postgres-cluster-upgrade:
       - app
   backup:
     backupEnabled: true
-    inititeBackup: false
+    inititeBackup: true
     retentionPolicy: 3d
     backupIndex: 3
     endpointURL: https://nyc3.digitaloceanspaces.com
