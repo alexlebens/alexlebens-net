@@ -120,10 +120,10 @@ postgres-cluster-upgrade:
         hugepages-2Mi: 512Mi
     storage:
       data:
-        storageClass: default
+        storageClass: ceph-block
         size: 10Gi
       wal:
-        storageClass: default
+        storageClass: ceph-block
         size: 2Gi
   upgrade:
     importType: microservice
