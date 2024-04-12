@@ -79,7 +79,7 @@ postgres-cluster:
     name: cl01tl
     image:
       repository: ghcr.io/cloudnative-pg/postgresql
-      tag: 15.6
+      tag: 16.2
     instances: 2
     storage:
       data:
@@ -92,7 +92,7 @@ postgres-cluster:
     recoveryEnabled: true
     recoveryIndex: 1
     endpointURL: https://nyc3.digitaloceanspaces.com
-    bucket: net-infra
+    bucket: alexlebens-net
   backup:
     backupEnabled: true
     backupIndex: 1

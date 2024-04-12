@@ -1,6 +1,6 @@
 apiVersion: v2
 name: gitea
-version: 0.0.4
+version: 1.0.0
 sources:
   - https://github.com/go-gitea/gitea
   - https://gitea.com/gitea/helm-chart
