@@ -9,7 +9,9 @@ loki:
   enterprise:
     enabled: false
   gateway:
-    enabled: false
+    enabled: true
+    basicAuth:
+      enabled: false
   singleBinary:
     replicas: 1
     persistence:
