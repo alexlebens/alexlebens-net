@@ -249,11 +249,6 @@ homepage:
               href: https://unifi.alexlebens.net
               siteMonitor: https://unifi.alexlebens.net
               statusStyle: dot
-              widget:
-                type: unifi
-                url: https://unifi.alexlebens.net
-                username: '{{HOMEPAGE_VAR_UNIFI_USER}}'
-                password: '{{HOMEPAGE_VAR_UNIFI_PASSWORD}}'
           - Kubesail:
               icon: kubernetes.png
               description: Management for PiBox
