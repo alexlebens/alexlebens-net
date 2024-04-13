@@ -10,12 +10,12 @@ outline:
   persistence:
     type: s3
     s3:
-      credentialsSecret: outline-bucket-auth-secret
+      credentialsSecret: outline-bucket-user-secret
       endpointConfigMap:
         enabled: false
-      region: nyc3
-      bucketName: alexlebens-net-outline
-      host: nyc3.digitaloceanspaces.com
+      region: us-east-1
+      bucketName: outline
+      host: minio-outline-api.alexlebens.net
       urlProtocol: https
   outline:
     url: https://outline.alexlebens.net
@@ -80,3 +80,60 @@ postgres-cluster:
     backupIndex: 1
     endpointURL: https://nyc3.digitaloceanspaces.com
     bucket: alexlebens-net
+minio:
+  existingSecret:
+    name: outline-minio-root-secret
+  tenant:
+    name: minio-outline
+    configuration:
+      name: outline-minio-config-secret
+    pools:
+      - servers: 3
+        name: pool-outline
+        volumesPerServer: 2
+        size: 10Gi
+        storageClassName: local-path
+    mountPath: /export
+    subPath: /data
+    metrics:
+      enabled: true
+      port: 9000
+      protocol: http
+    features:
+      bucketDNS: true
+    buckets:
+      - name: outline
+        objectLock: false
+        region: us-east-1
+    users:
+      - name: outline-bucket-user-secret
+    prometheusOperator: true
+  ingress:
+    api:
+      enabled: true
+      ingressClassName: traefik
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+        cert-manager.io/cluster-issuer: letsencrypt-issuer
+      tls:
+        - secretName: minio-outline-api-secret-tls
+          hosts:
+            - minio-outline-api.alexlebens.net
+      host: minio-outline-api.alexlebens.net
+      path: /
+      pathType: Prefix
+    console:
+      enabled: true
+      ingressClassName: traefik
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+        cert-manager.io/cluster-issuer: letsencrypt-issuer
+      tls:
+        - secretName: minio-outline-console-secret-tls
+          hosts:
+            - minio-outline-console.alexlebens.net
+      host: minio-outline-console.alexlebens.net
+      path: /
+      pathType: Prefix
