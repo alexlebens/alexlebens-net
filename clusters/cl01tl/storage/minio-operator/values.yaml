@@ -12,7 +12,7 @@ operator:
         - secretName: minio-secret-tls
           hosts:
             - minio.alexlebens.net
-      host: console.local
+      host: minio.alexlebens.net
       path: /
       pathType: Prefix
       number: 9090
