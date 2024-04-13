@@ -39,7 +39,7 @@ promtail:
   serviceMonitor:
     enabled: true
     prometheusRule:
-      enabled: true
+      enabled: false
   config:
     clients:
       - url: http://loki-gateway/loki/api/v1/push
