@@ -101,7 +101,6 @@ minio:
       protocol: http
     certificate:      
       requestAutoCert: false
-    prometheusOperator: true
   ingress:
     api:
       enabled: true
