@@ -89,7 +89,7 @@ minio:
       name: outline-minio-config-secret
     pools:
       - servers: 3
-        name: pool-outline
+        name: pool
         volumesPerServer: 2
         size: 10Gi
         storageClassName: local-path
@@ -99,8 +99,8 @@ minio:
       enabled: true
       port: 9000
       protocol: http
-    features:
-      bucketDNS: true
+    certificate:      
+      requestAutoCert: false
     buckets:
       - name: outline
         objectLock: false
@@ -133,7 +133,7 @@ minio:
       tls:
         - secretName: minio-outline-console-secret-tls
           hosts:
-            - minio-outline-console.alexlebens.net
-      host: minio-outline-console.alexlebens.net
+            - minio-outline.alexlebens.net
+      host: minio-outline.alexlebens.net
       path: /
       pathType: Prefix
