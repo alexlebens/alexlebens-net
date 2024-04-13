@@ -14,6 +14,7 @@ outline:
       region: us-east-1
       bucketName: outline
       bucketUrl: https://minio-outline-api.alexlebens.net
+      forcePathStyle: true      
   outline:
     url: https://outline.alexlebens.net
     secretKey:
