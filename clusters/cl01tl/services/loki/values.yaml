@@ -19,6 +19,12 @@ loki:
       enabled: true
       size: 10Gi
       storageClass: ceph-block
+  write:
+    replicas: 0
+  read:
+    replicas: 0
+  backend:
+    replicas: 0
 promtail:
   daemonset:
     enabled: true
