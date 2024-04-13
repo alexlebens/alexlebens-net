@@ -11,12 +11,9 @@ outline:
     type: s3
     s3:
       credentialsSecret: outline-bucket-user-secret
-      endpointConfigMap:
-        enabled: false
       region: us-east-1
       bucketName: outline
-      host: minio-outline-api.alexlebens.net
-      urlProtocol: https
+      bucketUrl: https://minio-outline-api.alexlebens.net
   outline:
     url: https://outline.alexlebens.net
     secretKey:
