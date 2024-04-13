@@ -88,15 +88,19 @@ kube-prometheus-stack:
         - authentik
         - cert-manager
         - cloudnative-pg
+        - freshrss
         - gitea
         - grafana
         - home-assistant
+        - local-static-provisioner
         - loki
         - matrix-synapse
+        - outline
         - rook-ceph
         - speedtest-exporter
         - unpoller
         - vault
+        - vikunja
         - lidarr2
         - qbittorrent
         - radarr5
