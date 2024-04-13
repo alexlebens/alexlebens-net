@@ -13,7 +13,7 @@ outline:
       credentialsSecret: outline-bucket-user-secret
       region: us-east-1
       bucketName: outline
-      bucketUrl: https://minio-outline-api.alexlebens.net
+      bucketUrl: https://minio-outline-api.alexlebens.net/outline
       forcePathStyle: true      
   outline:
     url: https://outline.alexlebens.net
