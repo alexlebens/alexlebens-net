@@ -13,7 +13,7 @@ dependencies:
     version: 0.3.0
     repository: http://alexlebens.github.io/helm-charts
   - name: tenant
-    version: 0.3.0
+    version: 5.0.14
     alias: minio
     repository: https://operator.min.io/
 appVersion: v0.75.2
