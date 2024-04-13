@@ -101,12 +101,6 @@ minio:
       protocol: http
     certificate:      
       requestAutoCert: false
-    buckets:
-      - name: outline
-        objectLock: false
-        region: us-east-1
-    users:
-      - name: outline-bucket-user-secret
     prometheusOperator: true
   ingress:
     api:
