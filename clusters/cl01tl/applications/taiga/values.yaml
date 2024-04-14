@@ -1,4 +1,4 @@
-taiga: 
+taiga:
   serviceAccount:
     create: true
   secretKey:
@@ -17,7 +17,7 @@ taiga:
   oidc:
     enabled: true
     existingSecretName: taiga-oidc-secret
-    scopesKey: scopes 
+    scopesKey: scopes
     signatureAlgorithmKey: signatureAlgorithm
     clientIdKey: client
     clientSecretKey: secret
@@ -31,10 +31,10 @@ taiga:
       repository: ghcr.io/alexlebens/taiga-back-docker-oidc
       tag: "6.7.3"
     resources:
-      limits:
+      requests:
         cpu: 100m
         memory: 256Mi
-      requests:
+      limits:
         cpu: 500m
         memory: 1Gi
     livenessProbe:
@@ -46,10 +46,10 @@ taiga:
       repository: ghcr.io/alexlebens/taiga-back-docker-oidc
       tag: "6.7.3"
     resources:
-      limits:
+      requests:
         cpu: 100m
         memory: 256Mi
-      requests:
+      limits:
         cpu: 500m
         memory: 1Gi
     livenessProbe:
@@ -65,10 +65,10 @@ taiga:
       existingSecretErlangKey: erlang
   events:
     resources:
-      limits:
+      requests:
         cpu: 100m
         memory: 256Mi
-      requests:
+      limits:
         cpu: 500m
         memory: 1Gi
     livenessProbe:
@@ -84,10 +84,10 @@ taiga:
       existingSecretErlangKey: erlang
   protected:
     resources:
-      limits:
+      requests:
         cpu: 100m
         memory: 256Mi
-      requests:
+      limits:
         cpu: 500m
         memory: 1Gi
     livenessProbe:
@@ -99,10 +99,10 @@ taiga:
       repository: ghcr.io/alexlebens/taiga-front-docker-oidc
       tag: "6.7.7"
     resources:
-      limits:
+      requests:
         cpu: 100m
         memory: 256Mi
-      requests:
+      limits:
         cpu: 500m
         memory: 1Gi
     livenessProbe:
