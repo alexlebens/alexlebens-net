@@ -138,6 +138,10 @@ postgres-cluster:
       storageClass: local-path
     monitoring:
       enabled: true
+      podMonitor:
+        enabled: true
+      prometheusRule:
+        enabled: false
   recovery:
     endpointURL: https://nyc3.digitaloceanspaces.com
     endpointBucket: alexlebens-net
