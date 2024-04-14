@@ -91,9 +91,9 @@ taiga:
         cpu: 500m
         memory: 1Gi
     livenessProbe:
-      enabled: true
+      enabled: false
     readinessProbe:
-      enabled: true
+      enabled: false
   front:
     image:
       repository: ghcr.io/alexlebens/taiga-front-docker-oidc
