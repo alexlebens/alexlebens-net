@@ -1,0 +1,153 @@
+taiga: 
+  serviceAccount:
+    create: true
+  secretKey:
+    existingSecretName: taiga-key-secret
+    existingSecretKey: key
+  createInitialUser: true
+  enableTelemetry: false
+  publicRegisterEnabled: false
+  postgresql:
+    existingSecretName: postgresql-16-taiga-cluster-app
+    usernameKey: username
+    passwordKey: password
+    databaseNameKey: dbname
+    hostKey: host
+    portKey: port
+  oidc:
+    enabled: true
+    existingSecretName: taiga-oidc-secret
+    scopesKey: scopes 
+    signatureAlgorithmKey: signatureAlgorithm
+    clientIdKey: client
+    clientSecretKey: secret
+    baseUrlKey: baseUrl
+    jwksEndpointKey: jwksEndpoint
+    authorizationEndpointKey: authorizationEndpoint
+    tokenEndpointKey: tokenEndpoint
+    userEndpointKey: userEndpoint
+  back:
+    image:
+      repository: ghcr.io/alexlebens/taiga-back-docker-oidc
+      tag: "6.7.3"
+    resources:
+      limits:
+        cpu: 100m
+        memory: 256Mi
+      requests:
+        cpu: 500m
+        memory: 1Gi
+    livenessProbe:
+      enabled: true
+    readinessProbe:
+      enabled: true
+  async:
+    image:
+      repository: ghcr.io/alexlebens/taiga-back-docker-oidc
+      tag: "6.7.3"
+    resources:
+      limits:
+        cpu: 100m
+        memory: 256Mi
+      requests:
+        cpu: 500m
+        memory: 1Gi
+    livenessProbe:
+      enabled: true
+    readinessProbe:
+      enabled: true
+  taiga-async-rabbitmq:
+    auth:
+      username: taiga
+      existingPasswordSecret: taiga-async-rabbitmq-secret
+      existingSecretPasswordKey: password
+      existingErlangSecret: taiga-async-rabbitmq-secret
+      existingSecretErlangKey: erlang
+  events:
+    resources:
+      limits:
+        cpu: 100m
+        memory: 256Mi
+      requests:
+        cpu: 500m
+        memory: 1Gi
+    livenessProbe:
+      enabled: true
+    readinessProbe:
+      enabled: true
+  taiga-events-rabbitmq:
+    auth:
+      username: taiga
+      existingPasswordSecret: taiga-events-rabbitmq-secret
+      existingSecretPasswordKey: password
+      existingErlangSecret: taiga-events-rabbitmq-secret
+      existingSecretErlangKey: erlang
+  protected:
+    resources:
+      limits:
+        cpu: 100m
+        memory: 256Mi
+      requests:
+        cpu: 500m
+        memory: 1Gi
+    livenessProbe:
+      enabled: true
+    readinessProbe:
+      enabled: true
+  front:
+    image:
+      repository: ghcr.io/alexlebens/taiga-front-docker-oidc
+      tag: "6.7.7"
+    resources:
+      limits:
+        cpu: 100m
+        memory: 256Mi
+      requests:
+        cpu: 500m
+        memory: 1Gi
+    livenessProbe:
+      enabled: true
+    readinessProbe:
+      enabled: true
+  ingress:
+    enabled: true
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+      cert-manager.io/cluster-issuer: letsencrypt-issuer
+    className: traefik
+    host: taiga.alexlebens.net
+  persistence:
+    static:
+      enabled: true
+      storageClass: "nfs-client"
+      accessMode: ReadWriteMany
+      size: 1Gi
+    media:
+      enabled: true
+      storageClass: "nfs-client"
+      accessMode: ReadWriteMany
+      size: 1Gi
+postgres-cluster:
+  mode: standalone
+  kubernetesClusterName: "cl01tl"
+  cluster:
+    walStorage:
+      storageClass: local-path
+    storage:
+      storageClass: local-path
+    monitoring:
+      enabled: true
+  recovery:
+    endpointURL: https://nyc3.digitaloceanspaces.com
+    endpointBucket: alexlebens-net
+    endpointCredentials: postgresql-16-taiga-cluster-backup-secret
+    recoveryIndex: 1
+  backup:
+    enabled: true
+    endpointURL: https://nyc3.digitaloceanspaces.com
+    endpointBucket: alexlebens-net
+    endpointCredentials: postgresql-16-taiga-cluster-backup-secret
+    backupIndex: 1
+    retentionPolicy: "14d"
+    schedule: "0 0 0 * * *"
