@@ -120,17 +120,17 @@ taiga:
   persistence:
     static:
       enabled: true
-      storageClass: "nfs-client"
+      storageClass: nfs-client
       accessMode: ReadWriteMany
       size: 1Gi
     media:
       enabled: true
-      storageClass: "nfs-client"
+      storageClass: nfs-client
       accessMode: ReadWriteMany
       size: 1Gi
 postgres-cluster:
   mode: standalone
-  kubernetesClusterName: "cl01tl"
+  kubernetesClusterName: cl01tl
   cluster:
     walStorage:
       storageClass: local-path
