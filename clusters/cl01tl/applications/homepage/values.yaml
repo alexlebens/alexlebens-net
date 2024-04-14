@@ -86,7 +86,13 @@ homepage:
               description: Blog and personal web site
               href: https://www.alexlebens.dev
               siteMonitor: https://www.alexlebens.dev
-              statusStyle: dot      
+              statusStyle: dot
+          - Chat (.dev):
+              icon: element.svg
+              description: Web client for Matrix chat
+              href: https://chat.alexlebens.dev
+              siteMonitor: https://chat.alexlebens.dev
+              statusStyle: dot
           - Home Assistant:
               icon: home-assistant.png
               description: Home automation
@@ -99,6 +105,12 @@ homepage:
               href: https://vikunja.alexlebens.net
               siteMonitor: http://vikunja-frontend.vikunja:80
               statusStyle: dot
+          - Taiga:
+              icon: taiga.png
+              description: Project planning
+              href: https://taiga.alexlebens.net
+              siteMonitor: http://taiga-front.taiga:80
+              statusStyle: dot
           - Outline:
               icon: outline.png
               description: Wiki
@@ -110,12 +122,6 @@ homepage:
               description: Rss reader
               href: https://rss.alexlebens.net
               siteMonitor: http://freshrss.freshrss:80
-              statusStyle: dot
-          - Chat (.dev):
-              icon: element.svg
-              description: Web client for Matrix chat
-              href: https://chat.alexlebens.dev
-              siteMonitor: https://chat.alexlebens.dev
               statusStyle: dot
       - Code:
           - Code Server:
@@ -208,7 +214,7 @@ homepage:
               description: Identity management and provider
               href: https://auth.alexlebens.dev
               siteMonitor: https://auth.alexlebens.dev
-              statusStyle: dot              
+              statusStyle: dot
           - Traefik - cl01tl:
               icon: traefik.png
               description: Reverse proxy
@@ -309,7 +315,7 @@ homepage:
               description: Tenant for Outline S3 storage
               href: https://minio-outline.alexlebens.net
               siteMonitor: http://minio-outline-console.outline:9090
-              statusStyle: dot                            
+              statusStyle: dot
     bookmarks:
       - External Services:
           - Github:
