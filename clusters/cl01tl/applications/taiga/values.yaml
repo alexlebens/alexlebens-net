@@ -4,7 +4,7 @@ taiga:
   secretKey:
     existingSecretName: taiga-key-secret
     existingSecretKey: key
-  createInitialUser: true
+  createInitialUser: false
   enableTelemetry: false
   publicRegisterEnabled: false
   postgresql:
