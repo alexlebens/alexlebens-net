@@ -58,7 +58,7 @@ taiga:
       enabled: true
     readinessProbe:
       enabled: true
-  taiga-async-rabbitmq:
+  async-rabbitmq:
     auth:
       username: taiga
       existingPasswordSecret: taiga-async-rabbitmq-secret
@@ -77,7 +77,7 @@ taiga:
       enabled: false
     readinessProbe:
       enabled: false
-  taiga-events-rabbitmq:
+  events-rabbitmq:
     auth:
       username: taiga
       existingPasswordSecret: taiga-events-rabbitmq-secret
