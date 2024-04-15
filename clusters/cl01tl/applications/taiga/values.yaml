@@ -30,6 +30,7 @@ taiga:
     image:
       repository: ghcr.io/alexlebens/taiga-back-docker-oidc
       tag: "6.7.3"
+      pullPolicy: Always
     resources:
       requests:
         cpu: 100m
@@ -45,6 +46,7 @@ taiga:
     image:
       repository: ghcr.io/alexlebens/taiga-back-docker-oidc
       tag: "6.7.3"
+      pullPolicy: Always      
     resources:
       requests:
         cpu: 100m
