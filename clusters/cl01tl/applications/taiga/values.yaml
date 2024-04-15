@@ -29,7 +29,7 @@ taiga:
   back:
     image:
       repository: ghcr.io/alexlebens/taiga-back-docker-oidc
-      tag: "6.7.3"
+      tag: latest
       pullPolicy: Always
     resources:
       requests:
@@ -45,7 +45,7 @@ taiga:
   async:
     image:
       repository: ghcr.io/alexlebens/taiga-back-docker-oidc
-      tag: "6.7.3"
+      tag: latest
       pullPolicy: Always      
     resources:
       requests:
@@ -99,7 +99,7 @@ taiga:
   front:
     image:
       repository: ghcr.io/alexlebens/taiga-front-docker-oidc
-      tag: "6.7.7"
+      tag: latest
       pullPolicy: Always      
     resources:
       requests:
