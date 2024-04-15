@@ -100,6 +100,7 @@ taiga:
     image:
       repository: ghcr.io/alexlebens/taiga-front-docker-oidc
       tag: "6.7.7"
+      pullPolicy: Always      
     resources:
       requests:
         cpu: 100m
