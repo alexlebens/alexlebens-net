@@ -15,7 +15,7 @@ taiga:
     hostKey: host
     portKey: port
   oidc:
-    enabled: false
+    enabled: true
     existingSecretName: taiga-oidc-secret
     scopesKey: scopes
     signatureAlgorithmKey: signatureAlgorithm
