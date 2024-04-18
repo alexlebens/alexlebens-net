@@ -82,10 +82,7 @@ vikunja:
   postgresql:
     enabled: false
   redis:
-    enabled: true
-    architecture: standalone
-    auth:
-      enabled: false
+    enabled: false
   typesense:
     enabled: true
     image:
