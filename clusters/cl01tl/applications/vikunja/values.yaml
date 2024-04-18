@@ -39,22 +39,22 @@ vikunja:
       VIKUNJA_DATABASE_USER:
         valueFrom:
           secretKeyRef:
-           name: postgresql-vikunja-cluster-app
+           name: vikunja-postgresql-16-cluster-app
            key: user
       VIKUNJA_DATABASE_DATABASE:
         valueFrom:
           secretKeyRef:
-           name: postgresql-vikunja-cluster-app
+           name: vikunja-postgresql-16-cluster-app
            key: dbname
       VIKUNJA_DATABASE_HOST:
         valueFrom:
           secretKeyRef:
-           name: postgresql-vikunja-cluster-app
+           name: vikunja-postgresql-16-cluster-app
            key: host
       VIKUNJA_DATABASE_PASSWORD:
         valueFrom:
           secretKeyRef:
-           name: postgresql-vikunja-cluster-app
+           name: vikunja-postgresql-16-cluster-app
            key: password
   frontend:
     enabled: true
@@ -85,32 +85,8 @@ vikunja:
     enabled: false
   typesense:
     enabled: false
-postgres-cluster:
-  cluster:
-    name: cl01tl
-    image:
-      repository: ghcr.io/cloudnative-pg/postgresql
-      tag: 16.2
-    instances: 2
-    storage:
-      data:
-        storageClass: ceph-block
-        size: 10Gi
-      wal:
-        storageClass: ceph-block
-        size: 2Gi
-  bootstrap:
-    recoveryEnabled: false
-    recoveryIndex: 1
-    endpointURL: https://nyc3.digitaloceanspaces.com
-    bucket: alexlebens-net
-  backup:
-    backupEnabled: true
-    backupIndex: 1
-    endpointURL: https://nyc3.digitaloceanspaces.com
-    bucket: alexlebens-net
 postgres-16-cluster:
-  mode: replica
+  mode: standalone
   kubernetesClusterName: cl01tl
   cluster:
     walStorage:
@@ -119,18 +95,6 @@ postgres-16-cluster:
       storageClass: local-path
     monitoring:
       enabled: true
-  replica:
-    importType: microservice
-    importDatabases:
-      - app
-    externalCluster:
-      connectionParameters:
-        host: postgresql-vikunja-cluster-rw
-        user: app
-        dbname: app
-      password:
-        name: postgresql-vikunja-cluster-app
-        key: password
   backup:
     enabled: true
     endpointURL: https://nyc3.digitaloceanspaces.com
