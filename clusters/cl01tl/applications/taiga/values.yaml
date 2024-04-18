@@ -8,7 +8,7 @@ taiga:
   enableTelemetry: false
   publicRegisterEnabled: false
   postgresql:
-    existingSecretName: postgresql-16-taiga-cluster-app
+    existingSecretName: taiga-postgresql-16-cluster-app
     usernameKey: username
     passwordKey: password
     databaseNameKey: dbname
