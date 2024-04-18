@@ -46,3 +46,32 @@ postgres-cluster:
     backupIndex: 1
     endpointURL: https://nyc3.digitaloceanspaces.com
     bucket: alexlebens-net
+postgres-16-cluster:
+  mode: replica
+  kubernetesClusterName: cl01tl
+  cluster:
+    walStorage:
+      storageClass: local-path
+    storage:
+      storageClass: local-path
+    monitoring:
+      enabled: true
+  replica:
+    importType: microservice
+    importDatabases:
+      - app
+    externalCluster:
+      connectionParameters:
+        host: postgresql-freshrss-cluster-rw
+        user: app
+        dbname: app
+      password:
+        name: postgresql-freshrss-cluster-app
+        key: password
+  backup:
+    enabled: true
+    endpointURL: https://nyc3.digitaloceanspaces.com
+    endpointBucket: alexlebens-net
+    endpointCredentials: freshrss-postgresql-16-cluster-backup-secret
+    backupIndex: 1
+    retentionPolicy: "14d"

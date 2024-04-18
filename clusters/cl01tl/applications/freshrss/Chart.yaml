@@ -1,6 +1,6 @@
 apiVersion: v2
 name: freshrss
-version: 0.0.2
+version: 1.0.0
 sources:
   - https://github.com/FreshRSS/FreshRSS
   - https://github.com/alexlebens/helm-charts/tree/main/charts/hfreshrss
@@ -10,5 +10,9 @@ dependencies:
     repository: http://alexlebens.github.io/helm-charts
   - name: postgres-cluster
     version: 0.2.3
+    repository: http://alexlebens.github.io/helm-charts
+  - name: postgres-cluster
+    alias: postgres-16-cluster
+    version: 2.3.1
     repository: http://alexlebens.github.io/helm-charts    
 appVersion: "1.23.1"
