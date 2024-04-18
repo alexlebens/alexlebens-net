@@ -91,20 +91,7 @@ vikunja:
   redis:
     enabled: false
   typesense:
-    enabled: true
-    image:
-      repository: docker.io/typesense/typesense
-      tag: 0.25.1
-      pullPolicy: IfNotPresent
-    env:
-      TYPESENSE_DATA_DIR: /data
-      TYPESENSE_API_KEY: typesense
-    persistence:
-      data:
-        enabled: true
-        accessMode: ReadWriteOnce
-        size: 1Gi
-        storageClass: ceph-block
+    enabled: false
 redis:
   architecture: standalone
   auth:
