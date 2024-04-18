@@ -12,5 +12,8 @@ dependencies:
   - name: postgres-cluster
     alias: postgres-16-cluster
     version: 2.3.6
-    repository: http://alexlebens.github.io/helm-charts    
+    repository: http://alexlebens.github.io/helm-charts
+  - name: redis
+    version: 19.1.1
+    repository: https://charts.bitnami.com/bitnami
 appVersion: v0.21.1

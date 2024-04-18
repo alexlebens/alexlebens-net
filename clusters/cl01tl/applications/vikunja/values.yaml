@@ -36,6 +36,13 @@ vikunja:
       VIKUNJA_SERVICE_FRONTENDURL: https://vikunja.alexlebens.net
       VIKUNJA_SERVICE_ENABLEREGISTRATION: "true"
       VIKUNJA_SERVICE_TIMEZONE: US/Mountain
+      VIKUNJA_REDIS_ENABLED: "true"
+      VIKUNJA_REDIS_HOST: vikunja-redis-master
+      VIKUNJA_REDIS_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+           name: vikunja-config-secret
+           key: redis-password
       VIKUNJA_DATABASE_USER:
         valueFrom:
           secretKeyRef:
@@ -98,6 +105,12 @@ vikunja:
         accessMode: ReadWriteOnce
         size: 1Gi
         storageClass: ceph-block
+redis:
+  architecture: standalone
+  auth:
+    enabled: true
+    existingSecret: vikunja-config-secret
+    existingSecretPasswordKey: redis-password
 postgres-16-cluster:
   mode: standalone
   kubernetesClusterName: cl01tl
