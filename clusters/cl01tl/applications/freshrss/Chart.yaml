@@ -9,9 +9,6 @@ dependencies:
     version: 0.0.3
     repository: http://alexlebens.github.io/helm-charts
   - name: postgres-cluster
-    version: 0.2.3
-    repository: http://alexlebens.github.io/helm-charts
-  - name: postgres-cluster
     alias: postgres-16-cluster
     version: 2.3.6
     repository: http://alexlebens.github.io/helm-charts    
