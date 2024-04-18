@@ -131,7 +131,7 @@ taiga:
       storageClass: nfs-client
       accessMode: ReadWriteMany
       size: 1Gi
-postgres-cluster:
+postgres-16-cluster:
   mode: standalone
   kubernetesClusterName: cl01tl
   cluster:
@@ -141,20 +141,12 @@ postgres-cluster:
       storageClass: local-path
     monitoring:
       enabled: true
-      podMonitor:
-        enabled: true
       prometheusRule:
         enabled: false
-  recovery:
-    endpointURL: https://nyc3.digitaloceanspaces.com
-    endpointBucket: alexlebens-net
-    endpointCredentials: postgresql-16-taiga-cluster-backup-secret
-    recoveryIndex: 1
   backup:
     enabled: true
     endpointURL: https://nyc3.digitaloceanspaces.com
     endpointBucket: alexlebens-net
-    endpointCredentials: postgresql-16-taiga-cluster-backup-secret
+    endpointCredentials: taiga-postgresql-16-cluster-backup-secret
     backupIndex: 1
     retentionPolicy: "14d"
-    schedule: "0 0 0 * * *"
