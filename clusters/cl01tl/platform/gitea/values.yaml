@@ -42,22 +42,22 @@ gitea:
       - name: GITEA__DATABASE__HOST
         valueFrom:
           secretKeyRef:
-            name: postgresql-gitea-cluster-app
+            name: gitea-postgresql-16-cluster-app
             key: host
       - name: GITEA__DATABASE__NAME
         valueFrom:
           secretKeyRef:
-            name: postgresql-gitea-cluster-app
+            name: gitea-postgresql-16-cluster-app
             key: dbname
       - name: GITEA__DATABASE__USER
         valueFrom:
           secretKeyRef:
-            name: postgresql-gitea-cluster-app
+            name: gitea-postgresql-16-cluster-app
             key: user
       - name: GITEA__DATABASE__PASSWD
         valueFrom:
           secretKeyRef:
-            name: postgresql-gitea-cluster-app
+            name: gitea-postgresql-16-cluster-app
             key: password
     oauth:
       - name: Authentik
@@ -76,32 +76,8 @@ gitea:
     enabled: true
     persistence:
       enabled: false
-postgres-cluster:
-  cluster:
-    name: cl01tl
-    image:
-      repository: ghcr.io/cloudnative-pg/postgresql
-      tag: 16.2
-    instances: 3
-    storage:
-      data:
-        storageClass: ceph-block
-        size: 10Gi
-      wal:
-        storageClass: ceph-block
-        size: 2Gi
-  bootstrap:
-    recoveryEnabled: false
-    recoveryIndex: 4
-    endpointURL: https://nyc3.digitaloceanspaces.com
-    bucket: alexlebens-net
-  backup:
-    backupEnabled: true
-    backupIndex: 4
-    endpointURL: https://nyc3.digitaloceanspaces.com
-    bucket: alexlebens-net
 postgres-16-cluster:
-  mode: replica
+  mode: standalone
   kubernetesClusterName: cl01tl
   cluster:
     walStorage:
@@ -112,18 +88,6 @@ postgres-16-cluster:
       enabled: true
       prometheusRule:
         enabled: false
-  replica:
-    importType: microservice
-    importDatabases:
-      - app
-    externalCluster:
-      connectionParameters:
-        host: postgresql-gitea-cluster-rw
-        user: app
-        dbname: app
-      password:
-        name: postgresql-gitea-cluster-app
-        key: password
   backup:
     enabled: true
     endpointURL: https://nyc3.digitaloceanspaces.com
