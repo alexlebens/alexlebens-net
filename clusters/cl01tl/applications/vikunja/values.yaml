@@ -37,7 +37,7 @@ vikunja:
       VIKUNJA_SERVICE_ENABLEREGISTRATION: "true"
       VIKUNJA_SERVICE_TIMEZONE: US/Mountain
       VIKUNJA_REDIS_ENABLED: "true"
-      VIKUNJA_REDIS_HOST: vikunja-redis-master
+      VIKUNJA_REDIS_HOST: vikunja-redis-headless:6379
       VIKUNJA_REDIS_PASSWORD:
         valueFrom:
           secretKeyRef:
