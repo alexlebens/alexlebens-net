@@ -82,9 +82,25 @@ vikunja:
   postgresql:
     enabled: false
   redis:
-    enabled: false
+    enabled: true
+    architecture: standalone
+    auth:
+      enabled: false
   typesense:
-    enabled: false
+    enabled: true
+    image:
+      repository: docker.io/typesense/typesense
+      tag: 0.25.1
+      pullPolicy: IfNotPresent
+    env:
+      TYPESENSE_DATA_DIR: /data
+      TYPESENSE_API_KEY: typesense
+    persistence:
+      data:
+        enabled: true
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        storageClass: ceph-block
 postgres-16-cluster:
   mode: standalone
   kubernetesClusterName: cl01tl
