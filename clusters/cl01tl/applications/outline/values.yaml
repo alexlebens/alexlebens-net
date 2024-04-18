@@ -25,19 +25,19 @@ outline:
       existingSecretKey: utils-key
     database:
       usernameSecret:
-        existingSecretName: postgresql-outline-cluster-app
+        existingSecretName: outline-postgresql-16-cluster-app
         existingSecretKey: username
       passwordSecret:
-        existingSecretName: postgresql-outline-cluster-app
+        existingSecretName: outline-postgresql-16-cluster-app
         existingSecretKey: password
       databaseName:
-        existingSecretName: postgresql-outline-cluster-app
+        existingSecretName: outline-postgresql-16-cluster-app
         existingSecretKey: dbname
       databaseHost:
-        existingSecretName: postgresql-outline-cluster-app
+        existingSecretName: outline-postgresql-16-cluster-app
         existingSecretKey: host
       databasePort:
-        existingSecretName: postgresql-outline-cluster-app
+        existingSecretName: outline-postgresql-16-cluster-app
         existingSecretKey: port
     auth:
       oidc:
@@ -54,32 +54,8 @@ outline:
         usernameClaim: email
         displayName: Authentik
         scopes: openid profile email
-postgres-cluster:
-  cluster:
-    name: cl01tl
-    image:
-      repository: ghcr.io/cloudnative-pg/postgresql
-      tag: 16.2
-    instances: 2
-    storage:
-      data:
-        storageClass: ceph-block
-        size: 10Gi
-      wal:
-        storageClass: ceph-block
-        size: 2Gi
-  bootstrap:
-    recoveryEnabled: false
-    recoveryIndex: 1
-    endpointURL: https://nyc3.digitaloceanspaces.com
-    bucket: alexlebens-net
-  backup:
-    backupEnabled: true
-    backupIndex: 1
-    endpointURL: https://nyc3.digitaloceanspaces.com
-    bucket: alexlebens-net
 postgres-16-cluster:
-  mode: replica
+  mode: standalone
   kubernetesClusterName: cl01tl
   cluster:
     walStorage:
@@ -88,18 +64,6 @@ postgres-16-cluster:
       storageClass: local-path
     monitoring:
       enabled: true
-  replica:
-    importType: microservice
-    importDatabases:
-      - app
-    externalCluster:
-      connectionParameters:
-        host: postgresql-outline-cluster-rw
-        user: app
-        dbname: app
-      password:
-        name: postgresql-outline-cluster-app
-        key: password
   backup:
     enabled: true
     endpointURL: https://nyc3.digitaloceanspaces.com
