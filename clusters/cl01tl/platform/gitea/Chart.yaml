@@ -11,6 +11,6 @@ dependencies:
     repository: https://dl.gitea.io/charts/
   - name: postgres-cluster
     alias: postgres-16-cluster
-    version: 2.3.6
+    version: 2.4.2
     repository: http://alexlebens.github.io/helm-charts       
 appVersion: "1.21.7"
