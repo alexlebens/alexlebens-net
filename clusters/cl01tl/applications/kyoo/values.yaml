@@ -1,0 +1,163 @@
+kyoo:
+  serviceAccount:
+    create: true
+  config:
+    secretAuthenticationKey:
+      existingSecretName: kyoo-key-secret
+      existingSecretKey: key
+    secretAPIKey:
+      existingSecretName: kyoo-api-secret
+      existingKyooSecretKey: kyoo
+    requireAccountVerification: false
+    defaultPermissions: overall.read,overall.play
+    transcoderProfile: qsv
+    publicUrl: https://kyoo.alexlebens.net
+    oidc:
+      enabled: true
+      name: Authentik
+      logo: https://avatars.githubusercontent.com/u/82976448?s=200&v=4
+      authorization: https://authentik.alexlebens.net/application/o/authorize/
+      token: https://authentik.alexlebens.net/application/o/token/
+      profile: https://authentik.alexlebens.net/application/o/userinfo/
+      scope: "openid profile email"
+      existingSecretName: kyoo-oidc-secret
+      clientIDKey: client
+      secretIDKey: secret
+    postgresql:
+      existingSecretName: kyoo-postgresql-16-cluster-app
+      usernameKey: username
+      passwordKey: password
+      databaseNameKey: dbname
+      hostKey: host
+      portKey: port
+  ingress:
+    enabled: true
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+      cert-manager.io/cluster-issuer: letsencrypt-issuer
+    className: traefik
+    host: kyoo.alexlebens.net
+  persistence:
+    back:
+      storageClass: ceph-block
+      size: 10Gi
+    metadata:
+      storageClass: ceph-block
+      size: 10Gi
+    cache:
+      size: 50Gi
+    library:
+      enabled: true
+      existingClaim: kyoo-nfs-storage
+  autosync:
+    resources:
+      limits:
+        cpu: 100m
+        memory: 512Mi
+      requests:
+        cpu: 10m
+        memory: 128Mi
+  back:
+    resources:
+      limits:
+        cpu: 100m
+        memory: 1Gi
+      requests:
+        cpu: 10m
+        memory: 128Mi
+    livenessProbe:
+      enabled: false
+      path: /health
+    readinessProbe:
+      enabled: false
+      path: /health
+  front:
+    resources:
+      limits:
+        cpu: 500m
+        memory: 1Gi
+      requests:
+        cpu: 50m
+        memory: 128Mi
+    livenessProbe:
+      enabled: false
+      path: /
+    readinessProbe:
+      enabled: false
+      path: /
+  matcher:
+    resources:
+      limits:
+        cpu: 100m
+        memory: 1Gi
+      requests:
+        cpu: 10m
+        memory: 128Mi
+  migrations:
+    resources:
+      limits:
+        cpu: 500m
+        memory: 2Gi
+      requests:
+        cpu: 10m
+        memory: 128Mi
+  scanner:
+    resources:
+      limits:
+        cpu: 500m
+        memory: 2Gi
+      requests:
+        cpu: 10m
+        memory: 128Mi
+  transcoder:
+    resources:
+      limits:
+        cpu: 1500m
+        memory: 2Gi
+      requests:
+        cpu: 100m
+        memory: 512Mi
+  rabbitmq:
+    auth:
+      username: kyoo
+      existingPasswordSecret: kyoo-rabbitmq-secret
+      existingSecretPasswordKey: password
+      existingErlangSecret: kyoo-rabbitmq-secret
+      existingSecretErlangKey: erlang
+  meilisearch:
+    auth:
+      existingMasterKeySecret: kyoo-meilisearch-master-key-secret
+    persistence:
+      enabled: true
+      storageClass: ceph-block
+      size: 10Gi
+    resources:
+      limits:
+        cpu: 200m
+        memory: 512Mi
+      requests:
+        cpu: 10m
+        memory: 128Mi
+    serviceMonitor:
+      enabled: true
+persistence:
+  nfsPath: /volume2/Storage
+  nfsServer: synologybond.alexlebens.net
+postgres-16-cluster:
+  mode: standalone
+  kubernetesClusterName: cl01tl
+  cluster:
+    walStorage:
+      storageClass: local-path
+    storage:
+      storageClass: local-path
+    monitoring:
+      enabled: true
+  backup:
+    enabled: true
+    endpointURL: https://nyc3.digitaloceanspaces.com
+    endpointBucket: alexlebens-net
+    endpointCredentials: kyoo-postgresql-16-cluster-backup-secret
+    backupIndex: 1
+    retentionPolicy: "14d"
