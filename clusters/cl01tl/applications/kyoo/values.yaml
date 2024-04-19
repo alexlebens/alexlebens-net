@@ -24,12 +24,12 @@ kyoo:
       clientIDKey: client
       secretIDKey: secret
     postgresql:
+      username: app
+      database: app
+      host: kyoo-postgresql-16-cluster-rw.kyoo
+      port: "5432"
       existingSecretName: kyoo-postgresql-16-cluster-app
-      usernameKey: username
       passwordKey: password
-      databaseNameKey: dbname
-      hostKey: host
-      portKey: port
   ingress:
     enabled: true
     annotations:
