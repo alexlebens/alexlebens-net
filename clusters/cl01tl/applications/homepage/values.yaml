@@ -330,6 +330,9 @@ homepage:
           - Digital Ocean:
               - abbr: DO
                 href: https://cloud.digitalocean.com/
+          - Google Cloud:
+              - abbr: GC
+                href: https://console.cloud.google.com
           - Tailscale:
               - abbr: TS
                 href: https://login.tailscale.com/admin/machines
