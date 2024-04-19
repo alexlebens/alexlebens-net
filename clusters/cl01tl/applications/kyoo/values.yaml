@@ -26,7 +26,7 @@ kyoo:
     postgresql:
       username: app
       database: app
-      host: kyoo-postgresql-16-cluster-rw.kyoo
+      host: kyoo-postgresql-16-cluster-rw.kyoo.svc.cluster.local
       port: "5432"
       existingSecretName: kyoo-postgresql-16-cluster-app
       passwordKey: password
