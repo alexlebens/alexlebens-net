@@ -10,7 +10,7 @@ penpot:
     tls:
       - secretName: penpot-secret-tls
         hosts:
-          - host: penpot.alexlebens.net      
+          - penpot.alexlebens.net
   persistence:
     enabled: true
     storageClass: ceph-block
@@ -19,7 +19,7 @@ penpot:
       - ReadWriteOnce
   config:
     publicURI: https://penpot.alexlebens.net
-    flags: enable-registration enable-insecure-register enable-login enable-login-with-oidc disable-demo-users disable-demo-warning  
+    flags: enable-registration enable-insecure-register enable-login enable-login-with-oidc disable-demo-users disable-demo-warning
     apiSecretKey:
       existingSecretName: penpot-key-secret
       existingSecretKey: key
