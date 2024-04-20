@@ -320,7 +320,7 @@ homepage:
               icon: minio.png
               description: Tenant for Penpot S3 storage
               href: https://minio-penpot.alexlebens.net
-              siteMonitor: http://minio-penpot-console.outline:9090
+              siteMonitor: http://minio-penpot-console.penpot:9090
               statusStyle: dot              
     bookmarks:
       - External Services:
