@@ -81,6 +81,12 @@ homepage:
               siteMonitor: http://calibre-web.calibre-web:8083
               statusStyle: dot
       - Applications:
+          - Ghost (.dev):
+              icon: ghost.png
+              description: Website and blog
+              href: https://blog.alexlebens.dev
+              siteMonitor: https://blog.alexlebens.dev
+              statusStyle: dot      
           - Chat (.dev):
               icon: element.svg
               description: Web client for Matrix chat
