@@ -53,7 +53,9 @@ penpot:
         authURI: https://authentik.alexlebens.net/application/o/authorize/
         tokenURI: https://authentik.alexlebens.net/application/o/token/
         userURI: https://authentik.alexlebens.net/application/o/userinfo/
-        scopes: openid profile email
+        roles: ""
+        rolesAttribute: ""
+        scopes: "openid profile email"
         nameAttribute: preferred_username
         emailAttribute: email
       existingSecret: penpot-oidc-secret
