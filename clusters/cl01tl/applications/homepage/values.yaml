@@ -81,12 +81,6 @@ homepage:
               siteMonitor: http://calibre-web.calibre-web:8083
               statusStyle: dot
       - Applications:
-          - Ghost (.dev):
-              icon: ghost.png
-              description: Blog and personal web site
-              href: https://www.alexlebens.dev
-              siteMonitor: https://www.alexlebens.dev
-              statusStyle: dot
           - Chat (.dev):
               icon: element.svg
               description: Web client for Matrix chat
@@ -111,6 +105,12 @@ homepage:
               href: https://taiga.alexlebens.net
               siteMonitor: http://taiga-front.taiga:80
               statusStyle: dot
+          - Penpot:
+              icon: penpot.png
+              description: Web design
+              href: https://penpot.alexlebens.net
+              siteMonitor: http://penpot-frontend.penpot:80
+              statusStyle: dot              
           - Outline:
               icon: outline.png
               description: Wiki
