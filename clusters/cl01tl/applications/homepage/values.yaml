@@ -106,10 +106,10 @@ homepage:
               siteMonitor: http://taiga-front.taiga:80
               statusStyle: dot
           - Penpot:
-              icon: penpot.png
+              icon: https://avatars.githubusercontent.com/u/30179644?s=200&v=4
               description: Web design
               href: https://penpot.alexlebens.net
-              siteMonitor: http://penpot-frontend.penpot:80
+              siteMonitor: http://penpot.penpot:80
               statusStyle: dot              
           - Outline:
               icon: outline.png
