@@ -1,5 +1,7 @@
 homepage:
   deployment:
+    annotations:
+      reloader.stakater.com/auto: "true"
     resources:
       limits:
         memory: 2Gi
@@ -86,7 +88,7 @@ homepage:
               description: Website and blog
               href: https://blog.alexlebens.dev
               siteMonitor: https://blog.alexlebens.dev
-              statusStyle: dot      
+              statusStyle: dot
           - Chat (.dev):
               icon: element.svg
               description: Web client for Matrix chat
@@ -116,7 +118,7 @@ homepage:
               description: Web design
               href: https://penpot.alexlebens.net
               siteMonitor: http://penpot.penpot:80
-              statusStyle: dot              
+              statusStyle: dot
           - Outline:
               icon: outline.png
               description: Wiki
@@ -327,7 +329,7 @@ homepage:
               description: Tenant for Penpot S3 storage
               href: https://minio-penpot.alexlebens.net
               siteMonitor: http://minio-penpot-console.penpot:9090
-              statusStyle: dot              
+              statusStyle: dot
     bookmarks:
       - External Services:
           - Github:
