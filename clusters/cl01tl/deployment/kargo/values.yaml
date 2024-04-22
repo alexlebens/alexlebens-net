@@ -31,9 +31,17 @@ kargo:
         image:
           repository: ghcr.io/dexidp/dex
           tag: v2.37.0
-        envFrom:
-          - secretRef:
-              name: kargo-oidc-secret
+        env:
+          - name: CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: kargo-oidc-secret
+                key: CLIENT_ID
+          - name: CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: kargo-oidc-secret
+                key: CLIENT_SECRET
         tls:
           selfSignedCert: false
         skipApprovalScreen: true
