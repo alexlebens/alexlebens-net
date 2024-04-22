@@ -33,7 +33,10 @@ argo-workflows:
     workflowNamespaces:
       - argocd
   server:
-    enabled: true
+    image:
+      registry: quay.io
+      repository: argoproj/argocli
+      tag: v3.5.6
     baseHref: /
     image:
     authModes:
