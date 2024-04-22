@@ -45,6 +45,7 @@ kargo:
               issuer: https://authentik.alexlebens.net/application/o/kargo/
               clientID: $CLIENT_ID
               clientSecret: $CLIENT_SECRET
+              redirectURI: https://kargo.alexlebens.net/dex/callback
               insecureEnableGroups: true
               scopes:
                 - openid
