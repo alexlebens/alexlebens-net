@@ -19,22 +19,20 @@ kargo:
       ingressClassName: traefik
       tls:
         enabled: true
-        selfSignedCert: true
+        selfSignedCert: false
     adminAccount:
       enabled: true
     oidc:
       enabled: true
       admins:
-        groups: ["Kargo Admins"]
-      viewers:
-        groups: ["Kargo Viewers"]
+        groups: ["ArgoCD Admins"]
       dex:
         enabled: true
         envFrom:
           - secretRef:
               name: kargo-oidc-secret
         tls:
-          selfSignedCert: true
+          selfSignedCert: false
         skipApprovalScreen: true
         connectors:
           - type: oidc
