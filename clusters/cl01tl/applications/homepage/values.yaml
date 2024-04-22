@@ -152,9 +152,30 @@ homepage:
               statusStyle: dot
           - ArgoCD:
               icon: argocd.png
-              description: GitOps
+              description: Continous Deployment
               href: https://argocd.alexlebens.net
               siteMonitor: http://argocd-server.argocd:80
+              statusStyle: dot
+              namespace: argocd
+          - Argo Rollouts:
+              icon: argocd.png
+              description: Deployment mangement and evaluation
+              href: https://argo-rollouts.alexlebens.net
+              siteMonitor: http://argo-rollouts-dashboard.argocd:3100
+              statusStyle: dot
+              namespace: argocd              
+          - Argo Workflows:
+              icon: argocd.png
+              description: Workflows and events for ArgoCD
+              href: https://argo-workflows.alexlebens.net
+              siteMonitor: http://argo-workflows-server.argocd:2746
+              statusStyle: dot
+              namespace: argocd
+          - Kargo:
+              icon: https://github.com/akuity/kargo/blob/main/ui/public/kargo-icon.png
+              description: Continous Integration
+              href: https://kargo.alexlebens.net
+              siteMonitor: http://kargo-api.argocd:8080
               statusStyle: dot
               namespace: argocd
       - Management:
