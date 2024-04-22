@@ -58,10 +58,14 @@ argo-workflows:
         name: argo-workflows-oidc-secret
         key: secret
       redirectUrl: https://argo-workflows.alexlebens.net/oauth2/callback
+      rbac:
+        enabled: false
       scopes:
         - openid
         - email
         - profile
+      filterGroupsRegex:
+        "ArgoCD*"
   useStaticCredentials: true
   artifactRepository:
     archiveLogs: false
