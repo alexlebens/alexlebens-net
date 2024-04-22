@@ -28,6 +28,9 @@ kargo:
         groups: ["ArgoCD Admins"]
       dex:
         enabled: true
+        image:
+          repository: ghcr.io/dexidp/dex
+          tag: v2.37.0
         envFrom:
           - secretRef:
               name: kargo-oidc-secret
@@ -39,7 +42,7 @@ kargo:
             id: authentik
             name: Authentik
             config:
-              issuer: https://authentik.alexlebens.net/application/o/argocd/
+              issuer: https://authentik.alexlebens.net/application/o/kargo/
               clientID: $CLIENT_ID
               clientSecret: $CLIENT_SECRET
               insecureEnableGroups: true
