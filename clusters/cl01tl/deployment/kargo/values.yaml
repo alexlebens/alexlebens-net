@@ -1,8 +1,4 @@
 kargo:
-  global:
-    envFrom:
-      - secretRef:
-          name: kargo-oidc-secret
   api:
     host: kargo.alexlebens.net
     resources:
@@ -35,6 +31,9 @@ kargo:
         image:
           repository: ghcr.io/dexidp/dex
           tag: v2.37.0
+        envFrom:
+          - secretRef:
+              name: kargo-oidc-secret
         tls:
           selfSignedCert: false
         skipApprovalScreen: true
