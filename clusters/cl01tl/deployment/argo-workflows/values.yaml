@@ -62,7 +62,6 @@ argo-workflows:
         - openid
         - email
         - profile
-      userInfoPath: https://authentik.alexlebens.net/application/o/userinfo/
   useStaticCredentials: true
   artifactRepository:
     archiveLogs: false
