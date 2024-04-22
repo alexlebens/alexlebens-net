@@ -31,17 +31,9 @@ kargo:
         image:
           repository: ghcr.io/dexidp/dex
           tag: v2.37.0
-        env:
-          - name: CLIENT_ID
-            valueFrom:
-              secretKeyRef:
-                name: kargo-oidc-secret
-                key: CLIENT_ID
-          - name: CLIENT_SECRET
-            valueFrom:
-              secretKeyRef:
-                name: kargo-oidc-secret
-                key: CLIENT_SECRET
+        envFrom:
+          - secretRef:
+              name: kargo-oidc-secret
         tls:
           selfSignedCert: false
         skipApprovalScreen: true
@@ -51,8 +43,8 @@ kargo:
             name: Authentik
             config:
               issuer: https://authentik.alexlebens.net/application/o/kargo/
-              clientID: $CLIENT_ID
-              clientSecret: $CLIENT_SECRET
+              clientID: "$CLIENT_ID"
+              clientSecret: "$CLIENT_SECRET"
               redirectURI: https://kargo.alexlebens.net/dex/callback
               insecureEnableGroups: true
               scopes:
