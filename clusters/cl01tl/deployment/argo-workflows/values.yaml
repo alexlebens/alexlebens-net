@@ -64,8 +64,6 @@ argo-workflows:
         - openid
         - email
         - profile
-      filterGroupsRegex:
-        "ArgoCD*"
   useStaticCredentials: true
   artifactRepository:
     archiveLogs: false
