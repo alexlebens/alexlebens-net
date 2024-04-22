@@ -172,7 +172,7 @@ homepage:
               statusStyle: dot
               namespace: argocd
           - Kargo:
-              icon: https://github.com/akuity/kargo/blob/main/ui/public/kargo-icon.png
+              icon: https://raw.githubusercontent.com/akuity/kargo/main/ui/public/kargo-icon.png
               description: Continous Integration
               href: https://kargo.alexlebens.net
               siteMonitor: http://kargo-api.argocd:8080
