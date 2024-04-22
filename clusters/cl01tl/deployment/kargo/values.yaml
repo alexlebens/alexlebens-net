@@ -21,7 +21,7 @@ kargo:
         enabled: true
         selfSignedCert: false
     adminAccount:
-      enabled: true
+      enabled: false
     oidc:
       enabled: true
       admins:
