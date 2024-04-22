@@ -33,12 +33,6 @@ argo-workflows:
     workflowNamespaces:
       - argocd
   server:
-    image:
-      registry: quay.io
-      repository: argoproj/argocli
-      tag: v3.5.6
-    baseHref: /
-    image:
     authModes:
       - sso
     ingress:
@@ -73,7 +67,7 @@ argo-workflows:
   useStaticCredentials: true
   artifactRepository:
     archiveLogs: false
-    s3:
+    s3: {}
       # accessKeySecret:
       #   name: "{{ .Release.Name }}-minio"
       #   key: accesskey
