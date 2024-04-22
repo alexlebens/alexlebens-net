@@ -62,7 +62,6 @@ argo-workflows:
         - openid
         - email
         - profile
-      customGroupClaimName: "ArgoCD Admins"
       userInfoPath: https://authentik.alexlebens.net/application/o/userinfo/
   useStaticCredentials: true
   artifactRepository:
