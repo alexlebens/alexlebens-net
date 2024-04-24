@@ -75,7 +75,6 @@ vault:
       targetPort: 8200
       annotations:
         tailscale.com/expose: "true"
-        tailscale.com/hostname: "vault-service-cl01tl"
     dataStorage:
       enabled: true
       size: 10Gi
