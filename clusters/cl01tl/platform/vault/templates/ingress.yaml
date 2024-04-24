@@ -11,10 +11,6 @@ metadata:
     app.kubernetes.io/part-of: {{ .Release.Name }}
 spec:
   ingressClassName: tailscale
-  tls:
-    - hosts:
-      - vault-internal.alexlebens.net
-      secretName: vault-tailscale-secret-tls
   rules:
     - host: vault-internal.alexlebens.net
       http:
@@ -23,6 +19,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: vault-internal
+                name: vault
                 port:
-                  name: https-internal
+                  name: http
