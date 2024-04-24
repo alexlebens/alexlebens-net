@@ -121,27 +121,6 @@ app-template:
                 secretKeyRef:
                   name: kyoo-rabbitmq-secret
                   key: password
-          probes:
-            liveness:
-              enabled: true
-              custom: true
-              spec:
-                path: /health
-                initialDelaySeconds: 20
-                periodSeconds: 10
-                timeoutSeconds: 5
-                successThreshold: 1
-                failureThreshold: 3
-            readiness:
-              enabled: true
-              custom: true
-              spec:
-                path: /health
-                initialDelaySeconds: 5
-                periodSeconds: 10
-                timeoutSeconds: 1
-                successThreshold: 1
-                failureThreshold: 3
           resources:
             limits:
               cpu: 500m
@@ -167,28 +146,7 @@ app-template:
               valueFrom:
                 secretKeyRef:
                   name: kyoo-key-secret
-                  key: kyoo              
-          probes:
-            liveness:
-              enabled: true
-              custom: true
-              spec:
-                path: /
-                initialDelaySeconds: 20
-                periodSeconds: 10
-                timeoutSeconds: 5
-                successThreshold: 1
-                failureThreshold: 3
-            readiness:
-              enabled: true
-              custom: true
-              spec:
-                path: /
-                initialDelaySeconds: 5
-                periodSeconds: 10
-                timeoutSeconds: 1
-                successThreshold: 1
-                failureThreshold: 3
+                  key: kyoo
           resources:
             limits:
               cpu: 500m
@@ -214,7 +172,7 @@ app-template:
               valueFrom:
                 secretKeyRef:
                   name: kyoo-key-secret
-                  key: kyoo              
+                  key: kyoo
             - name: LIBRARY_LANGUAGES
               value: en
             - name: RABBITMQ_HOST
@@ -351,7 +309,7 @@ app-template:
               valueFrom:
                 secretKeyRef:
                   name: kyoo-key-secret
-                  key: kyoo              
+                  key: kyoo
             - name: LIBRARY_LANGUAGES
               value: en
             - name: SCANNER_LIBRARY_ROOT

@@ -23,10 +23,10 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
   - name: meilisearch
     version: 0.6.1
-    repository: https://meilisearch.github.io/meilisearch-kubernetes    
+    repository: https://meilisearch.github.io/meilisearch-kubernetes
   - name: postgres-cluster
     alias: postgres-16-cluster
     version: 2.4.2
-    repository: http://alexlebens.github.io/helm-charts    
+    repository: http://alexlebens.github.io/helm-charts
 icon: https://raw.githubusercontent.com/zoriya/Kyoo/master/icons/icon-256x256.png
 appVersion: v4.4.0
