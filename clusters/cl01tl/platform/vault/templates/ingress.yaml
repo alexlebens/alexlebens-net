@@ -11,6 +11,9 @@ metadata:
     app.kubernetes.io/part-of: {{ .Release.Name }}
 spec:
   ingressClassName: tailscale
+  tls:
+    - hosts:
+        - vault
   rules:
     - http:
         paths:
@@ -36,6 +39,9 @@ metadata:
     app.kubernetes.io/part-of: {{ .Release.Name }}
 spec:
   ingressClassName: tailscale
+  tls:
+    - hosts:
+        - vault-api  
   rules:
     - http:
         paths:
