@@ -33,7 +33,9 @@ rocketchat:
           key: ADMIN_EMAIL
   mongodb:
     enabled: false
-    initdbScriptsConfigMap: rocketchat-mongodb-fix-clustermonitor-role-configmap
+    auth:
+      passwords:
+        - "notapassword"
   persistence:
     enabled: true
     storageClass: ceph-block
