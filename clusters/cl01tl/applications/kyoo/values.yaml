@@ -51,6 +51,11 @@ app-template:
                 secretKeyRef:
                   name: kyoo-key-secret
                   key: key
+            - name: KYOO_APIKEYS
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-key-secret
+                  key: kyoo
             - name: PUBLIC_URL
               value: https://kyoo.alexlebens.net
             - name: POSTGRES_USER
@@ -137,6 +142,11 @@ app-template:
           env:
             - name: KYOO_URL
               value: http://kyoo-back.kyoo:5000
+            - name: KYOO_APIKEYS
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-key-secret
+                  key: kyoo          
           resources:
             limits:
               cpu: 500m
@@ -204,6 +214,11 @@ app-template:
                 secretKeyRef:
                   name: kyoo-key-secret
                   key: key
+            - name: KYOO_APIKEYS
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-key-secret
+                  key: kyoo                  
             - name: PUBLIC_URL
               value: https://kyoo.alexlebens.net
             - name: POSTGRES_USER
@@ -290,6 +305,11 @@ app-template:
           env:
             - name: KYOO_URL
               value: http://kyoo-back.kyoo:5000
+            - name: KYOO_APIKEYS
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-key-secret
+                  key: kyoo              
             - name: LIBRARY_LANGUAGES
               value: en
             - name: SCANNER_LIBRARY_ROOT
@@ -439,7 +459,7 @@ rabbitmq:
     existingErlangSecret: kyoo-rabbitmq-secret
     existingSecretErlangKey: erlang
   extraConfiguration: |-
-    default_vhost = '/'
+    default_vhost = /
     default_permissions.configure = .*
     default_permissions.read = .*
     default_permissions.write = .*
