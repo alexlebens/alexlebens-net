@@ -16,6 +16,5 @@ data:
     # #include <everything>
     source /opt/bitnami/scripts/libmongodb.sh
 
-    use admin
-    grantRolesToUser('rocketchat',[{ role: 'clusterMonitor", db: 'rocketchat' }])
-    grantRolesToUser('rocketchat',[{ role: 'clusterMonitor', db: 'rocketchat' }])
+    db.getSiblingDB('rocketchat').grantRolesToUser('rocketchat',[{ role: 'clusterMonitor", db: 'rocketchat' }])
+    db.getSiblingDB('rocketchat').grantRolesToUser('rocketchat',[{ role: 'clusterMonitor', db: 'rocketchat' }])
