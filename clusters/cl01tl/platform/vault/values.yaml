@@ -10,13 +10,11 @@ vault:
     enabled: false
   server:
     enabled: true
-    enterpriseLicense:
-      secretName: ""
     image:
       repository: "hashicorp/vault"
       tag: "1.16.1"
     updateStrategyType: "OnDelete"
-    logLevel: info
+    logLevel: debug
     logFormat: standard
     resources:
       requests:
