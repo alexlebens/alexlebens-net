@@ -16,4 +16,36 @@ data:
     # #include <everything>
     source /opt/bitnami/scripts/libmongodb.sh
 
-    mongodb_execute_print_output "$MONGODB_ROOT_USER" "$MONGODB_ROOT_PASSWORD" "admin" "" "" "--quiet" <<< "db.getSiblingDB('rocketchat').grantRolesToUser('rocketchat',[{ role: 'clusterMonitor", db: 'rocketchat' }])"
+    error_and_abort() {
+      error "$@"
+      exit 1
+    }
+
+    main() {
+      local databases=(${MONGODB_EXTRA_DATABASES/,/ })
+      local usernames+=(${MONGODB_EXTRA_USERNAMES/,/ })
+      local database username last=$((${#databases[@]}-1))
+      for idx in $(seq 0 $last); do
+        database=${databases[$idx]}
+        username=${usernames[$idx]}
+        info "attempting to add clusterMonitor role to user $username"
+        local cmd="
+            db.getSiblingDB('$database').grantRolesToUser(
+            '$username',
+            [
+                {
+                role: 'clusterMonitor',
+                db: 'admin'
+                }
+            ]
+            )
+        "
+        debug "Executing: ${cmd:5:-1}"
+        local out=$(mongodb_execute_print_output "$MONGODB_ROOT_USER" "$MONGODB_ROOT_PASSWORD" "admin" "" "" "--quiet" <<< "$cmd")
+        local ok=$(awk '/ok:/ { print $2 }' <<< ${out/,/})
+        { [[ -n $out ]] && ! ((ok)); } && error_and_abort "failed to add role clusterMonitor to user \"$username\"; Error: $out"
+        info "clusterMonitor role added to $username"
+      done
+    }
+
+    main
