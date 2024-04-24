@@ -49,6 +49,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: vault-ui
+                name: vault
                 port:
                   name: http
