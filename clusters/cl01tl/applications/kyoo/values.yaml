@@ -1,0 +1,546 @@
+app-template:
+  controllers:
+    autosync:
+      type: deployment
+      replicas: 1
+      strategy: Recreate
+      revisionHistoryLimit: 3
+      containers:
+        main:
+          image:
+            repository: zoriya/kyoo_autosync
+            tag: "4.4.0"
+            pullPolicy: IfNotPresent
+          env:
+            - name: RABBITMQ_HOST
+              value: kyoo-rabbitmq
+            - name: RABBITMQ_DEFAULT_USER
+              value: kyoo
+            - name: RABBITMQ_DEFAULT_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-rabbitmq-secret
+                  key: password
+          resources:
+            limits:
+              cpu: 100m
+              memory: 512Mi
+            requests:
+              cpu: 10m
+              memory: 128Mi
+    back:
+      type: deployment
+      replicas: 1
+      strategy: Recreate
+      revisionHistoryLimit: 3
+      containers:
+        main:
+          image:
+            repository: zoriya/kyoo_back
+            tag: "4.4.0"
+            pullPolicy: IfNotPresent
+          env:
+            - name: REQUIRE_ACCOUNT_VERIFICATION
+              value: "false"
+            - name: UNLOGGED_PERMISSIONS
+              value: overall.read
+            - name: DEFAULT_PERMISSIONS
+              value: overall.read,overall.play
+            - name: AUTHENTICATION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-key-secret
+                  key: key
+            - name: KYOO_APIKEYS
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-key-secret
+                  key: kyoo
+            - name: PUBLIC_URL
+              value: https://kyoo.alexlebens.net
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-postgresql-16-cluster-app
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-postgresql-16-cluster-app
+                  key: password
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-postgresql-16-cluster-app
+                  key: dbname
+            - name: POSTGRES_SERVER
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-postgresql-16-cluster-app
+                  key: host
+            - name: POSTGRES_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-postgresql-16-cluster-app
+                  key: port
+            - name: OIDC_SERVICE_NAME
+              value: Authentik
+            - name: OIDC_SERVICE_LOGO
+              value: https://avatars.githubusercontent.com/u/82976448?s=200&v=4
+            - name: OIDC_SERVICE_AUTHORIZATION
+              value: https://authentik.alexlebens.net/application/o/authorize/
+            - name: OIDC_SERVICE_TOKEN
+              value: https://authentik.alexlebens.net/application/o/token/
+            - name: OIDC_SERVICE_PROFILE
+              value: https://authentik.alexlebens.net/application/o/userinfo/
+            - name: OIDC_SERVICE_SCOPE
+              value: "openid profile email"
+            - name: OIDC_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-oidc-secret
+                  key: client
+            - name: OIDC_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-oidc-secret
+                  key: secret
+            - name: MEILI_HOST
+              value: http://kyoo-meilisearch.kyoo:7700
+            - name: MEILI_MASTER_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-meilisearch-master-key-secret
+                  key: MEILI_MASTER_KEY
+            - name: RABBITMQ_HOST
+              value: kyoo-rabbitmq
+            - name: RABBITMQ_DEFAULT_USER
+              value: kyoo
+            - name: RABBITMQ_DEFAULT_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-rabbitmq-secret
+                  key: password
+          probes:
+            liveness:
+              enabled: true
+              custom: true
+              spec:
+                path: /health
+                initialDelaySeconds: 20
+                periodSeconds: 10
+                timeoutSeconds: 5
+                successThreshold: 1
+                failureThreshold: 3
+            readiness:
+              enabled: true
+              custom: true
+              spec:
+                path: /health
+                initialDelaySeconds: 5
+                periodSeconds: 10
+                timeoutSeconds: 1
+                successThreshold: 1
+                failureThreshold: 3
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 10m
+              memory: 256Mi
+    front:
+      type: deployment
+      replicas: 1
+      strategy: Recreate
+      revisionHistoryLimit: 3
+      containers:
+        main:
+          image:
+            repository: zoriya/kyoo_front
+            tag: "4.4.0"
+            pullPolicy: IfNotPresent
+          env:
+            - name: KYOO_URL
+              value: http://kyoo-back.kyoo:5000
+            - name: KYOO_APIKEYS
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-key-secret
+                  key: kyoo              
+          probes:
+            liveness:
+              enabled: true
+              custom: true
+              spec:
+                path: /
+                initialDelaySeconds: 20
+                periodSeconds: 10
+                timeoutSeconds: 5
+                successThreshold: 1
+                failureThreshold: 3
+            readiness:
+              enabled: true
+              custom: true
+              spec:
+                path: /
+                initialDelaySeconds: 5
+                periodSeconds: 10
+                timeoutSeconds: 1
+                successThreshold: 1
+                failureThreshold: 3
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 10m
+              memory: 256Mi
+    matcher:
+      type: deployment
+      replicas: 1
+      strategy: Recreate
+      revisionHistoryLimit: 3
+      containers:
+        main:
+          image:
+            repository: zoriya/kyoo_scanner
+            tag: "4.4.0"
+            pullPolicy: IfNotPresent
+          env:
+            - name: KYOO_URL
+              value: http://kyoo-back.kyoo:5000
+            - name: KYOO_APIKEYS
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-key-secret
+                  key: kyoo              
+            - name: LIBRARY_LANGUAGES
+              value: en
+            - name: RABBITMQ_HOST
+              value: kyoo-rabbitmq
+            - name: RABBITMQ_DEFAULT_USER
+              value: kyoo
+            - name: RABBITMQ_DEFAULT_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-rabbitmq-secret
+                  key: password
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 10m
+              memory: 256Mi
+    migrations:
+      type: deployment
+      replicas: 1
+      strategy: Recreate
+      revisionHistoryLimit: 3
+      containers:
+        main:
+          image:
+            repository: zoriya/kyoo_migrations
+            tag: "4.4.0"
+            pullPolicy: IfNotPresent
+          env:
+            - name: REQUIRE_ACCOUNT_VERIFICATION
+              value: "false"
+            - name: UNLOGGED_PERMISSIONS
+              value: overall.read
+            - name: DEFAULT_PERMISSIONS
+              value: overall.read,overall.play
+            - name: AUTHENTICATION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-key-secret
+                  key: key
+            - name: KYOO_APIKEYS
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-key-secret
+                  key: kyoo
+            - name: PUBLIC_URL
+              value: https://kyoo.alexlebens.net
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-postgresql-16-cluster-app
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-postgresql-16-cluster-app
+                  key: password
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-postgresql-16-cluster-app
+                  key: dbname
+            - name: POSTGRES_SERVER
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-postgresql-16-cluster-app
+                  key: host
+            - name: POSTGRES_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-postgresql-16-cluster-app
+                  key: port
+            - name: OIDC_SERVICE_NAME
+              value: Authentik
+            - name: OIDC_SERVICE_LOGO
+              value: https://avatars.githubusercontent.com/u/82976448?s=200&v=4
+            - name: OIDC_SERVICE_AUTHORIZATION
+              value: https://authentik.alexlebens.net/application/o/authorize/
+            - name: OIDC_SERVICE_TOKEN
+              value: https://authentik.alexlebens.net/application/o/token/
+            - name: OIDC_SERVICE_PROFILE
+              value: https://authentik.alexlebens.net/application/o/userinfo/
+            - name: OIDC_SERVICE_SCOPE
+              value: "openid profile email"
+            - name: OIDC_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-oidc-secret
+                  key: client
+            - name: OIDC_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-oidc-secret
+                  key: secret
+            - name: MEILI_HOST
+              value: http://kyoo-meilisearch.kyoo:7700
+            - name: MEILI_MASTER_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-meilisearch-master-key-secret
+                  key: MEILI_MASTER_KEY
+            - name: RABBITMQ_HOST
+              value: kyoo-rabbitmq
+            - name: RABBITMQ_DEFAULT_USER
+              value: kyoo
+            - name: RABBITMQ_DEFAULT_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-rabbitmq-secret
+                  key: password
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 10m
+              memory: 256Mi
+    scanner:
+      type: deployment
+      replicas: 1
+      strategy: Recreate
+      revisionHistoryLimit: 3
+      containers:
+        main:
+          image:
+            repository: zoriya/kyoo_scanner
+            tag: "4.4.0"
+            pullPolicy: IfNotPresent
+          env:
+            - name: KYOO_URL
+              value: http://kyoo-back.kyoo:5000
+            - name: KYOO_APIKEYS
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-key-secret
+                  key: kyoo              
+            - name: LIBRARY_LANGUAGES
+              value: en
+            - name: SCANNER_LIBRARY_ROOT
+              value: /mnt/store
+            - name: RABBITMQ_HOST
+              value: kyoo-rabbitmq
+            - name: RABBITMQ_DEFAULT_USER
+              value: kyoo
+            - name: RABBITMQ_DEFAULT_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-rabbitmq-secret
+                  key: password
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 10m
+              memory: 256Mi
+    transcoder:
+      type: deployment
+      replicas: 1
+      strategy: Recreate
+      revisionHistoryLimit: 3
+      containers:
+        main:
+          image:
+            repository: zoriya/kyoo_transcoder
+            tag: "4.4.0"
+            pullPolicy: IfNotPresent
+          env:
+            - name: GOCODER_HWACCEL
+              value: qsv
+            - name: GOCODER_QSV_RENDERER
+              value: /dev/dri/renderD128
+            - name: GOCODER_PRESET
+              value: fast
+            - name: GOCODER_METADATA_ROOT
+              value: /metadata
+            - name: GOCODER_CACHE_ROOT
+              value: /cache
+          resources:
+            limits:
+              cpu: 5000m
+              memory: 2Gi
+              gpu.intel.com/i915: 1
+            requests:
+              cpu: 100m
+              memory: 512Mi
+              gpu.intel.com/i915: 1
+  serviceAccount:
+    create: true
+  service:
+    back:
+      nameOverride: kyoo-back
+      controller: back
+      ports:
+        http:
+          port: 5000
+          targetPort: 5000
+          protocol: HTTP
+    front:
+      nameOverride: kyoo-front
+      controller: front
+      ports:
+        http:
+          port: 8901
+          targetPort: 8901
+          protocol: HTTP
+    transcoder:
+      nameOverride: transcoder
+      controller: transcoder
+      ports:
+        http:
+          port: 7666
+          targetPort: 7666
+          protocol: HTTP
+  ingress:
+    main:
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.tls: "true"
+        cert-manager.io/cluster-issuer: letsencrypt-issuer
+      className: traefik
+      hosts:
+        - host: kyoo.alexlebens.net
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: kyoo-front
+                port: 5299
+            - path: /api
+              pathType: Prefix
+              service:
+                name: kyoo-back
+                port: 5299
+      tls:
+        - secretName: kyoo-secret-tls
+          hosts:
+            - kyoo.alexlebens.net
+  persistence:
+    back:
+      storageClass: ceph-block
+      accessMode: ReadWriteOnce
+      size: 10Gi
+      retain: true
+      advancedMounts:
+        back:
+          main:
+            - path: /kyoo
+              readOnly: false
+    metadata:
+      storageClass: ceph-block
+      accessMode: ReadWriteOnce
+      size: 10Gi
+      retain: true
+      advancedMounts:
+        transcoder:
+          main:
+            - path: /metadata
+              readOnly: false
+    cache:
+      type: emptyDir
+      advancedMounts:
+        transcoder:
+          main:
+            - path: /cache
+              readOnly: false
+    library:
+      existingClaim: kyoo-nfs-storage
+      advancedMounts:
+        scanner:
+          main:
+            - path: /mnt/store
+              readOnly: false
+        transcoder:
+          main:
+            - path: /video
+              readOnly: false
+rabbitmq:
+  auth:
+    username: kyoo
+    existingPasswordSecret: kyoo-rabbitmq-secret
+    existingSecretPasswordKey: password
+    existingErlangSecret: kyoo-rabbitmq-secret
+    existingSecretErlangKey: erlang
+  extraConfiguration: |-
+    default_vhost = '/'
+    default_permissions.configure = .*
+    default_permissions.read = .*
+    default_permissions.write = .*
+meilisearch:
+  environment:
+    MEILI_NO_ANALYTICS: true
+    MEILI_ENV: production
+  auth:
+    existingMasterKeySecret: kyoo-meilisearch-master-key-secret
+  service:
+    type: ClusterIP
+    port: 7700
+  persistence:
+    enabled: true
+    storageClass: ceph-block
+    size: 10Gi
+  resources:
+    limits:
+      cpu: 200m
+      memory: 512Mi
+    requests:
+      cpu: 10m
+      memory: 128Mi
+  serviceMonitor:
+    enabled: true
+postgres-16-cluster:
+  mode: standalone
+  kubernetesClusterName: cl01tl
+  cluster:
+    walStorage:
+      storageClass: local-path
+    storage:
+      storageClass: local-path
+    monitoring:
+      enabled: true
+  backup:
+    enabled: true
+    endpointURL: https://nyc3.digitaloceanspaces.com
+    endpointBucket: alexlebens-net
+    endpointCredentials: kyoo-postgresql-16-cluster-backup-secret
+    backupIndex: 1
+    retentionPolicy: "14d"
