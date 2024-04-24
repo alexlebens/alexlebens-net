@@ -64,6 +64,10 @@ rocketchat:
     enabled: true
   serviceMonitor:
     enabled: true
+  livenessProbe:
+    enabled: false
+  readinessProbe:
+    enabled: false
 mongodb:
   architecture: replicaset
   auth:
