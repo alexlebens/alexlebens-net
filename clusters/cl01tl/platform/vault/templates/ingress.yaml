@@ -13,7 +13,7 @@ spec:
   ingressClassName: tailscale
   tls:
     - hosts:
-        - vault
+        - vault-cl01tl
   rules:
     - http:
         paths:
@@ -41,7 +41,7 @@ spec:
   ingressClassName: tailscale
   tls:
     - hosts:
-        - vault-api  
+        - vault-api-cl01tl
   rules:
     - http:
         paths:
