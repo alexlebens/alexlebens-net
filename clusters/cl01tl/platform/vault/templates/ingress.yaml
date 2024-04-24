@@ -1,10 +1,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: tailscale-cl01tl-vault
+  name: tailscale-cl01tl-vault-active
   namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: tailscale-cl01tl-vault
+    app.kubernetes.io/name: tailscale-cl01tl-vault-active
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/version: {{ .Chart.AppVersion }}
     app.kubernetes.io/component: tailscale
@@ -18,6 +18,31 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: vault
+                name: vault-active
                 port:
-                  number: 8200
+                  name: http
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tailscale-cl01tl-vault-internal
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: tailscale-cl01tl-vault-internal
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
+    app.kubernetes.io/component: tailscale
+    app.kubernetes.io/part-of: {{ .Release.Name }}
+spec:
+  ingressClassName: tailscale
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vault-internal
+                port:
+                  name: http
