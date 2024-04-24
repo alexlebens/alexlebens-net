@@ -16,11 +16,4 @@ data:
     # #include <everything>
     source /opt/bitnami/scripts/libmongodb.sh
 
-    main() {
-      local cmd="
-        db.getSiblingDB('rocketchat').grantRolesToUser('rocketchat',[{ role: 'clusterMonitor", db: 'rocketchat' }])
-        db.getSiblingDB('rocketchat').grantRolesToUser('rocketchat',[{ role: 'clusterMonitor', db: 'rocketchat' }])
-      "
-    }
-
-    main
+    mongodb_execute_print_output "$MONGODB_ROOT_USER" "$MONGODB_ROOT_PASSWORD" "admin" "" "" "--quiet" <<< "db.getSiblingDB('rocketchat').grantRolesToUser('rocketchat',[{ role: 'clusterMonitor", db: 'rocketchat' }])"
