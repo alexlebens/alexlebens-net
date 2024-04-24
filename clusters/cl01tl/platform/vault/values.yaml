@@ -65,11 +65,9 @@ vault:
     service:
       enabled: true
       active:
-        enabled: true
+        enabled: false
       standby:
-        enabled: true
-      instanceSelector:
-        enabled: true
+        enabled: false
       type: ClusterIP
       port: 8200
       targetPort: 8200
