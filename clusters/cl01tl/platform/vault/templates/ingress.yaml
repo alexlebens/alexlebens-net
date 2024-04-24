@@ -12,8 +12,7 @@ metadata:
 spec:
   ingressClassName: tailscale
   rules:
-    - host: vault
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix
@@ -21,4 +20,4 @@ spec:
               service:
                 name: vault
                 port:
-                  name: http
+                  number: 8200
