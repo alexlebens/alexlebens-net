@@ -33,7 +33,11 @@ rocketchat:
           key: ADMIN_EMAIL
   mongodb:
     enabled: false
+    service:
+      ports:
+        mongodb: 60000
     auth:
+      rootPassword: "notapassword"
       passwords:
         - "notapassword"
   persistence:
