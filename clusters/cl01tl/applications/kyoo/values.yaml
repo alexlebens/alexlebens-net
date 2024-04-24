@@ -365,7 +365,6 @@ app-template:
     create: true
   service:
     back:
-      nameOverride: kyoo-back
       controller: back
       ports:
         http:
@@ -373,7 +372,6 @@ app-template:
           targetPort: 5000
           protocol: HTTP
     front:
-      nameOverride: kyoo-front
       controller: front
       ports:
         http:
@@ -381,7 +379,6 @@ app-template:
           targetPort: 8901
           protocol: HTTP
     transcoder:
-      nameOverride: transcoder
       controller: transcoder
       ports:
         http:
