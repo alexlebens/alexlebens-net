@@ -65,7 +65,7 @@ vault:
     service:
       enabled: true
       active:
-        enabled: false
+        enabled: true
       standby:
         enabled: false
       type: ClusterIP
