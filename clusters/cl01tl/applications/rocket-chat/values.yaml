@@ -74,7 +74,6 @@ mongodb:
     databases:
       - rocketchat
     existingSecret: rocket-chat-mongodb-passwords
-  initdbScriptsConfigMap: rocketchat-mongodb-fix-clustermonitor-role-configmap
   replicaCount: 1
   pdb:
     minAvailable: 0
