@@ -12,7 +12,7 @@ metadata:
 spec:
   ingressClassName: tailscale
   rules:
-    - host: vault-internal.alexlebens.net
+    - host: vault-internal
       http:
         paths:
           - path: /
