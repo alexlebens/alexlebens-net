@@ -56,6 +56,11 @@ app-template:
                 secretKeyRef:
                   name: kyoo-key-secret
                   key: kyoo
+            - name: THEMOVIEDB_APIKEY
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-key-secret
+                  key: tmdb
             - name: PUBLIC_URL
               value: https://kyoo.alexlebens.net
             - name: POSTGRES_USER
@@ -146,7 +151,7 @@ app-template:
               valueFrom:
                 secretKeyRef:
                   name: kyoo-key-secret
-                  key: kyoo          
+                  key: kyoo
           resources:
             limits:
               cpu: 500m
@@ -173,6 +178,11 @@ app-template:
                 secretKeyRef:
                   name: kyoo-key-secret
                   key: kyoo
+            - name: THEMOVIEDB_APIKEY
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-key-secret
+                  key: tmdb
             - name: LIBRARY_LANGUAGES
               value: en
             - name: RABBITMQ_HOST
@@ -218,7 +228,12 @@ app-template:
               valueFrom:
                 secretKeyRef:
                   name: kyoo-key-secret
-                  key: kyoo                  
+                  key: kyoo
+            - name: THEMOVIEDB_APIKEY
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-key-secret
+                  key: tmdb
             - name: PUBLIC_URL
               value: https://kyoo.alexlebens.net
             - name: POSTGRES_USER
@@ -309,7 +324,12 @@ app-template:
               valueFrom:
                 secretKeyRef:
                   name: kyoo-key-secret
-                  key: kyoo              
+                  key: kyoo
+            - name: THEMOVIEDB_APIKEY
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-key-secret
+                  key: tmdb
             - name: LIBRARY_LANGUAGES
               value: en
             - name: SCANNER_LIBRARY_ROOT
