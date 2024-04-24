@@ -419,12 +419,12 @@ app-template:
               pathType: Prefix
               service:
                 name: kyoo-front
-                port: 5299
+                port: 8901
             - path: /api
               pathType: Prefix
               service:
                 name: kyoo-back
-                port: 5299
+                port: 5000
       tls:
         - secretName: kyoo-secret-tls
           hosts:
