@@ -65,7 +65,7 @@ rocketchat:
   serviceMonitor:
     enabled: true
 mongodb:
-  architecture: standalone
+  architecture: replicaset
   auth:
     enabled: true
     rootUser: root
