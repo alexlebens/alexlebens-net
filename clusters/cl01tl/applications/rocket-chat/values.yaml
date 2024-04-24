@@ -1,5 +1,5 @@
 rocketchat:
-  host: https://rocketchat.alexlebens.net
+  host: rocketchat.alexlebens.net
   extraEnv:
     - name: MONGO_URL
       valueFrom:
