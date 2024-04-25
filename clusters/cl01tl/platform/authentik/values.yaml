@@ -50,10 +50,12 @@ authentik:
       ingressClassName: traefik
       hosts:
         - auth.alexlebens.net
+        - authentik.alexlebens.net          
       tls:
         - secretName: authentik-secret-tls
           hosts:
             - auth.alexlebens.net
+            - authentik.alexlebens.net            
   worker:
     name: worker
     replicas: 1
