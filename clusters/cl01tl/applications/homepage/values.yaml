@@ -235,7 +235,7 @@ homepage:
           - Authentik:
               icon: authentik.png
               description: Identity management and provider
-              href: https://authentik.alexlebens.net
+              href: https://auth.alexlebens.net
               siteMonitor: http://authentik-server.authentik:80
               statusStyle: dot
           - Authentik (.dev):
