@@ -10,7 +10,7 @@ homepage:
       - secretRef:
           name: homepage-back-key-secret
   ingressRoute:
-    host: homepage.alexlebens.net
+    host: home.alexlebens.net
     authentik:
       outpost: authentik-outpost-proxy
   config:
