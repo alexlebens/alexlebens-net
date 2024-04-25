@@ -12,5 +12,8 @@ dependencies:
   - name: postgres-cluster
     alias: postgres-16-cluster
     version: 2.4.2
-    repository: http://alexlebens.github.io/helm-charts    
-appVersion: "2024.2.2"
+    repository: http://alexlebens.github.io/helm-charts
+  - name: cloudflared
+    version: 1.2.0
+    repository: https://charts.kubito.dev
+appVersion: "2024.2.3"

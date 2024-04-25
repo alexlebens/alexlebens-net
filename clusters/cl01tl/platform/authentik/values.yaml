@@ -85,3 +85,7 @@ postgres-16-cluster:
     endpointCredentials: authentik-postgresql-16-cluster-backup-secret
     backupIndex: 1
     retentionPolicy: "14d"
+cloudflared:
+  managed:
+    enabled: true
+    existingSecret: authentik-cloudflared-secret
