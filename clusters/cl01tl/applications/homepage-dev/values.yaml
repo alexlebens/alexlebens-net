@@ -24,9 +24,9 @@ app-template:
     config:
       enabled: true
       data:
-        docker.yaml: {}
-        kubernetes.yaml: {}
-        settings.yaml:
+        docker.yaml: ""
+        kubernetes.yaml: ""
+        settings.yaml: |
           favicon: https://alexlebens-dev.nyc3.digitaloceanspaces.com/cl02do/assets/icon_white.png
           headerStyle: clean
           hideVersion: true
@@ -35,7 +35,7 @@ app-template:
             image: https://alexlebens-dev.nyc3.digitaloceanspaces.com/cl02do/assets/background.jpg
           theme: dark
           disableCollapse: true
-        widgets.yaml:
+        widgets.yaml: |
           - logo:
               icon: https://alexlebens-dev.nyc3.digitaloceanspaces.com/cl02do/assets/icon_white.png
           - datetime:
@@ -50,7 +50,7 @@ app-template:
               longitude: 104.99
               units: metric
               cache: 5
-        services.yaml:
+        services.yaml: |
           - Media:
               - Plex:
                   icon: plex.png
@@ -143,7 +143,7 @@ app-template:
                   href: https://rss.alexlebens.net
                   siteMonitor: http://freshrss.freshrss:80
                   statusStyle: dot
-        bookmarks.yaml: {}
+        bookmarks.yaml: ""
   service:
     http:
       controller: homepage
@@ -152,6 +152,38 @@ app-template:
           port: 3000
           targetPort: 3000
           protocol: HTTP
+  persistence:
+    config:
+      enabled: true
+      type: configMap
+      name: homepage-dev-config
+      advancedMounts:
+        homepage:
+          homepage:
+            - path: /app/config/bookmarks.yaml
+              readOnly: true
+              mountPropagation: None
+              subPath: bookmarks.yaml
+            - path: /app/config/docker.yaml
+              readOnly: true
+              mountPropagation: None
+              subPath: docker.yaml
+            - path: /app/config/kubernetes.yaml
+              readOnly: true
+              mountPropagation: None
+              subPath: kubernetes.yaml
+            - path: /app/config/services.yaml
+              readOnly: true
+              mountPropagation: None
+              subPath: services.yaml
+            - path: /app/config/settings.yaml
+              readOnly: true
+              mountPropagation: None
+              subPath: settings.yaml
+            - path: /app/config/widgets.yaml
+              readOnly: true
+              mountPropagation: None
+              subPath: widgets.yaml
 cloudflared:
   managed:
     enabled: true
