@@ -1,12 +1,14 @@
-app-template:
+homepage:
+  global:
+    nameOverride: homepage
   controllers:
-    homepage:
+    main:
       type: deployment
       annotations:
         reloader.stakater.com/auto: "true"
       strategy: Recreate
       containers:
-        homepage:
+        main:
           image:
             repository: ghcr.io/gethomepage/homepage
             tag: v0.8.12
@@ -146,7 +148,7 @@ app-template:
         bookmarks.yaml: ""
   service:
     http:
-      controller: homepage
+      controller: main
       ports:
         http:
           port: 3000
@@ -185,6 +187,34 @@ app-template:
               mountPropagation: None
               subPath: widgets.yaml
 cloudflared:
-  managed:
-    enabled: true
-    existingSecret: homepage-dev-cloudflared-secret
+  global:
+    nameOverride: cloudflared
+  controllers:
+    main:
+      type: deployment
+      strategy: Recreate
+      containers:
+        main:
+          image:
+            repository: cloudflare/cloudflared
+            tag: "2024.4.1"
+            pullPolicy: IfNotPresent
+          args:
+            - tunnel
+            - --no-autoupdate
+            - run
+            - --token
+            - $(CF_MANAGED_TUNNEL_TOKEN)
+          env:
+            - name: CF_MANAGED_TUNNEL_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: homepage-dev-cloudflared-secret
+              key: cf-tunnel-token
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 10m
+              memory: 64Mi
