@@ -207,10 +207,10 @@ cloudflared:
             - $(CF_MANAGED_TUNNEL_TOKEN)
           env:
             - name: CF_MANAGED_TUNNEL_TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: homepage-dev-cloudflared-secret
-              key: cf-tunnel-token
+              valueFrom:
+                secretKeyRef:
+                  name: homepage-dev-cloudflared-secret
+                  key: cf-tunnel-token
           resources:
             limits:
               cpu: 100m
