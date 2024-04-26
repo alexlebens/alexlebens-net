@@ -1,6 +1,6 @@
 # alexlebens.net
 
-GitOps definied infrastrucutre for my home network cluster.
+GitOps definied infrastrucutre for the alexlebens.net domain.
 
 ## License
 
