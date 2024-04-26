@@ -362,9 +362,9 @@ homepage:
           - Cloudflare:
               - abbr: CF
                 href: https://dash.cloudflare.com/b76e303258b84076ee01fd0f515c0768
-          - Digital Ocean:
-              - abbr: DO
-                href: https://cloud.digitalocean.com/
+          - Amazon Web Services:
+              - abbr: AW
+                href: https://905634375381.signin.aws.amazon.com/console
           - Tailscale:
               - abbr: TS
                 href: https://login.tailscale.com/admin/machines
