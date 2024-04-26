@@ -86,6 +86,34 @@ postgres-16-cluster:
     backupIndex: 1
     retentionPolicy: "14d"
 cloudflared:
-  managed:
-    enabled: true
-    existingSecret: authentik-cloudflared-secret
+  global:
+    nameOverride: cloudflared
+  controllers:
+    main:
+      type: deployment
+      strategy: Recreate
+      containers:
+        main:
+          image:
+            repository: cloudflare/cloudflared
+            tag: "2024.4.1"
+            pullPolicy: IfNotPresent
+          args:
+            - tunnel
+            - --no-autoupdate
+            - run
+            - --token
+            - $(CF_MANAGED_TUNNEL_TOKEN)
+          env:
+            - name: CF_MANAGED_TUNNEL_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: authentik-cloudflared-secret
+                  key: cf-tunnel-token
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 10m
+              memory: 64Mi
