@@ -160,8 +160,8 @@ homepage:
       type: configMap
       name: homepage-dev-config
       advancedMounts:
-        homepage:
-          homepage:
+        main:
+          main:
             - path: /app/config/bookmarks.yaml
               readOnly: true
               mountPropagation: None
