@@ -37,6 +37,11 @@ homepage:
             image: https://alexlebens-dev.nyc3.digitaloceanspaces.com/cl02do/assets/background.jpg
           theme: dark
           disableCollapse: true
+          layout:
+            - Media:
+                icon: mdi-multimedia-#ffffff
+            - Applications:
+                icon: mdi-application-#ffffff          
         widgets.yaml: |
           - logo:
               icon: https://alexlebens-dev.nyc3.digitaloceanspaces.com/cl02do/assets/icon_white.png
