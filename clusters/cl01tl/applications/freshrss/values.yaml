@@ -35,7 +35,7 @@ postgres-16-cluster:
       enabled: true
   backup:
     enabled: true
-    endpointURL: https://s3-website.us-east-2.amazonaws.com
+    endpointURL: https://s3.us-east-2.amazonaws.com
     endpointBucket: alexlebens-postgresql-backups
     endpointCredentials: freshrss-postgresql-16-cluster-backup-secret
     backupIndex: 1
