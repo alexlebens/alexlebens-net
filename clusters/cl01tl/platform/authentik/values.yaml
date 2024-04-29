@@ -50,12 +50,12 @@ authentik:
       ingressClassName: traefik
       hosts:
         - auth.alexlebens.net
-        - authentik.alexlebens.net          
+        - authentik.alexlebens.net
       tls:
         - secretName: authentik-secret-tls
           hosts:
             - auth.alexlebens.net
-            - authentik.alexlebens.net            
+            - authentik.alexlebens.net
   worker:
     name: worker
     replicas: 1
@@ -66,25 +66,6 @@ authentik:
     enabled: false
   redis:
     enabled: true
-postgres-16-cluster:
-  mode: standalone
-  kubernetesClusterName: cl01tl
-  cluster:
-    walStorage:
-      storageClass: local-path
-    storage:
-      storageClass: local-path
-    monitoring:
-      enabled: true
-      prometheusRule:
-        enabled: false
-  backup:
-    enabled: true
-    endpointURL: https://nyc3.digitaloceanspaces.com
-    endpointBucket: alexlebens-net
-    endpointCredentials: authentik-postgresql-16-cluster-backup-secret
-    backupIndex: 1
-    retentionPolicy: "14d"
 cloudflared:
   global:
     nameOverride: cloudflared
@@ -117,3 +98,22 @@ cloudflared:
             requests:
               cpu: 10m
               memory: 64Mi
+postgres-16-cluster:
+  mode: standalone
+  kubernetesClusterName: cl01tl
+  cluster:
+    walStorage:
+      storageClass: local-path
+    storage:
+      storageClass: local-path
+    monitoring:
+      enabled: true
+      prometheusRule:
+        enabled: false
+  backup:
+    enabled: true
+    endpointURL: https://b76e303258b84076ee01fd0f515c0768.r2.cloudflarestorage.com
+    endpointBucket: authentik-postgresql-0b0e9c89ab76fc6c52899bd6bf26a3fd
+    endpointCredentials: authentik-postgresql-16-cluster-backup-secret
+    backupIndex: 1
+    retentionPolicy: 14d
