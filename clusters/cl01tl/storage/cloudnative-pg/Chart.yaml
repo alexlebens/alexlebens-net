@@ -6,6 +6,6 @@ sources:
   - https://github.com/cloudnative-pg/charts
 dependencies:
   - name: cloudnative-pg
-    version: 0.21.0
+    version: 0.21.1
     repository: https://cloudnative-pg.io/charts/
 appVersion: v1.22.1
