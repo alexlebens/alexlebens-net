@@ -35,7 +35,7 @@ postgres-16-cluster:
       enabled: true
   backup:
     enabled: true
-    endpointURL: https://b76e303258b84076ee01fd0f515c0768.r2.cloudflarestorage.com/postgresql-backups-1f8c99398895c6073042c6df59200e34
+    endpointURL: https://b76e303258b84076ee01fd0f515c0768.r2.cloudflarestorage.com
     endpointBucket: postgresql-backups-1f8c99398895c6073042c6df59200e34
     endpointCredentials: freshrss-postgresql-16-cluster-backup-secret
     backupIndex: 1
