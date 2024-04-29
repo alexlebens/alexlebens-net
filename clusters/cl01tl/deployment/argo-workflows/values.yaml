@@ -115,8 +115,8 @@ postgres-16-cluster:
         enabled: true
   backup:
     enabled: true
-    endpointURL: https://nyc3.digitaloceanspaces.com
-    endpointBucket: alexlebens-net
+    endpointURL: https://b76e303258b84076ee01fd0f515c0768.r2.cloudflarestorage.com
+    endpointBucket: argo-workflows-postgresql-9a73a15fe354b50e2430644b473e327a
     endpointCredentials: argo-workflows-postgresql-16-cluster-backup-secret
     backupIndex: 1
-    retentionPolicy: "14d"
+    retentionPolicy: 14d
