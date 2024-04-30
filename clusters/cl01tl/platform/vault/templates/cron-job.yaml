@@ -2,8 +2,17 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: vault-snapshot-cronjob
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: vault-snapshot-cronjob
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
+    app.kubernetes.io/component: storage
+    app.kubernetes.io/part-of: {{ .Release.Name }}  
 spec:
   schedule: "@every 24h"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3  
   jobTemplate:
     spec:
       template:
