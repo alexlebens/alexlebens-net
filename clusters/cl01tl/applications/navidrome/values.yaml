@@ -1,7 +1,7 @@
 navidrome:
   image:
     repository: deluan/navidrome
-    tag: "0.51.1"
+    tag: "0.52.0"
   ingress:
     main:
       enabled: true
