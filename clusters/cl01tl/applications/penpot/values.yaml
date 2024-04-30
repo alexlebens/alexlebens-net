@@ -62,23 +62,6 @@ penpot:
       secretKeys:
         oidcClientIDKey: client
         oidcClientSecretKey: secret
-postgres-16-cluster:
-  mode: standalone
-  kubernetesClusterName: cl01tl
-  cluster:
-    walStorage:
-      storageClass: local-path
-    storage:
-      storageClass: local-path
-    monitoring:
-      enabled: true
-  backup:
-    enabled: true
-    endpointURL: https://nyc3.digitaloceanspaces.com
-    endpointBucket: alexlebens-net
-    endpointCredentials: penpot-postgresql-16-cluster-backup-secret
-    backupIndex: 1
-    retentionPolicy: "14d"
 redis:
   architecture: standalone
   auth:
@@ -133,3 +116,20 @@ minio:
       host: minio-penpot.alexlebens.net
       path: /
       pathType: Prefix
+postgres-16-cluster:
+  mode: standalone
+  kubernetesClusterName: cl01tl
+  cluster:
+    walStorage:
+      storageClass: local-path
+    storage:
+      storageClass: local-path
+    monitoring:
+      enabled: true
+  backup:
+    enabled: true
+    endpointURL: https://b76e303258b84076ee01fd0f515c0768.r2.cloudflarestorage.com
+    endpointBucket: penpot-postgresql-4d592ad4dd57748f64bce6e869bef983
+    endpointCredentials: penpot-postgresql-16-cluster-backup-secret
+    backupIndex: 1
+    retentionPolicy: 14d
