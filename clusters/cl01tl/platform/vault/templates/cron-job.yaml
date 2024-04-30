@@ -19,7 +19,7 @@ spec:
                 - -ec
                 - |
                   apk add --no-cache jq
-                  export VAULT_TOKEN=$(vault write auth/approle/login role_id=$VAULT_APPROLE_ROLE_ID secret_id=$VAULT_APPROLE_SECRET_ID -format=json | /jq/jq -r .auth.client_token);
+                  export VAULT_TOKEN=$(vault write auth/approle/login role_id=$VAULT_APPROLE_ROLE_ID secret_id=$VAULT_APPROLE_SECRET_ID -format=json | jq -r .auth.client_token);
                   vault operator raft snapshot save /opt/backup/vault-raft-$(date +%s).snap;
                   cp /opt/backup/vault-raft-$(timestamp).snap /opt/backup/vault-raft.snap
               envFrom:
