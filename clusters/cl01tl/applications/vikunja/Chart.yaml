@@ -11,7 +11,7 @@ dependencies:
     repository: oci://kolaente.dev/vikunja
   - name: postgres-cluster
     alias: postgres-16-cluster
-    version: 2.4.2
+    version: 2.5.0
     repository: http://alexlebens.github.io/helm-charts
   - name: redis
     version: 19.1.3
