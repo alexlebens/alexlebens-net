@@ -168,7 +168,7 @@ app-template:
         main:
           image:
             repository: zoriya/kyoo_scanner
-            tag: "4.4.0"
+            tag: "4.5.0"
             pullPolicy: IfNotPresent
           env:
             - name: KYOO_URL
@@ -315,7 +315,7 @@ app-template:
         main:
           image:
             repository: zoriya/kyoo_scanner
-            tag: "4.4.0"
+            tag: "4.5.0"
             pullPolicy: IfNotPresent
           env:
             - name: KYOO_URL
