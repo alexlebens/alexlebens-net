@@ -5,7 +5,7 @@ argo-cd:
     cm:
       admin.enabled: true
       url: https://argocd.alexlebens.net
-      statusbadge.enabled: "true"
+      statusbadge.enabled: true
       dex.config: |
         connectors:
         - config:
