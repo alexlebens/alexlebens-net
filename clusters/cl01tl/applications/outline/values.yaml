@@ -54,23 +54,6 @@ outline:
         usernameClaim: email
         displayName: Authentik
         scopes: openid profile email
-postgres-16-cluster:
-  mode: standalone
-  kubernetesClusterName: cl01tl
-  cluster:
-    walStorage:
-      storageClass: local-path
-    storage:
-      storageClass: local-path
-    monitoring:
-      enabled: true
-  backup:
-    enabled: true
-    endpointURL: https://nyc3.digitaloceanspaces.com
-    endpointBucket: alexlebens-net
-    endpointCredentials: outline-postgresql-16-cluster-backup-secret
-    backupIndex: 1
-    retentionPolicy: "14d"
 minio:
   existingSecret:
     name: outline-minio-root-secret
@@ -121,3 +104,20 @@ minio:
       host: minio-outline.alexlebens.net
       path: /
       pathType: Prefix
+postgres-16-cluster:
+  mode: standalone
+  kubernetesClusterName: cl01tl
+  cluster:
+    walStorage:
+      storageClass: local-path
+    storage:
+      storageClass: local-path
+    monitoring:
+      enabled: true
+  backup:
+    enabled: true
+    endpointURL: https://b76e303258b84076ee01fd0f515c0768.r2.cloudflarestorage.com
+    endpointBucket: outline-postgresql-134e1274678c15f3e00e16d6690e0ee5
+    endpointCredentials: outline-postgresql-16-cluster-backup-secret
+    backupIndex: 1
+    retentionPolicy: 14d
