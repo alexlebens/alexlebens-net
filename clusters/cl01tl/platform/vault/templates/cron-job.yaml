@@ -27,11 +27,11 @@ spec:
               args:
                 - -ec
                 - |
-                  apk add --no-cache jq
+                  apk add --no-cache jq;
                   export VAULT_TOKEN=$(vault write auth/approle/login role_id=$VAULT_APPROLE_ROLE_ID secret_id=$VAULT_APPROLE_SECRET_ID -format=json | jq -r .auth.client_token);
-                  export timestamp=$(date +%s)
-                  vault operator raft snapshot save /opt/backup/vault-raft-${timestamp}.snap;
-                  cp /opt/backup/vault-raft-${timestamp}.snap /opt/backup/vault-raft.snap
+                  vault operator raft snapshot save /opt/backup/vault-snapshot-latest.snap;
+                  cp /opt/backup/vault-snapshot-latest.snap /opt/backup/vault-snapshot-$(date +"%Y%m%d-%H:%M").snap;
+                  cp /opt/backup/vault-snapshot-latest.snap /opt/backup/vault-snapshot-s3.snap;
               envFrom:
                 - secretRef:
                     name: vault-snapshot-agent-token
@@ -49,8 +49,9 @@ spec:
               args:
                 - -ec
                 - |
-                  until [ -f /opt/backup/vault-raft.snap ]; do sleep 5; done;
-                  aws s3 cp /opt/backup/vault-raft.snap s3://vault-snapshots-5735ba29f1c3752960462ed3c0058559/cl01tl/vault_raft_$(date +"%Y%m%d_%H%M%S").snap;
+                  until [ -f /opt/backup/vault-snapshot-s3.snap ]; do sleep 5; done;
+                  aws s3 cp /opt/backup/vault-snapshot-s3.snap s3://vault-snapshots-5735ba29f1c3752960462ed3c0058559/cl01tl/vault-snapshot-$(date +"%Y%m%d-%H:%M").snap;
+                  rm /opt/backup/vault-snapshot-s3.snap;
               envFrom:
                 - secretRef:
                     name: vault-snapshot-s3
