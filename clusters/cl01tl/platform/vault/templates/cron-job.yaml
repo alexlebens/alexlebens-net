@@ -11,14 +11,14 @@ spec:
           restartPolicy: OnFailure        
           containers:
             - name: snapshot
-              image: vault:1.13.3
+              image: hashicorp/vault:1.16.2
               imagePullPolicy: IfNotPresent
               command:
-                - /bin/sh
+                - /bin/ash
               args:
                 - -ec
                 - |
-                  curl -sS https://webinstall.dev/jq | sh
+                  apk add --no-cache jq
                   export VAULT_TOKEN=$(vault write auth/approle/login role_id=$VAULT_APPROLE_ROLE_ID secret_id=$VAULT_APPROLE_SECRET_ID -format=json | /jq/jq -r .auth.client_token);
                   vault operator raft snapshot save /opt/backup/vault-raft-$(date +%s).snap;
                   cp /opt/backup/vault-raft-$(timestamp).snap /opt/backup/vault-raft.snap
