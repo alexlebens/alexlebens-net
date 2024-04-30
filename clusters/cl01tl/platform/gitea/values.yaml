@@ -90,8 +90,8 @@ postgres-16-cluster:
         enabled: false
   backup:
     enabled: true
-    endpointURL: https://nyc3.digitaloceanspaces.com
-    endpointBucket: alexlebens-net
+    endpointURL: https://b76e303258b84076ee01fd0f515c0768.r2.cloudflarestorage.com
+    endpointBucket: gitea-postgresql-c0d85da89fc82f9201ec9b2e201ff011
     endpointCredentials: gitea-postgresql-16-cluster-backup-secret
     backupIndex: 1
-    retentionPolicy: "14d"
+    retentionPolicy: 14d
