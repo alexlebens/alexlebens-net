@@ -27,7 +27,7 @@ spec:
                     name: vault-snapshot-agent-token
               env:
                 - name: VAULT_ADDR
-                  valut: http://vault-active.vault.svc.cluster.local:8200
+                  value: http://vault-active.vault.svc.cluster.local:8200
               volumeMounts:
                 - mountPath: /opt/backup
                   name: backup
