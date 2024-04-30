@@ -1,0 +1,53 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: vault-snapshot-cronjob
+spec:
+  schedule: "@every 24h"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure        
+          containers:
+            - name: snapshot
+              image: vault:1.13.3
+              imagePullPolicy: IfNotPresent
+              command:
+                - /bin/sh
+              args:
+                - -ec
+                - |
+                  curl -sS https://webinstall.dev/jq | sh
+                  export VAULT_TOKEN=$(vault write auth/approle/login role_id=$VAULT_APPROLE_ROLE_ID secret_id=$VAULT_APPROLE_SECRET_ID -format=json | /jq/jq -r .auth.client_token);
+                  vault operator raft snapshot save /opt/backup/vault-raft-$(date +%s).snap;
+                  cp /opt/backup/vault-raft-$(timestamp).snap /opt/backup/vault-raft.snap
+              envFrom:
+                - secretRef:
+                    name: vault-snapshot-agent-token
+              env:
+                - name: VAULT_ADDR
+                  valut: http://vault-active.vault.svc.cluster.local:8200
+              volumeMounts:
+                - mountPath: /opt/backup
+                  name: backup
+            - name: upload
+              image: amazon/aws-cli:2.15.42
+              imagePullPolicy: IfNotPresent
+              command:
+                - /bin/sh
+              args:
+                - -ec
+                - |
+                  until [ -f /opt/backup/vault-raft.snap ]; do sleep 5; done;
+                  aws s3 cp /opt/backup/vault-raft.snap s3://vault-snapshots-5735ba29f1c3752960462ed3c0058559/cl01tl/vault_raft_$(date +"%Y%m%d_%H%M%S").snap;
+              envFrom:
+                - secretRef:
+                    name: vault-snapshot-s3
+              volumeMounts:
+                - mountPath: /opt/backup
+                  name: backup
+          volumes:
+            - name: backup
+              persistentVolumeClaim:
+                claimName: vault-nfs-storage-backup                  
