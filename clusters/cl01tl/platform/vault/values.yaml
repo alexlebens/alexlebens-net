@@ -49,6 +49,14 @@ vault:
       port: 8200
     livenessProbe:
       enabled: false
+    volumes:
+      - name: vault-nfs-storage-backup
+        persistentVolumeClaim:
+          claimName: vault-nfs-storage-backup
+    volumeMounts:
+      - mountPath: /opt/backups/
+        name: vault-nfs-storage-backup
+        readOnly: false
     affinity: |
       podAntiAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
