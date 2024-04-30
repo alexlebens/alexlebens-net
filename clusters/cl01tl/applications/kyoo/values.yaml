@@ -37,7 +37,7 @@ app-template:
         main:
           image:
             repository: zoriya/kyoo_back
-            tag: "4.4.0"
+            tag: "4.5.0"
             pullPolicy: IfNotPresent
           env:
             - name: REQUIRE_ACCOUNT_VERIFICATION
