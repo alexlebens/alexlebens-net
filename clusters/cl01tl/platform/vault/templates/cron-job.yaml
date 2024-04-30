@@ -29,9 +29,9 @@ spec:
                 - |
                   apk add --no-cache jq
                   export VAULT_TOKEN=$(vault write auth/approle/login role_id=$VAULT_APPROLE_ROLE_ID secret_id=$VAULT_APPROLE_SECRET_ID -format=json | jq -r .auth.client_token);
-                  timestamp=$(date +%s)
-                  vault operator raft snapshot save /opt/backup/vault-raft-$(timestamp).snap;
-                  cp /opt/backup/vault-raft-$(timestamp).snap /opt/backup/vault-raft.snap
+                  export timestamp=$(date +%s)
+                  vault operator raft snapshot save /opt/backup/vault-raft-${timestamp}.snap;
+                  cp /opt/backup/vault-raft-${timestamp}.snap /opt/backup/vault-raft.snap
               envFrom:
                 - secretRef:
                     name: vault-snapshot-agent-token
