@@ -415,7 +415,7 @@ app-template:
       advancedMounts:
         back:
           main:
-            - path: /kyoo
+            - path: /metadata
               readOnly: false
     metadata:
       storageClass: ceph-block
@@ -434,21 +434,21 @@ app-template:
           main:
             - path: /cache
               readOnly: false
-    movies:
-      existingClaim: kyoo-movies-nfs-storage
+    documentaries:
+      existingClaim: kyoo-documentaries-nfs-storage
       advancedMounts:
         scanner:
           main:
-            - path: /video
-              readOnly: false
+            - path: /video/Documentaries
+              readOnly: true
         matcher:
           main:
-            - path: /video
-              readOnly: false              
+            - path: /video/Documentaries
+              readOnly: true
         transcoder:
           main:
-            - path: /video
-              readOnly: false
+            - path: /video/Documentaries
+              readOnly: true
 rabbitmq:
   auth:
     username: kyoo
