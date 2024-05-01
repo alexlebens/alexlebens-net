@@ -374,15 +374,15 @@ app-template:
       advancedMounts:
         scanner:
           main:
-            - path: /video/Documentaries
+            - path: /video
               readOnly: true
         matcher:
           main:
-            - path: /video/Documentaries
+            - path: /video
               readOnly: true
         transcoder:
           main:
-            - path: /video/Documentaries
+            - path: /video
               readOnly: true
 rabbitmq:
   auth:
