@@ -33,6 +33,45 @@ app-template:
       replicas: 1
       strategy: Recreate
       revisionHistoryLimit: 3
+      initContainers:
+        migrations:
+          image:
+            repository: ghcr.io/zoriya/kyoo_migrations
+            tag: "4.5.0"
+            pullPolicy: IfNotPresent
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-postgresql-16-cluster-app
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-postgresql-16-cluster-app
+                  key: password
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-postgresql-16-cluster-app
+                  key: dbname
+            - name: POSTGRES_SERVER
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-postgresql-16-cluster-app
+                  key: host
+            - name: POSTGRES_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: kyoo-postgresql-16-cluster-app
+                  key: port
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 10m
+              memory: 256Mi      
       containers:
         main:
           image:
@@ -189,110 +228,6 @@ app-template:
                   key: tmdb
             - name: LIBRARY_LANGUAGES
               value: en
-            - name: RABBITMQ_HOST
-              value: kyoo-rabbitmq
-            - name: RABBITMQ_DEFAULT_USER
-              value: kyoo
-            - name: RABBITMQ_DEFAULT_PASS
-              valueFrom:
-                secretKeyRef:
-                  name: kyoo-rabbitmq-secret
-                  key: password
-          resources:
-            limits:
-              cpu: 500m
-              memory: 512Mi
-            requests:
-              cpu: 10m
-              memory: 256Mi
-    migrations:
-      type: job
-      job:
-        backoffLimit: 3
-      containers:
-        main:
-          image:
-            repository: ghcr.io/zoriya/kyoo_migrations
-            tag: "4.5.0"
-            pullPolicy: IfNotPresent
-          env:
-            - name: REQUIRE_ACCOUNT_VERIFICATION
-              value: "false"
-            - name: UNLOGGED_PERMISSIONS
-              value: overall.read
-            - name: DEFAULT_PERMISSIONS
-              value: overall.read,overall.play
-            - name: AUTHENTICATION_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: kyoo-key-secret
-                  key: key
-            - name: KYOO_APIKEYS
-              valueFrom:
-                secretKeyRef:
-                  name: kyoo-key-secret
-                  key: kyoo
-            - name: THEMOVIEDB_APIKEY
-              valueFrom:
-                secretKeyRef:
-                  name: kyoo-key-secret
-                  key: tmdb
-            - name: PUBLIC_URL
-              value: https://kyoo.alexlebens.net
-            - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: kyoo-postgresql-16-cluster-app
-                  key: username
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: kyoo-postgresql-16-cluster-app
-                  key: password
-            - name: POSTGRES_DB
-              valueFrom:
-                secretKeyRef:
-                  name: kyoo-postgresql-16-cluster-app
-                  key: dbname
-            - name: POSTGRES_SERVER
-              valueFrom:
-                secretKeyRef:
-                  name: kyoo-postgresql-16-cluster-app
-                  key: host
-            - name: POSTGRES_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: kyoo-postgresql-16-cluster-app
-                  key: port
-            - name: OIDC_SERVICE_NAME
-              value: Authentik
-            - name: OIDC_SERVICE_LOGO
-              value: https://avatars.githubusercontent.com/u/82976448?s=200&v=4
-            - name: OIDC_SERVICE_AUTHORIZATION
-              value: https://authentik.alexlebens.net/application/o/authorize/
-            - name: OIDC_SERVICE_TOKEN
-              value: https://authentik.alexlebens.net/application/o/token/
-            - name: OIDC_SERVICE_PROFILE
-              value: https://authentik.alexlebens.net/application/o/userinfo/
-            - name: OIDC_SERVICE_SCOPE
-              value: "openid profile email"
-            - name: OIDC_SERVICE_CLIENTID
-              valueFrom:
-                secretKeyRef:
-                  name: kyoo-oidc-secret
-                  key: client
-            - name: OIDC_SERVICE_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: kyoo-oidc-secret
-                  key: secret
-            - name: MEILI_HOST
-              value: http://kyoo-meilisearch.kyoo:7700
-            - name: MEILI_MASTER_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: kyoo-meilisearch-master-key-secret
-                  key: MEILI_MASTER_KEY
             - name: RABBITMQ_HOST
               value: kyoo-rabbitmq
             - name: RABBITMQ_DEFAULT_USER
