@@ -100,12 +100,12 @@ app-template:
               value: https://authentik.alexlebens.net/application/o/userinfo/
             - name: OIDC_SERVICE_SCOPE
               value: "openid profile email"
-            - name: OIDC_CLIENT_ID
+            - name: OIDC_SERVICE_CLIENTID
               valueFrom:
                 secretKeyRef:
                   name: kyoo-oidc-secret
                   key: client
-            - name: OIDC_CLIENT_SECRET
+            - name: OIDC_SERVICE_SECRET
               valueFrom:
                 secretKeyRef:
                   name: kyoo-oidc-secret
@@ -274,12 +274,12 @@ app-template:
               value: https://authentik.alexlebens.net/application/o/userinfo/
             - name: OIDC_SERVICE_SCOPE
               value: "openid profile email"
-            - name: OIDC_CLIENT_ID
+            - name: OIDC_SERVICE_CLIENTID
               valueFrom:
                 secretKeyRef:
                   name: kyoo-oidc-secret
                   key: client
-            - name: OIDC_CLIENT_SECRET
+            - name: OIDC_SERVICE_SECRET
               valueFrom:
                 secretKeyRef:
                   name: kyoo-oidc-secret
