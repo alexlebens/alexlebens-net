@@ -439,15 +439,15 @@ app-template:
       advancedMounts:
         scanner:
           main:
-            - path: /video/Movies
+            - path: /video
               readOnly: false
         matcher:
           main:
-            - path: /video/Movies
+            - path: /video
               readOnly: false              
         transcoder:
           main:
-            - path: /video/Movies
+            - path: /video
               readOnly: false
 rabbitmq:
   auth:
