@@ -434,16 +434,20 @@ app-template:
           main:
             - path: /cache
               readOnly: false
-    library:
-      existingClaim: kyoo-nfs-storage
+    movies:
+      existingClaim: kyoo-movies-nfs-storage
       advancedMounts:
         scanner:
           main:
-            - path: /video
+            - path: /video/Movies
               readOnly: false
+        matcher:
+          main:
+            - path: /video/Movies
+              readOnly: false              
         transcoder:
           main:
-            - path: /video
+            - path: /video/Movies
               readOnly: false
 rabbitmq:
   auth:
