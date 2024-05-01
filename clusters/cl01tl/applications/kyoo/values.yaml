@@ -173,6 +173,8 @@ app-template:
             tag: "4.5.0"
             pullPolicy: IfNotPresent
           command:
+            - python3
+            - -m
             - matcher
           env:
             - name: KYOO_URL
