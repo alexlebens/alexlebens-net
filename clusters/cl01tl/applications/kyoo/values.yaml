@@ -172,6 +172,8 @@ app-template:
             repository: ghcr.io/zoriya/kyoo_scanner
             tag: "4.5.0"
             pullPolicy: IfNotPresent
+          command:
+            - matcher
           env:
             - name: KYOO_URL
               value: http://kyoo-back.kyoo:5000
