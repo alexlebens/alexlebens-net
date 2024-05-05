@@ -388,7 +388,7 @@ app-template:
           main:
             - path: /video/Documentaries
               readOnly: true
-    documentaryShows:
+    documentary-shows:
       existingClaim: kyoo-documentary-shows-nfs-storage
       advancedMounts:
         scanner:
