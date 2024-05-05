@@ -82,7 +82,7 @@ app-template:
             - name: REQUIRE_ACCOUNT_VERIFICATION
               value: "false"
             - name: UNLOGGED_PERMISSIONS
-              value: overall.read,overall.play
+              value: overall.read
             - name: DEFAULT_PERMISSIONS
               value: overall.read,overall.play
             - name: AUTHENTICATION_SECRET
@@ -228,6 +228,8 @@ app-template:
                   key: tmdb
             - name: LIBRARY_LANGUAGES
               value: en
+            - name: LIBRARY_IGNORE_PATTERN
+              value: .*/[dD]ownloads?/.*              
             - name: RABBITMQ_HOST
               value: kyoo-rabbitmq
             - name: RABBITMQ_DEFAULT_USER
@@ -270,6 +272,8 @@ app-template:
                   key: tmdb
             - name: LIBRARY_LANGUAGES
               value: en
+            - name: LIBRARY_IGNORE_PATTERN
+              value: .*/[dD]ownloads?/.*              
             - name: RABBITMQ_HOST
               value: kyoo-rabbitmq
             - name: RABBITMQ_DEFAULT_USER
@@ -374,16 +378,31 @@ app-template:
       advancedMounts:
         scanner:
           main:
-            - path: /video
+            - path: /video/Documentaries
               readOnly: true
         matcher:
           main:
-            - path: /video
+            - path: /video/Documentaries
               readOnly: true
         transcoder:
           main:
-            - path: /video
+            - path: /video/Documentaries
               readOnly: true
+    documentaryShows:
+      existingClaim: kyoo-documentary-shows-nfs-storage
+      advancedMounts:
+        scanner:
+          main:
+            - path: "/video/Documentary Shows"
+              readOnly: true
+        matcher:
+          main:
+            - path: "/video/Documentary Shows"
+              readOnly: true
+        transcoder:
+          main:
+            - path: "/video/Documentary Shows"
+              readOnly: true              
 rabbitmq:
   auth:
     username: kyoo
