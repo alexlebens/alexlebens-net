@@ -7,7 +7,8 @@ calibre-server:
     http:
       host: calibre-server.alexlebens.net
     authentik:
-      outpost: authentik-outpost-proxy      
+      outpost: authentik-outpost-proxy
+      namespace: authentik
   persistence:
     config:
       storageClassName: ceph-block
