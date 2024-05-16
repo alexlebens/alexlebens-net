@@ -103,7 +103,6 @@ argo-events:
     enabled: true
 postgres-16-cluster:
   mode: standalone
-  kubernetesClusterName: cl01tl
   cluster:
     walStorage:
       storageClass: local-path
@@ -115,8 +114,8 @@ postgres-16-cluster:
         enabled: true
   backup:
     enabled: true
-    endpointURL: https://b76e303258b84076ee01fd0f515c0768.r2.cloudflarestorage.com
-    endpointBucket: argo-workflows-postgresql-9a73a15fe354b50e2430644b473e327a
+    endpointURL: https://s3.us-east-2.amazonaws.com
+    endpointBucket: s3://cl01tl-argo-workflows-postgresql
     endpointCredentials: argo-workflows-postgresql-16-cluster-backup-secret
     backupIndex: 1
     retentionPolicy: 14d
