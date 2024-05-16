@@ -1,7 +1,6 @@
 traefik:
   deployment:
     kind: DaemonSet
-    replicas: 3
   ingressClass:
     enabled: true
     isDefaultClass: true
@@ -12,23 +11,20 @@ traefik:
       entryPoints: ["websecure"]
   providers:
     kubernetesCRD:
-      allowCrossNamespace: true
+      allowCrossNamespace: false
+      allowEmptyServices: true
     kubernetesIngress:
+      allowEmptyServices: true
       publishedService:
         enabled: true
   metrics:
     service:
       enabled: true
+  globalArguments: []
   ports:
-    traefik:
-      expose:
-        default: false
-        internal: true
     web:
-      port: 8000
       expose:
         default: true
-        internal: true
       exposedPort: 80
       redirectTo:
         port: websecure
@@ -51,7 +47,6 @@ traefik:
       port: 8443
       expose:
         default: true
-        internal: true
       exposedPort: 443
       forwardedHeaders:
         trustedIPs:
@@ -72,7 +67,18 @@ traefik:
     metrics:
       expose:
         default: false
-        internal: true
+  tlsOptions:
+    default:
+      minVersion: VersionTLS12
+      cipherSuites:
+        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305
+        - TLS_AES_256_GCM_SHA384
+        - TLS_CHACHA20_POLY1305_SHA256
+      curvePreferences:
+        - CurveP521
+        - CurveP384
+      sniStrict: true
   tlsStore:
     default:
       defaultCertificate:
