@@ -112,7 +112,7 @@ postgres-16-cluster:
         enabled: false
   backup:
     enabled: true
-    endpointURL: https://authentik-postgresql-backup.s3.us-east-2.amazonaws.com
+    endpointURL: https://s3.us-east-2.amazonaws.com
     endpointBucket: authentik-postgresql-backup
     endpointCredentials: authentik-postgresql-16-cluster-backup-secret
     backupIndex: 1
