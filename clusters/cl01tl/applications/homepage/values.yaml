@@ -13,6 +13,7 @@ homepage:
     host: home.alexlebens.net
     authentik:
       outpost: authentik-outpost-proxy
+      namespace: authentik
   config:
     widgets:
       - logo:
@@ -63,7 +64,7 @@ homepage:
               description: Media server
               href: https://kyoo.alexlebens.net/
               siteMonitor: http://kyoo-front.kyoo:8901
-              statusStyle: dot              
+              statusStyle: dot
           - TubeAchivist:
               icon: tube-archivist.png
               description: Youtube downloader
@@ -169,7 +170,7 @@ homepage:
               href: https://argo-rollouts.alexlebens.net
               siteMonitor: http://argo-rollouts-dashboard.argocd:3100
               statusStyle: dot
-              namespace: argocd              
+              namespace: argocd
           - Argo Workflows:
               icon: argocd.png
               description: Workflows and events for ArgoCD
