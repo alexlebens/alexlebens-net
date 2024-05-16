@@ -11,6 +11,5 @@ metadata:
     app.kubernetes.io/part-of: {{ .Release.Name }}
 spec:
   stripPrefix:
-    forceSlash: false
     prefixes:
       - /api/
