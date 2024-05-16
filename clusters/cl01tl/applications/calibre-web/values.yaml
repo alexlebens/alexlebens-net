@@ -25,6 +25,7 @@ ingressRoute:
   authentik:
     outpost: authentik-outpost-proxy
     port: 9000
+    namespace: authentik
 storage:
   storage:
     nfs:
