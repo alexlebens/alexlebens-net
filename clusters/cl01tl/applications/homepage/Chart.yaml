@@ -7,6 +7,6 @@ sources:
   - https://github.com/alexlebens/helm-charts/tree/main/charts/homepage
 dependencies:
   - name: homepage
-    version: 0.0.12
+    version: 0.0.13
     repository: http://alexlebens.github.io/helm-charts
 appVersion: v0.8.12
