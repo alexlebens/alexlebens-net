@@ -58,6 +58,12 @@ homepage:
               href: https://jellyfin.alexlebens.net/
               siteMonitor: http://jellyfin.jellyfin:8096
               statusStyle: dot
+          - Kyoo:
+              icon: kyoo.png
+              description: Media server
+              href: https://kyoo.alexlebens.net/
+              siteMonitor: http://kyoo-front.kyoo:8901
+              statusStyle: dot              
           - TubeAchivist:
               icon: tube-archivist.png
               description: Youtube downloader
