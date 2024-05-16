@@ -77,7 +77,7 @@ cloudflared:
         main:
           image:
             repository: cloudflare/cloudflared
-            tag: "2024.4.1"
+            tag: "2024.5.0"
             pullPolicy: IfNotPresent
           args:
             - tunnel
