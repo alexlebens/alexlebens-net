@@ -112,8 +112,8 @@ postgres-16-cluster:
         enabled: false
   backup:
     enabled: true
-    endpointURL: https://b76e303258b84076ee01fd0f515c0768.r2.cloudflarestorage.com
-    endpointBucket: authentik-postgresql-0b0e9c89ab76fc6c52899bd6bf26a3fd
+    endpointURL: https://s3.us-east-2.amazonaws.com
+    endpointBucket: authentik-postgresql-backup
     endpointCredentials: authentik-postgresql-16-cluster-backup-secret
     backupIndex: 1
     retentionPolicy: 14d
