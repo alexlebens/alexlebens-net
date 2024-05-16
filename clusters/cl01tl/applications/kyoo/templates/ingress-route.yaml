@@ -23,7 +23,7 @@ spec:
     - kind: Rule
       match: Host(`kyoo.alexlebens.net`) && PathPrefix(`/api/`)
       middlewares:
-        - name: {{ .Release.Namespace }}-strip-prefix
+        - name: kyoo-strip-prefix
           namespace: {{ .Release.Namespace }}
       priority: 15
       services:

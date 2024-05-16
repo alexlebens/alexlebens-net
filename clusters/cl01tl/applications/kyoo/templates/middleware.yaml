@@ -1,7 +1,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: strip-prefix
+  name: {{ .Release.Namespace }}-kyoo-strip-prefix
   namespace: {{ .Release.Namespace }}
   labels:
     app.kubernetes.io/name: kyoo-strip-prefix
