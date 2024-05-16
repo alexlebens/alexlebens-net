@@ -11,7 +11,7 @@ traefik:
       entryPoints: ["websecure"]
   providers:
     kubernetesCRD:
-      allowCrossNamespace: false
+      allowCrossNamespace: true
       allowEmptyServices: true
     kubernetesIngress:
       allowEmptyServices: true
