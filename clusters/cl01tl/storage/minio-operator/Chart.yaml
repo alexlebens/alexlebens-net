@@ -6,6 +6,6 @@ sources:
   - https://github.com/minio/operator/blob/master/helm/operator/Chart.yaml
 dependencies:
   - name: operator
-    version: 5.0.14
+    version: 5.0.15
     repository: https://operator.min.io
 appVersion: v5.0.14
