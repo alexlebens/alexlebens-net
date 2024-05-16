@@ -1,7 +1,7 @@
 freshrss:
   deployment:
     env:
-      TZ: US/Mountain
+      TZ: US/Central
       CRON_MIN: 13,43
       OIDC_ENABLED: 1
       OIDC_PROVIDER_METADATA_URL: https://authentik.alexlebens.net/application/o/freshrss/.well-known/openid-configuration

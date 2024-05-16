@@ -20,7 +20,7 @@ code-server:
           - codeserver.alexlebens.net
   env:
     simple:
-      TZ: US/Mountain
+      TZ: US/Central
       DEFAULT_WORKSPACE: /config
     full:
       - name: SUDO_PASSWORD

@@ -1,7 +1,7 @@
 tubearchivist:
   deployment:
     env:
-      TZ: US/Mountain
+      TZ: US/Central
     envFrom:
       - secretRef:
           name: tubearchivist-config-secret

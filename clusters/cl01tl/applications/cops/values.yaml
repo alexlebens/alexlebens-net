@@ -1,7 +1,7 @@
 cops:
   deployment:
     env:
-      TZ: US/Mountain
+      TZ: US/Central
   ingress:
     enabled: true
     annotations:

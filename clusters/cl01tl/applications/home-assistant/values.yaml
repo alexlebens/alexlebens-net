@@ -1,7 +1,7 @@
 home-assistant:
   deployment:
     env:
-      TZ: US/Mountain
+      TZ: US/Central
   ingressRoute:
     enabled: true
     host: homeassistant.alexlebens.net
@@ -32,7 +32,7 @@ home-assistant:
   codeserver:
     enabled: true
     env:
-      TZ: US/Mountain
+      TZ: US/Central
       DEFAULT_WORKSPACE: /config
     envFrom:
       - secretRef:

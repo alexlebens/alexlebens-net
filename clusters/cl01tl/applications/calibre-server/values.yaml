@@ -1,7 +1,7 @@
 calibre-server:
   deployment:
     env:
-      TZ: US/Mountain
+      TZ: US/Central
   ingressRoute:
     enabled: true
     http:

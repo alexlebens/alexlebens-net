@@ -35,7 +35,7 @@ vikunja:
     env:
       VIKUNJA_SERVICE_FRONTENDURL: https://vikunja.alexlebens.net
       VIKUNJA_SERVICE_ENABLEREGISTRATION: "true"
-      VIKUNJA_SERVICE_TIMEZONE: US/Mountain
+      VIKUNJA_SERVICE_TIMEZONE: US/Central
       VIKUNJA_REDIS_ENABLED: "true"
       VIKUNJA_REDIS_HOST: vikunja-redis-headless:6379
       VIKUNJA_REDIS_PASSWORD:

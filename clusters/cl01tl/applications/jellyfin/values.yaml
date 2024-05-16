@@ -1,6 +1,6 @@
 jellyfin:
   env:
-    TZ: US/Mountain
+    TZ: US/Central
   ingress:
     main:
       enabled: true

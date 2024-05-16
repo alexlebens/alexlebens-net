@@ -3,7 +3,7 @@ audiobookshelf:
     repository: ghcr.io/advplyr/audiobookshelf
     tag: 2.9.0
   env:
-    TZ: US/Mountain
+    TZ: US/Central
   ingress:
     main:
       enabled: true
