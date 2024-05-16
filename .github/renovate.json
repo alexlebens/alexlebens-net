@@ -40,7 +40,7 @@
         },
         {
             "description": "Label service images",
-            "matchPackageNames": [
+            "matchDepNames": [
                 "dpage/pgadmin4",
                 "ghcr.io/cloudnative-pg/postgresql",
                 "hashicorp/vault",
@@ -60,7 +60,7 @@
         },
         {
             "description": "Label service charts",
-            "matchPackageNames": [
+            "matchDepNames": [
                 "argo-cd",
                 "authentik",
                 "cert-manager",
@@ -105,7 +105,7 @@
         },
         {
             "description": "Label application images",
-            "matchPackageNames": [
+            "matchDepNames": [
                 "deluan/navidrome",
                 "ghcr.io/advplyr/audiobookshelf",
                 "ghcr.io/linuxserver/calibre-web",
@@ -126,7 +126,7 @@
         },
         {
             "description": "Label application charts",
-            "matchPackageNames": [
+            "matchDepNames": [
                 "audiobookshelf",
                 "calibre-server",
                 "calibre-web",
@@ -156,7 +156,7 @@
         },
         {
             "description": "Automerge the plex image",
-            "matchPackageNames": [
+            "matchDepNames": [
                 "ghcr.io/onedr0p/plex"
             ],
             "matchDatasources": [
