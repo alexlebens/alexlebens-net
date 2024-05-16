@@ -111,7 +111,7 @@ postgres-16-cluster:
       prometheusRule:
         enabled: false
   backup:
-    enabled: false
+    enabled: true
     endpointURL: https://authentik-postgresql-backup.s3.us-east-2.amazonaws.com
     endpointBucket: authentik-postgresql-backup
     endpointCredentials: authentik-postgresql-16-cluster-backup-secret
