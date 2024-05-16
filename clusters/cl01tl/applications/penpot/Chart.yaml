@@ -15,7 +15,7 @@ dependencies:
     version: 19.3.1
     repository: https://charts.bitnami.com/bitnami
   - name: tenant
-    version: 5.0.14
+    version: 5.0.15
     alias: minio
     repository: https://operator.min.io/
   - name: postgres-cluster
