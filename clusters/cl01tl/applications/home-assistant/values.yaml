@@ -7,6 +7,7 @@ home-assistant:
     host: homeassistant.alexlebens.net
     authentik:
       outpost: authentik-outpost-proxy
+      namespace: authentik
   metrics:
     enabled: true
     serviceMonitor:
@@ -40,3 +41,6 @@ home-assistant:
     ingressRoute:
       enabled: true
       host: homeassistant-codeserver.alexlebens.net
+      authentik:
+        outpost: authentik-outpost-proxy
+        namespace: authentik
