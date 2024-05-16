@@ -100,7 +100,6 @@ cloudflared:
               memory: 64Mi
 postgres-16-cluster:
   mode: standalone
-  kubernetesClusterName: cl01tl
   cluster:
     walStorage:
       storageClass: local-path
@@ -113,7 +112,7 @@ postgres-16-cluster:
   backup:
     enabled: true
     endpointURL: https://s3.us-east-2.amazonaws.com
-    endpointBucket: authentik-postgresql-backup
+    destinationPath: s3://cl01tl-authentik-postgresql
     endpointCredentials: authentik-postgresql-16-cluster-backup-secret
     backupIndex: 1
     retentionPolicy: 14d
