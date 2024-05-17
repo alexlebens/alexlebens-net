@@ -145,8 +145,8 @@ postgres-16-cluster:
         enabled: false
   backup:
     enabled: true
-    endpointURL: https://b76e303258b84076ee01fd0f515c0768.r2.cloudflarestorage.com
-    endpointBucket: taiga-postgresql-444e31cf66f39ff4b34de207293e8925
+    endpointURL: https://s3.us-east-2.amazonaws.com
+    destinationPath: s3://cl01tl-postgresql-backups/taiga
     endpointCredentials: taiga-postgresql-16-cluster-backup-secret
     backupIndex: 1
     retentionPolicy: 14d
