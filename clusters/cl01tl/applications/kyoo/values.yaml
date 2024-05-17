@@ -71,7 +71,7 @@ app-template:
               memory: 512Mi
             requests:
               cpu: 10m
-              memory: 256Mi      
+              memory: 256Mi
       containers:
         main:
           image:
@@ -229,7 +229,7 @@ app-template:
             - name: LIBRARY_LANGUAGES
               value: en
             - name: LIBRARY_IGNORE_PATTERN
-              value: .*/[dD]ownloads?/.*              
+              value: .*/[dD]ownloads?/.*
             - name: RABBITMQ_HOST
               value: kyoo-rabbitmq
             - name: RABBITMQ_DEFAULT_USER
@@ -273,7 +273,7 @@ app-template:
             - name: LIBRARY_LANGUAGES
               value: en
             - name: LIBRARY_IGNORE_PATTERN
-              value: .*/[dD]ownloads?/.*              
+              value: .*/[dD]ownloads?/.*
             - name: RABBITMQ_HOST
               value: kyoo-rabbitmq
             - name: RABBITMQ_DEFAULT_USER
@@ -373,6 +373,36 @@ app-template:
           main:
             - path: /cache
               readOnly: false
+    anime:
+      existingClaim: kyoo-anime-nfs-storage
+      advancedMounts:
+        scanner:
+          main:
+            - path: "/video/Anime"
+              readOnly: true
+        matcher:
+          main:
+            - path: "/video/Anime"
+              readOnly: true
+        transcoder:
+          main:
+            - path: "/video/Anime"
+              readOnly: true
+    anime-movies:
+      existingClaim: kyoo-anime-movies-nfs-storage
+      advancedMounts:
+        scanner:
+          main:
+            - path: "/video/Anime Movies"
+              readOnly: true
+        matcher:
+          main:
+            - path: "/video/Anime Movies"
+              readOnly: true
+        transcoder:
+          main:
+            - path: "/video/Anime Movies"
+              readOnly: true
     documentaries:
       existingClaim: kyoo-documentaries-nfs-storage
       advancedMounts:
@@ -402,7 +432,112 @@ app-template:
         transcoder:
           main:
             - path: "/video/Documentary Shows"
-              readOnly: true              
+              readOnly: true
+    movies:
+      existingClaim: kyoo-movies-nfs-storage
+      advancedMounts:
+        scanner:
+          main:
+            - path: "/video/Movies"
+              readOnly: true
+        matcher:
+          main:
+            - path: "/video/Movies"
+              readOnly: true
+        transcoder:
+          main:
+            - path: "/video/Movies"
+              readOnly: true
+    movies-4k:
+      existingClaim: kyoo-movies-4k-nfs-storage
+      advancedMounts:
+        scanner:
+          main:
+            - path: "/video/Movies 4K"
+              readOnly: true
+        matcher:
+          main:
+            - path: "/video/Movies 4K"
+              readOnly: true
+        transcoder:
+          main:
+            - path: "/video/Movies 4K"
+              readOnly: true
+    movies-classics:
+      existingClaim: kyoo-movies-classics-nfs-storage
+      advancedMounts:
+        scanner:
+          main:
+            - path: "/video/Movies Classics"
+              readOnly: true
+        matcher:
+          main:
+            - path: "/video/Movies Classics"
+              readOnly: true
+        transcoder:
+          main:
+            - path: "/video/Movies Classics"
+              readOnly: true
+    movies-foreign:
+      existingClaim: kyoo-movies-foreign-nfs-storage
+      advancedMounts:
+        scanner:
+          main:
+            - path: "/video/Movies Foreign"
+              readOnly: true
+        matcher:
+          main:
+            - path: "/video/Movies Foreign"
+              readOnly: true
+        transcoder:
+          main:
+            - path: "/video/Movies Foreign"
+              readOnly: true
+    stand-up:
+      existingClaim: kyoo-stand-up-nfs-storage
+      advancedMounts:
+        scanner:
+          main:
+            - path: "/video/Stand Up"
+              readOnly: true
+        matcher:
+          main:
+            - path: "/video/Stand Up"
+              readOnly: true
+        transcoder:
+          main:
+            - path: "/video/Stand Up"
+              readOnly: true
+    tv-shows:
+      existingClaim: kyoo-tv-shows-nfs-storage
+      advancedMounts:
+        scanner:
+          main:
+            - path: "/video/TV Shows"
+              readOnly: true
+        matcher:
+          main:
+            - path: "/video/TV Shows"
+              readOnly: true
+        transcoder:
+          main:
+            - path: "/video/TV Shows"
+              readOnly: true
+    tv-shows-4k:
+      existingClaim: kyoo-tv-shows-4k-nfs-storage
+      advancedMounts:
+        scanner:
+          main:
+            - path: "/video/TV Shows 4K"
+              readOnly: true
+        matcher:
+          main:
+            - path: "/video/TV Shows 4K"
+              readOnly: true
+        transcoder:
+          main:
+            - path: "/video/TV Shows 4K"
+              readOnly: true
 rabbitmq:
   auth:
     username: kyoo
