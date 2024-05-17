@@ -360,12 +360,12 @@ homepage:
           - Renovate:
               - abbr: RN
                 href: https://developer.mend.io/[platform]/alexlebens/alexlebens-net
+          - AWS:
+              - abbr: AW
+                href: https://aws.amazon.com/console/                
           - Cloudflare:
               - abbr: CF
                 href: https://dash.cloudflare.com/b76e303258b84076ee01fd0f515c0768
-          - AWS:
-              - abbr: AW
-                href: https://aws.amazon.com/console/
           - Tailscale:
               - abbr: TS
                 href: https://login.tailscale.com/admin/machines
