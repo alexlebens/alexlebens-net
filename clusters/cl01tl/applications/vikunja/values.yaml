@@ -110,8 +110,8 @@ postgres-16-cluster:
       enabled: true
   backup:
     enabled: true
-    endpointURL: https://b76e303258b84076ee01fd0f515c0768.r2.cloudflarestorage.com
-    endpointBucket: vikunja-postgresql-1c9a712accf81e9eca3e8538b9658f2a
+    endpointURL: https://s3.us-east-2.amazonaws.com
+    destinationPath: s3://cl01tl-postgresql-backups/vikunja
     endpointCredentials: vikunja-postgresql-16-cluster-backup-secret
     backupIndex: 1
     retentionPolicy: 14d
