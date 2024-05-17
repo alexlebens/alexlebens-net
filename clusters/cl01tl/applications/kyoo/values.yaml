@@ -439,7 +439,6 @@ meilisearch:
     enabled: true
 postgres-16-cluster:
   mode: standalone
-  kubernetesClusterName: cl01tl
   cluster:
     walStorage:
       storageClass: local-path
@@ -449,8 +448,8 @@ postgres-16-cluster:
       enabled: true
   backup:
     enabled: true
-    endpointURL: https://b76e303258b84076ee01fd0f515c0768.r2.cloudflarestorage.com
-    endpointBucket: kyoo-postgresql-44d220ecef0a9035c9b2dc55372dbe1e
+    endpointURL: https://s3.us-east-2.amazonaws.com
+    destinationPath: s3://cl01tl-kyoo-postgresql
     endpointCredentials: kyoo-postgresql-16-cluster-backup-secret
     backupIndex: 1
     retentionPolicy: 14d
