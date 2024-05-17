@@ -128,8 +128,8 @@ postgres-16-cluster:
       enabled: true
   backup:
     enabled: true
-    endpointURL: https://b76e303258b84076ee01fd0f515c0768.r2.cloudflarestorage.com
-    endpointBucket: penpot-postgresql-4d592ad4dd57748f64bce6e869bef983
+    endpointURL: https://s3.us-east-2.amazonaws.com
+    destinationPath: s3://cl01tl-postgresql-backups/penpot
     endpointCredentials: penpot-postgresql-16-cluster-backup-secret
     backupIndex: 1
     retentionPolicy: 14d
