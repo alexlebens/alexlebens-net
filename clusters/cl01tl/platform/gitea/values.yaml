@@ -78,7 +78,6 @@ gitea:
       enabled: false
 postgres-16-cluster:
   mode: standalone
-  kubernetesClusterName: cl01tl
   cluster:
     walStorage:
       storageClass: local-path
@@ -90,8 +89,8 @@ postgres-16-cluster:
         enabled: false
   backup:
     enabled: true
-    endpointURL: https://b76e303258b84076ee01fd0f515c0768.r2.cloudflarestorage.com
-    endpointBucket: gitea-postgresql-c0d85da89fc82f9201ec9b2e201ff011
+    endpointURL: https://s3.us-east-2.amazonaws.com
+    destinationPath: s3://cl01tl-gitea-postgresql
     endpointCredentials: gitea-postgresql-16-cluster-backup-secret
     backupIndex: 1
     retentionPolicy: 14d
