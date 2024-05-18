@@ -169,10 +169,10 @@ app-template:
                   key: password
           resources:
             limits:
-              cpu: 500m
+              cpu: 5000m
               memory: 5Gi
             requests:
-              cpu: 10m
+              cpu: 100m
               memory: 256Mi
     front:
       type: deployment
@@ -198,7 +198,7 @@ app-template:
               cpu: 500m
               memory: 512Mi
             requests:
-              cpu: 10m
+              cpu: 100m
               memory: 256Mi
     matcher:
       type: deployment
@@ -241,10 +241,10 @@ app-template:
                   key: password
           resources:
             limits:
-              cpu: 500m
-              memory: 512Mi
+              cpu: 5000m
+              memory: 2Gi
             requests:
-              cpu: 10m
+              cpu: 100m
               memory: 256Mi
     scanner:
       type: deployment
@@ -285,10 +285,10 @@ app-template:
                   key: password
           resources:
             limits:
-              cpu: 500m
+              cpu: 5000m
               memory: 2Gi
             requests:
-              cpu: 10m
+              cpu: 100m
               memory: 256Mi
     transcoder:
       type: deployment
@@ -315,7 +315,7 @@ app-template:
           resources:
             limits:
               cpu: 5000m
-              memory: 2Gi
+              memory: 4Gi
               gpu.intel.com/i915: 1
             requests:
               cpu: 100m
