@@ -109,9 +109,9 @@ postgres-16-cluster:
   kubernetesClusterName: cl01tl
   cluster:
     walStorage:
-      storageClass: local-path
+      storageClass: ceph-block
     storage:
-      storageClass: local-path
+      storageClass: ceph-block
     monitoring:
       enabled: true
   backup:
