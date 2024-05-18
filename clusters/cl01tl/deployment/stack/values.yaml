@@ -38,6 +38,11 @@ applicationSet:
         - ServerSideApply=true
         - PruneLast=true
   - name: services
+    ignoreDifferences:
+      - group: ""
+        kind: Service
+        jqPathExpressions:
+          - .status.loadBalancer.ingress[].ipMode      
     syncPolicy:
       automated:
         enabled: true

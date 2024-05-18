@@ -36,6 +36,8 @@ spec:
         repoURL: {{ $.Values.git.repo }}
         targetRevision: {{ $.Values.git.revision }}
         path: '{{ `{{path}}` }}'
+      ignoreDifferences:
+        {{- toYaml $stack.ignoreDifferences | nindent 8 }}          
       syncPolicy:
         {{- if $stack.syncPolicy.automated.enabled }}
         automated:
