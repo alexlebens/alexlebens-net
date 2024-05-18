@@ -78,7 +78,7 @@ minio:
         name: pool
         volumesPerServer: 2
         size: 10Gi
-        storageClassName: local-path
+        storageClassName: synology-iscsi-retain
     mountPath: /export
     subPath: /data
     metrics:
