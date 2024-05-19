@@ -349,7 +349,7 @@ app-template:
     back:
       storageClass: ceph-block
       accessMode: ReadWriteOnce
-      size: 10Gi
+      size: 50Gi
       retain: true
       advancedMounts:
         back:
